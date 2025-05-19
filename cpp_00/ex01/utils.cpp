@@ -2,7 +2,10 @@
 #include "PhoneBook.hpp"
 #include "utils.hpp"
 
-bool getInput(std::string* prompt)
+static bool isIndexValid(std::string prompt);
+static int  ft_atoi(const std::string& str);
+
+bool        getInput(std::string* prompt)
 {
     std::getline(std::cin, *prompt);
 
@@ -20,7 +23,7 @@ bool getInput(std::string* prompt)
     return (true);
 }
 
-Status addProcess(PhoneBook* phoneBook)
+Status      addProcess(PhoneBook* phoneBook)
 {
     std::string prompt;
     std::string fields[5];
@@ -32,7 +35,7 @@ Status addProcess(PhoneBook* phoneBook)
         
         if (!getInput(&prompt))
         {
-            return (Status::FAILURE);
+            return (FAILURE);
         }
 
         if (prompt.empty())
@@ -44,12 +47,15 @@ Status addProcess(PhoneBook* phoneBook)
 
         // * Implement validation for each field here if needed
 
+        fields[i] = prompt;
+
     }
     phoneBook->Add(fields);
-    return (Status::SUCCESS);
+    std::cout << "Contact added successfully!\n";
+    return (SUCCESS);
 }
 
-Status searchProcess(PhoneBook* phoneBook)
+Status      searchProcess(PhoneBook* phoneBook)
 {
     std::string prompt;
     int index;
@@ -60,7 +66,7 @@ Status searchProcess(PhoneBook* phoneBook)
     
         if (!getInput(&prompt))
         {
-            return (Status::FAILURE);
+            return (FAILURE);
         }
         if (prompt.empty())
         {
@@ -70,7 +76,7 @@ Status searchProcess(PhoneBook* phoneBook)
 
         if (isIndexValid(prompt))
         {
-            index = std::stoi(prompt);
+            index = ft_atoi(prompt);
             break;
         }
         else
@@ -80,33 +86,39 @@ Status searchProcess(PhoneBook* phoneBook)
 
     }
     phoneBook->getContact(index).printContacts();
-    return (Status::SUCCESS);
-}
-
-static void printContact(Contact contact)
-{
-    std::cout << "First Name: " << contact.getName() << "\n";
-    std::cout << "Last Name: " << contact.getSurname() << "\n";
-    std::cout << "Nickname: " << contact.getNickname() << "\n";
-    std::cout << "Phone Number: " << contact.getPhoneNumber() << "\n";
-    std::cout << "Darkest Secret: " << contact.getDarkestSecret() << "\n";
+    return (SUCCESS);
 }
 
 static bool isIndexValid(std::string prompt)
 {
-    for (char c : prompt)
+    for (std::size_t i = 0; i < prompt.length(); ++i)
     {
-        if (!std::isdigit(c))
+        if (!std::isdigit(prompt[i]))
         {
             std::cout << "Invalid index. Please enter a valid number.\n";
             return (false);
         }
     }
-    int index = std::stoi(prompt);
+
+    int index = ft_atoi(prompt);
     if (index < 0 || index >= 8)
     {
         std::cout << "Index out of range. Please enter a number between 0 and 7.\n";
         return (false);
     }
+
     return (true);
+}
+
+int ft_atoi(const std::string& str)
+{
+    int result = 0;
+    for (std::size_t i = 0; i < str.length(); ++i)
+    {
+        char c = str[i];
+        if (c < '0' || c > '9')
+            return (-1);
+        result = (result * 10) + (c - '0');
+    }
+    return (result);
 }

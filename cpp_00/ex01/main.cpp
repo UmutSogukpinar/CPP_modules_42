@@ -1,4 +1,5 @@
 #include "iostream"
+#include "cstdlib"
 #include "PhoneBook.hpp"
 #include "utils.hpp"
 
@@ -27,12 +28,12 @@ int main()
 
         exitStatus = generealProcess(&phoneBook, prompt);
 
-        if (exitStatus == Status::EXIT)
+        if (exitStatus == EXIT)
         {
             std::cout << "Exiting the program.\n";
             break;
         }
-        else if (exitStatus == Status::FAILURE)
+        else if (exitStatus == FAILURE)
         {
             std::cout << "An error occurred\n";
             return (EXIT_FAILURE);
@@ -49,16 +50,15 @@ static Status generealProcess(PhoneBook* phoneBook, std::string prompt)
     }
     else if (prompt == "SEARCH")
     {
-        // * Implement search functionality here
-        return (Status::SUCCESS);
+        return (searchProcess(phoneBook));
     }
     else if (prompt == "EXIT")
     {
-        return (Status::SUCCESS);
+        return (EXIT);
     }
     else
     {
         std::cout << "Invalid command. Please try again.\n";
-        return (Status::SUCCESS);
+        return (SUCCESS);
     }
 }

@@ -3,7 +3,7 @@
 
 #include "string"
 
-enum class Status 
+enum    Status 
 {
     SUCCESS,
     FAILURE,
@@ -13,6 +13,7 @@ enum class Status
 
 bool    getInput(std::string* prompt);
 Status  addProcess(PhoneBook* phoneBook);
+Status searchProcess(PhoneBook* phoneBook);
 
 
 #endif

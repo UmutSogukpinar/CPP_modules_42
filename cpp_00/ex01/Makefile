@@ -5,6 +5,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC =	PhoneBook.cpp	\
 		Contact.cpp		\
 		main.cpp		\
+		utils.cpp		\
 
 OBJS = $(SRC:.cpp=.o)
 
