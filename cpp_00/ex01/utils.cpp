@@ -2,6 +2,7 @@
 #include "PhoneBook.hpp"
 #include "utils.hpp"
 
+static bool isInvalidPrompt(std::string prompt, int fieldIndex);
 static bool isIndexValid(std::string prompt);
 static int  ft_atoi(const std::string& str);
 
@@ -46,6 +47,12 @@ Status      addProcess(PhoneBook* phoneBook)
         }
 
         // * Implement validation for each field here if needed
+        if (isInvalidPrompt(prompt, i))
+        {
+            --i;
+            std::cout << "Invalid input. Please enter a valid value for " << fieldNames[i] << ".\n";
+            continue;
+        }
 
         fields[i] = prompt;
 
@@ -108,6 +115,37 @@ static bool isIndexValid(std::string prompt)
     }
 
     return (true);
+}
+
+static bool isInvalidPrompt(std::string prompt, int fieldIndex)
+{
+    if (fieldIndex == 3) // Phone Number
+    {
+        if (prompt.length() != 10)
+        {
+            return (true);
+        }
+        for (std::size_t i = 0; i < prompt.length(); ++i)
+        {
+            if (!std::isdigit(prompt[i]))
+            {
+                return (true);
+            }
+        }
+    }
+
+    if (fieldIndex < 2)
+    {
+        for (std::size_t i = 0; i < prompt.length(); ++i)
+        {
+            if (!std::isalpha(prompt[i]) && prompt[i] != ' ')
+            {
+                return (true);
+            }
+        }
+    }
+
+    return (false);
 }
 
 int ft_atoi(const std::string& str)
