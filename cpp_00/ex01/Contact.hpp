@@ -1,7 +1,7 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-#include "iostream"
+#include "string"
 
 class	Contact
 {
@@ -20,12 +20,15 @@ class	Contact
         Contact();
 		Contact(const std::string fields[5]);
 
-		// Methods
+		// Getters
 		std::string getName() const;
 		std::string getSurname() const;
 		std::string getNickname() const;
 		std::string getPhoneNumber() const;
 		std::string getDarkestSecret() const;
+
+		// Methods
+		void printContacts() const;
 
 
 };

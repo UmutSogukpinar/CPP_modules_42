@@ -1,12 +1,14 @@
+#include "iostream"
 #include "PhoneBook.hpp"
-#include <cstdlib>
+#include "utils.hpp"
 
-static bool getInput(std::string* prompt);
+static Status generealProcess(PhoneBook* phoneBook, std::string prompt);
 
 int main()
 {
-    PhoneBook phoneBook;
+    PhoneBook   phoneBook;
     std::string prompt;
+    Status      exitStatus;
 
     while (true)
     {
@@ -14,80 +16,49 @@ int main()
 
         if (!getInput(&prompt))
         {
+            std::cerr << "Error reading input. Exiting...\n";
             return (EXIT_FAILURE);
         }
-        if (prompt == "EXIT")
-        {
-            break;
-        }
-        else if (prompt == "ADD")
-        {
-            if (addProcess(&phoneBook) == EXIT_FAILURE)
-            {
-                std::cerr << "Failed to add contact.\n";
-                return (EXIT_FAILURE);
-            }
-        }
-    }
-    return (0);
-}
-
-static int addProcess(PhoneBook* phoneBook)
-{
-    std::string prompt;
-    std::string fields[5];
-    std::string fieldNames[5] = {"First Name", "Last Name", "Nickname", "Phone Number", "Darkest Secret"};
-
-    for (int i = 0; i < 5; ++i)
-    {
-        std::cout << fieldNames[i] << ": ";
-        
-        if (!getInput(&prompt))
-        {
-            return (EXIT_FAILURE);
-        }
-
         if (prompt.empty())
         {
-            std::cout << fieldNames[i] << " cannot be empty. Please try again.\n";
-            --i;
+            std::cout << "Empty input. Please enter a command.\n";
             continue;
         }
 
+        exitStatus = generealProcess(&phoneBook, prompt);
+
+        if (exitStatus == Status::EXIT)
+        {
+            std::cout << "Exiting the program.\n";
+            break;
+        }
+        else if (exitStatus == Status::FAILURE)
+        {
+            std::cout << "An error occurred\n";
+            return (EXIT_FAILURE);
+        }
     }
-    phoneBook->Add(fields);
     return (EXIT_SUCCESS);
 }
 
-static bool getInput(std::string* prompt)
+static Status generealProcess(PhoneBook* phoneBook, std::string prompt)
 {
-    std::getline(std::cin, *prompt);
-
-    if (std::cin.eof())
+    if (prompt == "ADD")
     {
-        return (false);
+        return (addProcess(phoneBook));
     }
-
-    if (std::cin.fail())
+    else if (prompt == "SEARCH")
     {
-        std::cerr << "Reading input failed!\n";
-        std::cin.clear();               // ? is this necessary?
-        std::cin.ignore(10000, '\n');   // ? is this necessary?
-        return (false);
+        // * Implement search functionality here
+        return (Status::SUCCESS);
     }
-
-    if (prompt->empty())
+    else if (prompt == "EXIT")
     {
-        std::cout << "Empty input. Please enter a command.\n";
-        return (true);
+        return (Status::SUCCESS);
     }
-
-    if (*prompt == "ADD" || *prompt == "SEARCH" || *prompt == "EXIT")
+    else
     {
-        return (true);
+        std::cout << "Invalid command. Please try again.\n";
+        return (Status::SUCCESS);
     }
-
-    std::cout << "Invalid command. Please try again.\n";
-    return (true);
 }
-

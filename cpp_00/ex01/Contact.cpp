@@ -1,3 +1,5 @@
+#include "iostream"
+#include "iomanip"
 #include "Contact.hpp"
 
 // ====================  Constructors ====================
@@ -47,4 +49,28 @@ std::string Contact::getPhoneNumber() const
 std::string Contact::getDarkestSecret() const
 {
     return (darkestSecret_);
+}
+
+// ====================  Methods ====================
+
+static std::string truncateField(std::string field);
+
+void Contact::printContacts() const
+{
+    std::cout << std::left;
+
+    std::cout << std::setw(16) << "First Name:"     << std::setw(10) << truncateField(name_) << "\n";
+    std::cout << std::setw(16) << "Last Name:"      << std::setw(10) << truncateField(surname_) << "\n";
+    std::cout << std::setw(16) << "Nickname:"       << std::setw(10) << truncateField(nickname_) << "\n";
+    std::cout << std::setw(16) << "Phone Number:"   << std::setw(10) << truncateField(phoneNumber_) << "\n";
+    std::cout << std::setw(16) << "Darkest Secret:" << std::setw(10) << truncateField(darkestSecret_) << "\n";
+}
+
+static std::string truncateField(std::string field)
+{
+    if (field.length() > 10)
+    {
+        return (field.substr(0, 9) + ".");
+    }
+    return (field);
 }
