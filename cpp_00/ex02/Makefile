@@ -1,17 +1,22 @@
-NAME = Account
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC =	Account.cpp \
 
+TEST = tests
 
 OBJS = $(SRC:.cpp=.o)
 
-all: $(NAME)
+all: $(OBJS)
+
+test: all
+	@echo "Running tests..."
+	@$(CC) $(CPPFLAGS) -o $(TEST) $(TEST).cpp $(OBJS)
+	@./$(TEST)
+	@echo "Tests completed."
 
 $(NAME): $(OBJS)
-	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME)
-	@echo "Compilation complete. Executable: $(NAME)"
+	@echo "Compilation complete."
 
 %.o: %.cpp
 	@$(CC) $(CPPFLAGS) -c $< -o $@
@@ -21,7 +26,7 @@ clean:
 	@echo "Object files removed."
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(TEST)
 	@echo "Executable removed."
 
 re: fclean all
