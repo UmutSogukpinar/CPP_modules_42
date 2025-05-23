@@ -12,6 +12,6 @@ int main(int argc, char **args)
         for (int j = 0; args[i][j]; j++)
             std::cout << (char)std::toupper(args[i][j]);
     }
-    std::cout << std::endl;
+    std::cout << "\n";
     return (0);
 }

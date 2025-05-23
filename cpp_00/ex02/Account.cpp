@@ -52,7 +52,7 @@ Account::Account(int initial_deposit)
 Account::~Account( void )
 {
     _displayTimestamp();
-    std::cout << " index:" << _accountIndex << ";amount:" << _amount << ";destroyed" << "\n"; 
+    std::cout << " index:" << _accountIndex << ";amount:" << _amount << ";closed" << "\n"; 
 }
 
 // ============= Display functions ===================
@@ -77,35 +77,39 @@ void Account::displayStatus( void ) const
                 << "\n";
 }
 
-void	Account::_displayTimestamp( void )
+void Account::_displayTimestamp(void)
 {
-    time_t timestamp = time(&timestamp);
-    struct tm datetime = *localtime(&timestamp);
+    time_t now = time(NULL);
+    struct tm* dt = localtime(&now);
 
-	std::cout << "[" << datetime.tm_year + 1900;
-    if (datetime.tm_mon + 1 < 10)
-        std::cout << "0" << datetime.tm_mon + 1;
-    else
-        std::cout << datetime.tm_mon + 1;
-    if (datetime.tm_mday < 10)
-        std::cout << "0" << datetime.tm_mday;
-    else
-        std::cout << datetime.tm_mday;
+    std::cout << "["            \
+    << (dt->tm_year + 1900);
+
+    if (dt->tm_mon + 1 < 10)
+        std::cout << "0";
+    std::cout << (dt->tm_mon + 1);
+
+    if (dt->tm_mday < 10)
+        std::cout << "0";
+    std::cout << dt->tm_mday;
+
     std::cout << "_";
-    if (datetime.tm_hour < 10)
-        std::cout << "0" << datetime.tm_hour;
-    else
-        std::cout << datetime.tm_hour;
-    if (datetime.tm_min < 10)
-        std::cout << "0" << datetime.tm_min;
-    else
-        std::cout << datetime.tm_min;
-    if (datetime.tm_sec < 10)
-        std::cout << "0" << datetime.tm_sec;
-    else
-        std::cout << datetime.tm_sec;
-    std::cout << "]";
+
+    if (dt->tm_hour < 10)
+        std::cout << "0";
+    std::cout << dt->tm_hour;
+
+    if (dt->tm_min < 10)
+        std::cout << "0";
+    std::cout << dt->tm_min;
+
+    if (dt->tm_sec < 10)
+        std::cout << "0";
+    std::cout << dt->tm_sec     \
+    << "] ";
+
 }
+
 
 
 // ============= Deposit and withdrawal functions ===================
