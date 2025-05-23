@@ -33,6 +33,20 @@ int	Account::getNbWithdrawals(void)
 
 // ============= Constructor ===================
 
+Account::Account(void)
+{
+    _accountIndex = getNbAccounts();
+    _amount = 0;
+    _nbWithdrawals = 0;
+    _nbDeposits = 0;
+
+    _nbAccounts++;
+    _totalAmount += 0;
+
+    _displayTimestamp();
+    std::cout << " index:" << _accountIndex << ";amount:" << _amount << ";created" << "\n"; 
+}
+
 Account::Account(int initial_deposit)
 {
     _accountIndex = getNbAccounts();
@@ -106,7 +120,7 @@ void Account::_displayTimestamp(void)
     if (dt->tm_sec < 10)
         std::cout << "0";
     std::cout << dt->tm_sec     \
-    << "] ";
+    << "]";
 
 }
 
