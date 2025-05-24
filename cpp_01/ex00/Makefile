@@ -1,3 +1,4 @@
+NAME = Zombie
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
@@ -8,16 +9,11 @@ SRC =	main.cpp		\
 
 OBJS = $(SRC:.cpp=.o)
 
-all: $(OBJS)
-
-test: all
-	@echo "Running tests..."
-	@$(CC) $(CPPFLAGS) -o $(TEST) $(TEST).cpp $(OBJS)
-	@./$(TEST)
-	@echo "Tests completed."
+all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "Compilation complete."
+	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME)
+	@echo "Compilation complete. Executable: $(NAME)"
 
 %.o: %.cpp
 	@$(CC) $(CPPFLAGS) -c $< -o $@
