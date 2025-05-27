@@ -9,13 +9,13 @@ PhoneBook::PhoneBook()
 // private method to get the proper index for the contacts array
 int PhoneBook::getProperIndex()
 {
-    return (index_ % 8);
+    return (index_ % CONTACT_NUMBER);
 }
 
 // Get a contact from the contacts array
 Contact PhoneBook::getContact(int index)
 {
-    if (index < 0 || index >= 8)
+    if (index < FIRST_INDEX || index >= CONTACT_NUMBER)
         return (Contact());
     return (contacts_[index]);
 }
@@ -24,5 +24,5 @@ Contact PhoneBook::getContact(int index)
 void PhoneBook::Add(const std::string fields[5]) {
     int i = getProperIndex();
     contacts_[i] = Contact(fields);
-    index_++;
+    (index_)++;
 }

@@ -3,6 +3,7 @@
 #include "Contact.hpp"
 
 // ====================  Constructors ====================
+
 // Default constructor
 Contact::Contact()
 {
@@ -57,13 +58,13 @@ static std::string truncateField(std::string field);
 
 void Contact::printContacts() const
 {
-    std::cout << std::left;
+    std::cout << std::right;
 
-    std::cout << std::setw(16) << "First Name:"     << std::setw(10) << truncateField(name_) << "\n";
-    std::cout << std::setw(16) << "Last Name:"      << std::setw(10) << truncateField(surname_) << "\n";
-    std::cout << std::setw(16) << "Nickname:"       << std::setw(10) << truncateField(nickname_) << "\n";
-    std::cout << std::setw(16) << "Phone Number:"   << std::setw(10) << truncateField(phoneNumber_) << "\n";
-    std::cout << std::setw(16) << "Darkest Secret:" << std::setw(10) << truncateField(darkestSecret_) << "\n";
+    std::cout << "First Name:" << std::setw(10) << truncateField(name_) << "|";
+    std::cout << "Last Name:" << std::setw(10) << truncateField(surname_) << "|";
+    std::cout << "Nickname:" << std::setw(10) << truncateField(nickname_) << "|";
+    std::cout << "Phone Number:" << std::setw(10) << truncateField(phoneNumber_) << "|";
+    std::cout << "Darkest Secret:" << std::setw(10) << truncateField(darkestSecret_) << "\n";
 }
 
 static std::string truncateField(std::string field)

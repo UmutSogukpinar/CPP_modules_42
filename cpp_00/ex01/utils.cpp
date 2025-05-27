@@ -17,8 +17,6 @@ bool        getInput(std::string* prompt)
     if (std::cin.fail())
     {
         std::cerr << "Reading input failed!\n";
-        std::cin.clear();               // ? is this necessary?
-        std::cin.ignore(10000, '\n');   // ? is this necessary?
         return (false);
     }
     return (true);
@@ -41,16 +39,16 @@ Status      addProcess(PhoneBook* phoneBook)
 
         if (prompt.empty())
         {
-            --i;
             std::cout << "Empty input. Please enter a value for " << fieldNames[i] << ".\n";
+            --i;
             continue;
         }
 
         // * Implement validation for each field here if needed
         if (isInvalidPrompt(prompt, i))
         {
-            --i;
             std::cout << "Invalid input. Please enter a valid value for " << fieldNames[i] << ".\n";
+            --i;
             continue;
         }
 
@@ -108,7 +106,7 @@ static bool isIndexValid(std::string prompt)
     }
 
     int index = ft_atoi(prompt);
-    if (index < 0 || index >= 8)
+    if (index < 0 || index >= CONTACT_NUMBER)
     {
         std::cout << "Index out of range. Please enter a number between 0 and 7.\n";
         return (false);

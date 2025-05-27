@@ -3,28 +3,26 @@
 
 # include "Contact.hpp"
 
-class PhoneBook 
+# define CONTACT_NUMBER 8
+# define FIRST_INDEX 0
+
+class PhoneBook
 {
-    private:
+  private:
+	// Fields
+	Contact contacts_[CONTACT_NUMBER];
+	int index_;
 
-        // Fields
-        Contact     contacts_[8];
-        int         index_;
+	// Methods
+	int getProperIndex();
 
-        // Methods
-        int			getProperIndex();
+  public:
+	// Constructor
+	PhoneBook();
 
-    public:
-
-        // Constructor
-        PhoneBook();
-
-        // Methods
-        Contact		getContact(int index);
-        void        Add(const std::string fields[5]);
-
+	// Methods
+	Contact getContact(int index);
+	void Add(const std::string fields[5]);
 };
-
-
 
 #endif
