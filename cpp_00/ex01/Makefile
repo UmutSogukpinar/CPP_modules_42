@@ -2,10 +2,11 @@ NAME = PhoneBook
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC =	PhoneBook.cpp	\
-		Contact.cpp		\
-		main.cpp		\
-		utils.cpp		\
+SRC =	PhoneBook.cpp		\
+		Contact.cpp			\
+		main.cpp			\
+		searchProcess.cpp	\
+		utils.cpp			\
 
 OBJS = $(SRC:.cpp=.o)
 

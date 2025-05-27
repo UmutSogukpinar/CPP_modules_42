@@ -23,6 +23,10 @@ class PhoneBook
 	// Methods
 	Contact getContact(int index);
 	void Add(const std::string fields[5]);
+	
+	// Getter
+
+	int getIndex() const; 
 };
 
 #endif

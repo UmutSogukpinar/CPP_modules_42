@@ -6,6 +6,11 @@ PhoneBook::PhoneBook()
     index_ = 0;
 }
 
+int PhoneBook::getIndex() const
+{
+	return (index_);
+}
+
 // private method to get the proper index for the contacts array
 int PhoneBook::getProperIndex()
 {

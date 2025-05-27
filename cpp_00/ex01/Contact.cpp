@@ -1,5 +1,5 @@
 #include "iostream"
-#include "iomanip"
+
 #include "Contact.hpp"
 
 // ====================  Constructors ====================
@@ -23,7 +23,6 @@ Contact::Contact(const std::string fields[5])
     phoneNumber_ = fields[3];
     darkestSecret_ = fields[4];
 }
-
 
 // ====================  Getters ====================
 
@@ -54,24 +53,12 @@ std::string Contact::getDarkestSecret() const
 
 // ====================  Methods ====================
 
-static std::string truncateField(std::string field);
 
 void Contact::printContacts() const
 {
-    std::cout << std::right;
-
-    std::cout << "First Name:" << std::setw(10) << truncateField(name_) << "|";
-    std::cout << "Last Name:" << std::setw(10) << truncateField(surname_) << "|";
-    std::cout << "Nickname:" << std::setw(10) << truncateField(nickname_) << "|";
-    std::cout << "Phone Number:" << std::setw(10) << truncateField(phoneNumber_) << "|";
-    std::cout << "Darkest Secret:" << std::setw(10) << truncateField(darkestSecret_) << "\n";
-}
-
-static std::string truncateField(std::string field)
-{
-    if (field.length() > 10)
-    {
-        return (field.substr(0, 9) + ".");
-    }
-    return (field);
+    std::cout << "First Name:" << (name_) << "\n";
+    std::cout << "Last Name:" << (surname_) << "\n";
+    std::cout << "Nickname:" << (nickname_) << "\n";
+    std::cout << "Phone Number:" << (phoneNumber_) << "\n";
+    std::cout << "Darkest Secret:" << (darkestSecret_) << "\n";
 }

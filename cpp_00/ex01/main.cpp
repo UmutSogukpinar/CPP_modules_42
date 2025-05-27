@@ -7,9 +7,9 @@ static Status generealProcess(PhoneBook* phoneBook, std::string prompt);
 
 int main()
 {
-    PhoneBook   phoneBook;
-    std::string prompt;
-    Status      exitStatus;
+	PhoneBook	phoneBook;
+	std::string	prompt;
+	Status		exitStatus = SUCCESS;
 
     while (true)
     {
