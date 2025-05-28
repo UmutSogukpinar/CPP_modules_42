@@ -1,9 +1,9 @@
 #include "PhoneBook.hpp"
-#include "iostream"
 #include "utils.hpp"
 
 static bool	isInvalidPrompt(std::string prompt, int fieldIndex);
 
+// * Read input from standard input into the given string
 bool	getInput(std::string *prompt)
 {
 	std::getline(std::cin, *prompt);
@@ -18,7 +18,7 @@ bool	getInput(std::string *prompt)
 	}
 	return (true);
 }
-
+// * Add a new contact to the contacts array
 Status	addProcess(PhoneBook *phoneBook)
 {
 	std::string prompt;
@@ -52,7 +52,7 @@ Status	addProcess(PhoneBook *phoneBook)
 	return (SUCCESS);
 }
 
-
+// * Check whether the promp valid or not
 static bool	isInvalidPrompt(std::string prompt, int fieldIndex)
 {
 	if (fieldIndex == 3) // Phone Number

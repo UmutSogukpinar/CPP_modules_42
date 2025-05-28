@@ -7,7 +7,7 @@ TEST = tests
 
 OBJS = $(SRC:.cpp=.o)
 
-all: $(OBJS)
+all: $(TEST)
 
 test: all
 	@echo "Running tests..."
@@ -15,7 +15,7 @@ test: all
 	@./$(TEST)
 	@echo "Tests completed."
 
-$(NAME): $(OBJS)
+$(TEST): $(OBJS)
 	@echo "Compilation complete."
 
 %.o: %.cpp

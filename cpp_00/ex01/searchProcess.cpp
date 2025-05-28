@@ -2,12 +2,13 @@
 #include "iomanip"
 #include "utils.hpp"
 
-static void	displayAll(PhoneBook &phoneBook);
-static bool	isIndexValid(std::string prompt);
-static int	ft_atoi(const std::string &str);
-static std::string truncateField(std::string field);
-static int	searchLoop(PhoneBook *phoneBook, std::string &prompt);
+static void			displayAllContacts(PhoneBook &phoneBook);
+static bool			isIndexValid(std::string prompt);
+static int			ft_atoi(const std::string &str);
+static std::string	truncateField(std::string field);
+static int			searchLoop(PhoneBook *phoneBook, std::string &prompt);
 
+// * Handle the process of searching and displaying a contact
 Status	searchProcess(PhoneBook *phoneBook)
 {
 	int	index;
@@ -18,7 +19,7 @@ Status	searchProcess(PhoneBook *phoneBook)
 		std::cout << "The phonebook is empty. No contacts have been added yet.\n";
 		return (SUCCESS);
 	}
-	displayAll(*phoneBook);
+	displayAllContacts(*phoneBook);
 	std::cout << "\n";
 	index = searchLoop(phoneBook, prompt);
 	if (index == -1)
@@ -29,6 +30,7 @@ Status	searchProcess(PhoneBook *phoneBook)
 	return (SUCCESS);
 }
 
+// * Prompt the user to select a contact index
 static int	searchLoop(PhoneBook *phoneBook, std::string &prompt)
 {
 	int index;
@@ -63,7 +65,8 @@ static int	searchLoop(PhoneBook *phoneBook, std::string &prompt)
 	return (index);
 }
 
-static void	displayAll(PhoneBook &phoneBook)
+
+static void	displayAllContacts(PhoneBook &phoneBook)
 {
 	std::cout << std::right;
 	std::cout << "\n|";
@@ -92,6 +95,7 @@ static void	displayAll(PhoneBook &phoneBook)
 	}
 }
 
+// Checks if the given index valid
 static bool	isIndexValid(std::string prompt)
 {
 	int	index;
@@ -100,7 +104,7 @@ static bool	isIndexValid(std::string prompt)
 	{
 		if (!std::isdigit(prompt[i]))
 		{
-			std::cout << "Invalid index. Please enter a valid number.\n";
+			std::cout << "Invalid index! Please enter a number between 0 and 7.\n";
 			return (false);
 		}
 	}
@@ -113,6 +117,7 @@ static bool	isIndexValid(std::string prompt)
 	return (true);
 }
 
+// ASCII to Integer
 static int	ft_atoi(const std::string &str)
 {
 	int		result;
@@ -129,6 +134,7 @@ static int	ft_atoi(const std::string &str)
 	return (result);
 }
 
+// Truncates the field to 10 characters, adding a dot if it's too long.
 static std::string truncateField(std::string field)
 {
 	if (field.length() > 10)
