@@ -73,7 +73,7 @@ static bool	isInvalidPrompt(std::string prompt, int fieldIndex)
 	{
 		for (std::size_t i = 0; i < prompt.length(); ++i)
 		{
-			if (!std::isalpha(prompt[i]) && prompt[i] != ' ')
+			if (!std::isalpha(prompt[i]) && prompt[i] == ' ')
 			{
 				return (true);
 			}

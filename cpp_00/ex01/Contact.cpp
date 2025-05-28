@@ -2,25 +2,19 @@
 
 // ====================  Constructors ====================
 
-// Default constructor
+// Default Constructor
 Contact::Contact()
-{
-    name_ = "";
-    surname_ = "";
-    nickname_ = "";
-    phoneNumber_ = "";
-    darkestSecret_ = "";
-}
+	: name_(), surname_(), nickname_(), phoneNumber_(), darkestSecret_() {}
+
 
 // Constructor with parameters
-Contact::Contact(const std::string fields[5]) 
-{
-    name_ = fields[0];
-    surname_ = fields[1];
-    nickname_ = fields[2];
-    phoneNumber_ = fields[3];
-    darkestSecret_ = fields[4];
-}
+Contact::Contact(const std::string fields[5]): 
+		name_(fields[0]),
+		surname_(fields[1]),
+		nickname_(fields[2]),
+		phoneNumber_(fields[3]),
+		darkestSecret_(fields[4])
+{}
 
 // ====================  Getters ====================
 
@@ -50,7 +44,6 @@ std::string Contact::getDarkestSecret() const
 }
 
 // ====================  Methods ====================
-
 
 void Contact::printContacts() const
 {
