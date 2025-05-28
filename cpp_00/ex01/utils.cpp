@@ -18,6 +18,7 @@ bool	getInput(std::string *prompt)
 	}
 	return (true);
 }
+
 // * Add a new contact to the contacts array
 Status	addProcess(PhoneBook *phoneBook)
 {
@@ -38,7 +39,7 @@ Status	addProcess(PhoneBook *phoneBook)
 			--i;
 			continue ;
 		}
-		// * Implement validation for each field here if needed
+
 		if (isInvalidPrompt(prompt, i))
 		{
 			std::cout << "Invalid input. Please enter a valid value for " << fieldNames[i] << ".\n";
@@ -73,7 +74,7 @@ static bool	isInvalidPrompt(std::string prompt, int fieldIndex)
 	{
 		for (std::size_t i = 0; i < prompt.length(); ++i)
 		{
-			if (!std::isalpha(prompt[i]) && prompt[i] == ' ')
+			if (!std::isalpha(prompt[i]))
 			{
 				return (true);
 			}

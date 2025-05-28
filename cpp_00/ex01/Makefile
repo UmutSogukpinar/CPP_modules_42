@@ -2,9 +2,9 @@ NAME = PhoneBook
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC =	PhoneBook.cpp		\
+SRC =	main.cpp			\
+		PhoneBook.cpp		\
 		Contact.cpp			\
-		main.cpp			\
 		searchProcess.cpp	\
 		utils.cpp			\
 

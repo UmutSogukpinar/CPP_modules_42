@@ -65,14 +65,14 @@ static int	searchLoop(PhoneBook *phoneBook, std::string &prompt)
 	return (index);
 }
 
-
+// Display all contact array elements
 static void	displayAllContacts(PhoneBook &phoneBook)
 {
 	std::cout << std::right;
 	std::cout << "\n|";
 	std::cout << std::setw(10) << "Index"
 				<< "|"
-				<< std::setw(10) << "Name"
+				<< std::setw(10) << "First Name"
 				<< "|"
 				<< std::setw(10) << "Surname"
 				<< "|"
