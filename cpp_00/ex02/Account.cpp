@@ -59,7 +59,7 @@ Account::Account(int initial_deposit)
 	std::cout << " "						
 			<< "index:" << _accountIndex	
 	        << ";amount:" << _amount		
-	        << ";created" << std::endl;
+	        << ";created" << "\n";
 }
 
 // ============= Destructor ===================
