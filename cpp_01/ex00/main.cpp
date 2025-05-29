@@ -4,8 +4,9 @@
 int	main()
 {
 	Zombie	*zombie = newZombie("Mus");
+
 	if (!zombie)
-		std::cout << "Allocation error!" << "\n";  // ? Does alloc error need to be handled anymore?
+		std::cerr << "Allocation error!" << "\n";
 
 	randomChump("Tu");	
 

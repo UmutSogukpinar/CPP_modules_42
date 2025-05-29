@@ -1,25 +1,32 @@
 NAME = unnecessary_violence
+
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
-SRCS =	Weapon.cpp	\
+SRCS =	main.cpp	\
+		Weapon.cpp	\
 		HumanA.cpp	\
 		HumanB.cpp	\
-		main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
+$(NAME): $(OBJS)
+	@$(CC) $(CPPFLAGS) -o $(NAME) $(OBJS)
+	@echo "Compilation complete. Executable: $(NAME)"
+
+%.o: %.cpp
+	@$(CC) $(CPPFLAGS) -c $< -o $@
+
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
+	@echo "Object files removed."
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
+	@echo "Executable removed."
 
 re: fclean all
 

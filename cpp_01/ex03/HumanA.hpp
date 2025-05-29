@@ -17,13 +17,11 @@ class HumanA
 
         // * Constructor
 
-        HumanA(std::string name, Weapon &weapon);
+        HumanA(const std::string& name, Weapon &weapon);
 
         // * Methods
 
         void attack() const;
 };
-
-
 
 #endif

@@ -1,21 +1,20 @@
-NAME = ptr_ref
+NAME = non_sed
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-
-all: $(NAME)
-
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	@$(CC) $(CPPFLAGS) -o $(NAME) $(OBJS)
 	@echo "Compilation complete. Executable: $(NAME)"
 
-:%.o: %.cpp
-	@$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.cpp
+	@$(CC) $(CPPFLAGS) -c $< -o $@
+
+all: $(NAME)
 
 clean:
 	@$(RM) $(OBJS)
@@ -25,6 +24,6 @@ fclean: clean
 	@$(RM) $(NAME)
 	@echo "Executable removed."
 
-re : fclean all
+re: fclean all
 
 .PHONY: all clean fclean re

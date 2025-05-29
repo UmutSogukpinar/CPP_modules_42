@@ -1,8 +1,9 @@
 #include "Weapon.hpp"
 
+// Default Constructor
+Weapon::Weapon(const std::string& type) : type_(type) {}
 
-Weapon::Weapon(const std::string type) : type_(type){}
-
+// Getters and Setters
 
 const std::string& Weapon::getType() const
 {
