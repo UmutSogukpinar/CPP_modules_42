@@ -1,17 +1,16 @@
+#include <cstdlib>
 #include "Harl.hpp"
-#include "cstdlib"
 
-int	main()
+int	main(int size, char **args)
 {
+	if (size != 2)
+	{
+		std::cout << "Usage: ./harlFilter <WARNING, ERROR, DEBUG, INFO>" << std::endl;
+		return (EXIT_FAILURE);
+	}
+
 	Harl harl;
-
-	harl.complain("WARNING");
-	harl.complain("ERROR");
-	harl.complain("INFO");
-	harl.complain("DEBUG");
-
-	harl.complain("NONE");
-    harl.complain("UNKNOWN");
+	harl.complain(args[1]);
 
 	return (EXIT_SUCCESS);
 }

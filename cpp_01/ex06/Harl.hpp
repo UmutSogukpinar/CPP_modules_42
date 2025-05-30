@@ -18,7 +18,7 @@ class Harl
         void complain( std::string level );
 };
 
-enum Level 
+enum Status
 {
     DEBUG,
     INFO,

@@ -1,6 +1,6 @@
 #include "Harl.hpp"
 
-void complain(std::string level) 
+void Harl::complain(std::string level) 
 {
     const std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     
@@ -20,7 +20,7 @@ void complain(std::string level)
         }
     }
 
-    std::cout << "[ Probably complaining about insignificant problems ]\n";
+    std::cout << "[ Probably complaining about insignificant problems ]" << "\n";
 }
 
 void Harl::debug( void )
