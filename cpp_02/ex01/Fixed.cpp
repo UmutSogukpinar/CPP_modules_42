@@ -1,6 +1,5 @@
 #include "Fixed.hpp"
-
-static int customRoundf(float value);
+#include <cmath>
 
 // Default constructor
 Fixed::Fixed() : fixedPointValue_(0) 
@@ -17,7 +16,7 @@ Fixed::Fixed(const int value) : fixedPointValue_(value << fractionalBits_)
 // Constructor with float parameter
 Fixed::Fixed(const float value) 
 {
-    fixedPointValue_ = customRoundf(value * (1 << fractionalBits_));
+    fixedPointValue_ = roundf(value * (1 << fractionalBits_));
     
     std::cout << "Float constructor called" << "\n";
 }
@@ -74,24 +73,9 @@ int Fixed::toInt(void) const
     return (fixedPointValue_ >> fractionalBits_);
 }
 
-
-// Custom rounding function
-static int customRoundf(float value) 
-{
-    if (value >= 0.0f) 
-    {
-        value += 0.5f;
-    } 
-    else 
-    {
-        value -= 0.5f;
-    }
-    return static_cast<int>(value);
-}
-
 // Overloaded output operator for Fixed class
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
 {
     os << fixed.toFloat();
-    return os;
+    return (os);
 }
