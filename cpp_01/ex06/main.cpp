@@ -1,16 +1,24 @@
 #include <cstdlib>
 #include "Harl.hpp"
 
-int	main(int size, char **args)
+int main(int argc, char **argv)
 {
-	if (size != 2)
-	{
-		std::cout << "Usage: ./harlFilter <WARNING, ERROR, DEBUG, INFO>" << std::endl;
-		return (EXIT_FAILURE);
-	}
+    try
+    {
+        if (argc != 2)
+        {
+            throw std::invalid_argument("Usage: ./harlFilter <WARNING, ERROR, DEBUG, INFO>");
+        }
 
-	Harl harl;
-	harl.complain(args[1]);
+        Harl harl;
+        harl.complain(argv[1]);
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << e.what() << "\n";
+        return (EXIT_FAILURE);
+    }
 
-	return (EXIT_SUCCESS);
+    return (EXIT_SUCCESS);
 }
+

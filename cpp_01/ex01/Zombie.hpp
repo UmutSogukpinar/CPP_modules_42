@@ -8,11 +8,13 @@ class Zombie
 private:
     
     // Fields
+
     std::string name_;
 
 public:
 
-    // Constructor
+    // Constructors
+
     Zombie();
     Zombie(std::string name);
 
@@ -22,8 +24,7 @@ public:
     // Setter
     void setName(std::string name);
 
-
-    // Method
+    // Member Function
     void announce( void ) const;
     
 };

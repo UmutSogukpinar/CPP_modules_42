@@ -3,7 +3,8 @@
 void Harl::complain(std::string level) 
 {
     const std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    
+    const int numLevels = sizeof(levels) / sizeof(levels[0]);
+
     void (Harl::*funcs[])() = { 
         &Harl::debug, 
         &Harl::info, 
@@ -11,11 +12,11 @@ void Harl::complain(std::string level)
         &Harl::error 
     };
 
-    for (int i = 0; i < 4; ++i) 
+    for (int i = 0; i < numLevels; ++i) 
     {
         if (levels[i] == level)
         {
-            (this->*funcs[i])();
+            (this->*(funcs[i]))();
             return ;
         }
     }
@@ -25,7 +26,7 @@ void Harl::complain(std::string level)
 
 void Harl::debug( void )
 {
-    std::cout << "{DEBUG}\n"
+    std::cout << "{DEBUG}" << "\n"
               << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. "
               << "I really do!"
               << "\n";
@@ -33,24 +34,24 @@ void Harl::debug( void )
 
 void Harl::info( void )
 {
-    std::cout << "{INFO}\n"
+    std::cout << "{INFO}" << "\n"
               << "I cannot believe adding extra bacon costs more money. "
-              << "You didn’t put enough bacon in my burger! "
-              << "If you did, I wouldn’t be asking for more!"
+              << "You didn't put enough bacon in my burger! "
+              << "If you did, I wouldn't be asking for more!"
               << "\n";
 }
 
 void Harl::warning( void )
 {
-    std::cout << "{WARNING}\n"
+    std::cout << "{WARNING}" << "\n"
               << "I think I deserve to have some extra bacon for free. "
-              << "I’ve been coming for years whereas you started working here since last month."
+              << "I've been coming for years whereas you started working here since last month."
               << "\n";
 }
 
 void Harl::error( void )
 {
-    std::cout << "{ERROR}\n"
+    std::cout << "{ERROR}" << "\n"
               << "This is unacceptable! I want to speak to the manager now."
               << "\n";
 }

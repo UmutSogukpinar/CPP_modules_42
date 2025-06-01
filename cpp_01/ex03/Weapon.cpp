@@ -3,14 +3,14 @@
 // Default Constructor
 Weapon::Weapon(const std::string& type) : type_(type) {}
 
-// Getters and Setters
+// ======= Getters and Setters =======
 
 const std::string& Weapon::getType() const
 {
-    return (this->type_);
+    return (type_);
 }
 
 void Weapon::setType(const std::string& newType)
 {
-    this->type_ = newType;
+    type_ = newType;
 }

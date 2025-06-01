@@ -10,8 +10,8 @@ class HumanB
 
         // * Fields
         
-        std::string name_;
-        Weapon* weapon_;
+        std::string	name_;
+        Weapon*		weapon_;
 
     public:
 

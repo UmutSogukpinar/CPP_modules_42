@@ -2,61 +2,62 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdexcept>
 
-void open_input_file(std::ifstream& file, const std::string& filename);
-void create_output_file(std::ofstream& file, const std::string& filename);
+static void open_input_file(std::ifstream& file, const std::string& filename);
+static void create_output_file(std::ofstream& file, const std::string& filename);
 std::string replace_all(const std::string& text, const std::string& from, const std::string& to);
 
 int main(int argc, char **argv) 
 {
-	if (argc != 4) 
+	try 
 	{
-		std::cerr << "Usage: " << argv[0]
-		          << " <file name> <string to replace> <replacement>"
-                  << "\n";
+		if (argc != 4) 
+		{
+			throw std::invalid_argument("Usage: <file name> <string to replace> <replacement>");
+		}
+
+		std::string input_filename = argv[1];
+		std::string s1 = argv[2];
+		std::string s2 = argv[3];
+		std::string output_filename = input_filename + ".replace";
+
+		std::ifstream input_file;
+		std::ofstream output_file;
+
+		open_input_file(input_file, input_filename);
+		create_output_file(output_file, output_filename);
+
+		std::string line;
+		while (std::getline(input_file, line)) 
+		{
+			output_file << replace_all(line, s1, s2) << "\n";
+		}
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Error: " << e.what() << "\n";
 		return (EXIT_FAILURE);
 	}
-
-	std::string input_filename = argv[1];
-	std::string s1 = argv[2];
-	std::string s2 = argv[3];
-	std::string output_filename = input_filename + ".replace";
-
-	std::ifstream input_file;
-	std::ofstream output_file;
-
-	open_input_file(input_file, input_filename);
-	create_output_file(output_file, output_filename);
-
-	std::string line;
-	while (std::getline(input_file, line)) 
-	{
-		output_file << replace_all(line, s1, s2) << "\n";
-	}
-
-	input_file.close();
-	output_file.close();
 
 	return (EXIT_SUCCESS);
 }
 
-void open_input_file(std::ifstream& file, const std::string& filename)
+static void open_input_file(std::ifstream& file, const std::string& filename)
 {
 	file.open(filename.c_str());
 	if (!file.is_open()) 
 	{
-		std::cerr << "Error: Could not open input file: " << filename << "\n";
-		std::exit(EXIT_FAILURE);
+		throw std::runtime_error("Could not open input file: " + filename);
 	}
 }
 
-void create_output_file(std::ofstream& file, const std::string& filename)
+static void create_output_file(std::ofstream& file, const std::string& filename)
 {
 	file.open(filename.c_str());
 	if (!file.is_open()) 
 	{
-		std::cerr << "Error: Could not create output file: " << filename << "\n";
-		std::exit(EXIT_FAILURE);
+		throw std::runtime_error("Could not create output file: " + filename);
 	}
 }
 

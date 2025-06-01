@@ -3,14 +3,14 @@
 
 int	main()
 {
+	randomChump("Tu");
 	Zombie	*zombie = newZombie("Mus");
 
 	if (!zombie)
 		std::cerr << "Allocation error!" << "\n";
 
-	randomChump("Tu");	
-
 	zombie->announce();
-	delete zombie;
+
+	delete (zombie);
 	return (EXIT_SUCCESS);
 }
