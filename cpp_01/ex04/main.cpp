@@ -18,8 +18,8 @@ int main(int argc, char **argv)
 		}
 
 		std::string input_filename = argv[1];
-		std::string s1 = argv[2];
-		std::string s2 = argv[3];
+		std::string from = argv[2];
+		std::string to = argv[3];
 		std::string output_filename = input_filename + ".replace";
 
 		std::ifstream input_file;
@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 		std::string line;
 		while (std::getline(input_file, line)) 
 		{
-			output_file << replace_all(line, s1, s2) << "\n";
+			output_file << replace_all(line, from, to) << "\n";
 		}
 	}
 	catch (const std::exception& e)

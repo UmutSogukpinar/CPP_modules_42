@@ -11,7 +11,7 @@ class HumanA
         // * Fields
         
         std::string	name_;
-        Weapon&		weapon_;
+        Weapon		&weapon_;
 
     public:
 

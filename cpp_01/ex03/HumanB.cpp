@@ -1,6 +1,6 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name) : name_(name), weapon_(NULL) {}
+HumanB::HumanB(const std::string name) : name_(name), weapon_(NULL) {}
 
 void HumanB::setWeapon(Weapon& weapon)
 {
@@ -9,5 +9,10 @@ void HumanB::setWeapon(Weapon& weapon)
 
 void HumanB::attack() const
 {
-    std::cout << name_ << " attacks with their " << (weapon_)->getType() << "\n";
+    if (weapon_ == NULL)
+    {
+        std::cout << name_ << " cannot attack" << "\n";
+        return;
+    }
+    std::cout << name_ << " attacks with their " << weapon_->getType() << "\n";
 }

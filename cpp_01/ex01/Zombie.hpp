@@ -16,19 +16,19 @@ public:
     // Constructors
 
     Zombie();
-    Zombie(std::string name);
+    Zombie(const std::string name);
 
     // Destructor
     ~Zombie();
 
     // Setter
-    void setName(std::string name);
+    void setName(const std::string name);
 
     // Member Function
     void announce( void ) const;
     
 };
 
-Zombie* zombieHorde( int N, std::string name );
+Zombie* zombieHorde(int N, std::string name);
 
 #endif

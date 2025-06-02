@@ -4,10 +4,13 @@
 int	main()
 {
 	randomChump("Tu");
-	Zombie	*zombie = newZombie("Mus");
+	Zombie	*zombie = newZombie("Mustapha");
 
 	if (!zombie)
+	{
 		std::cerr << "Allocation error!" << "\n";
+		return (EXIT_FAILURE);
+	}
 
 	zombie->announce();
 

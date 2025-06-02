@@ -11,13 +11,13 @@ class HumanB
         // * Fields
         
         std::string	name_;
-        Weapon*		weapon_;
+        Weapon		*weapon_;
 
     public:
 
         // * Constructor
 
-        HumanB(std::string name);
+        HumanB(const std::string name);
 
         // * Getters and Setters
         void setWeapon(Weapon& weapon);

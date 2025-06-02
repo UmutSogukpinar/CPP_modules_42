@@ -13,7 +13,7 @@ private:
 public:
 
     // Constructor
-    Zombie(std::string name);
+    Zombie(const std::string name);
 
     // Destructor
     ~Zombie();
@@ -24,7 +24,7 @@ public:
 };
 
 // * Mandatory Functions
-Zombie *newZombie( std::string name );
-void randomChump( std::string name );
+Zombie	*newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif

@@ -7,7 +7,7 @@ int main(int argc, char **argv)
     {
         if (argc != 2)
         {
-            throw std::invalid_argument("Usage: ./harlFilter <WARNING, ERROR, DEBUG, INFO>");
+            throw std::invalid_argument("Usage: ./harlFilter <DEBUG, INFO, WARNING, ERROR>");
         }
 
         Harl harl;
