@@ -1,6 +1,6 @@
 NAME = PhoneBook
-CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC =	main.cpp			\
 		PhoneBook.cpp		\
@@ -13,11 +13,11 @@ OBJS = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 	@echo "Compilation complete. Executable: $(NAME)"
 
 %.o: %.cpp
-	@$(CC) $(CPPFLAGS) -c $< -o $@
+	@$(CXX) $(CPPFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJS)

@@ -1,18 +1,18 @@
 NAME = non_sed
 
-CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CPPFLAGS) -o $(NAME) $(OBJS)
+	@$(CC) $(CXXFLAGS) -o $(NAME) $(OBJS)
 	@echo "Compilation complete. Executable: $(NAME)"
 
 %.o: %.cpp
-	@$(CC) $(CPPFLAGS) -c $< -o $@
+	@$(CC) $(CXXFLAGS) -c $< -o $@
 
 all: $(NAME)
 

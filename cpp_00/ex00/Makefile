@@ -1,6 +1,6 @@
 NAME = megaphone
-CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 SRC = megaphone.cpp
@@ -9,11 +9,11 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CPPFLAGS) -o $(NAME) $(OBJ)
+	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
 	@echo "Compilation complete. Executable: $(NAME)"
 
 %.o: %.cpp
-	@$(CC) $(CPPFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJ)

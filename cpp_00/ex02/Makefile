@@ -1,5 +1,5 @@
-CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC =	Account.cpp \
 
@@ -11,7 +11,7 @@ all: $(TEST)
 
 test: all
 	@echo "Running tests..."
-	@$(CC) $(CPPFLAGS) -o $(TEST) $(TEST).cpp $(OBJS)
+	@$(CXX) $(CXXFLAGS) -o $(TEST) $(TEST).cpp $(OBJS)
 	@./$(TEST)
 	@echo "Tests completed."
 
@@ -19,7 +19,7 @@ $(TEST): $(OBJS)
 	@echo "Compilation complete."
 
 %.o: %.cpp
-	@$(CC) $(CPPFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJS)

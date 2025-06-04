@@ -1,7 +1,7 @@
 NAME = unnecessary_violence
 
-CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 SRCS =	main.cpp	\
@@ -12,11 +12,11 @@ SRCS =	main.cpp	\
 OBJS = $(SRCS:.cpp=.o)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CPPFLAGS) -o $(NAME) $(OBJS)
+	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 	@echo "Compilation complete. Executable: $(NAME)"
 
 %.o: %.cpp
-	@$(CC) $(CPPFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 all: $(NAME)
 
