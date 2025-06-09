@@ -9,7 +9,7 @@
 
 class ClapTrap
 {
-private:
+protected:
 	// Fields
 
 	std::string name_;
@@ -24,7 +24,7 @@ public:
 	ClapTrap(const std::string &name);
 
 	// Destructor
-	~ClapTrap();
+	virtual ~ClapTrap();
 
 	// Copy constructor
 	ClapTrap(const ClapTrap &other);
@@ -34,9 +34,9 @@ public:
 
 	// ========== Member functions ==========
 
-	void attack(const std::string &target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
+	virtual void attack(const std::string &target);
+	virtual void takeDamage(unsigned int amount);
+	virtual void beRepaired(unsigned int amount);
 };
 
 #endif

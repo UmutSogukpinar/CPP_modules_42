@@ -3,7 +3,8 @@
 
 int main()
 {
-    try {
+    try
+    {
         std::cout << "\n=== TEST 0: Default Constructor Test ===" << "\n";
         ClapTrap defaultFighter; // Default constructor
 
@@ -33,13 +34,14 @@ int main()
         fighter2.beRepaired(3);
 
         std::cout << "\n--- ENERGY DRAIN TEST ---" << "\n";
-        for (int i = 0; i < 12; ++i) {
+        for (int i = 0; i < 12; ++i)
+        {
             fighter1.attack("Training Dummy");
         }
 
         std::cout << "\n--- CRITICAL DAMAGE TEST ---" << "\n";
         fighter2.takeDamage(50);
-        fighter2.takeDamage(60); // Overkill testing
+        fighter2.takeDamage(60);   // Overkill testing
         fighter2.attack("Anakin"); // Dead man cannot attack
 
         std::cout << "\n--- ZOMBIE REPAIR TEST ---" << "\n";
@@ -47,9 +49,10 @@ int main()
 
         std::cout << "\n=== BATTLE END ===" << "\n";
     }
-    catch (const std::exception& e) 
-	{
+    catch (const std::exception &e)
+    {
         std::cerr << "Exception caught during battle: " << e.what() << "\n";
+        return (1);
     }
 
     return (0);

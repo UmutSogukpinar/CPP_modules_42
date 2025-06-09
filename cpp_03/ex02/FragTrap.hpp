@@ -3,26 +3,26 @@
 
 #include "ClapTrap.hpp"
 
-#define SCAV_TRAP_DEFAULT_HIT_POINTS 100
-#define SCAV_TRAP_DEFAULT_ENERGY_POINTS 50
-#define SCAV_TRAP_DEFAULT_ATTACK_DAMAGE 20
+#define FRAG_TRAP_DEFAULT_HIT_POINTS 100
+#define FRAG_TRAP_DEFAULT_ENERGY_POINTS 100
+#define FRAG_TRAP_DEFAULT_ATTACK_DAMAGE	30
 
-class ScavTrap : protected ClapTrap
+class FragTrap : protected ClapTrap
 {
 public:
 	// ========== Constructors ==========
 
-	ScavTrap();
-	ScavTrap(const std::string &name);
+	FragTrap();
+	FragTrap(const std::string &name);
 
 	// Copy Constructor
-	ScavTrap(const ScavTrap &other);
+	FragTrap(const FragTrap &other);
 
 	// ========== Destructor ==========
-	~ScavTrap();
+	~FragTrap();
 
 	// ====== Overloaded '=' operator ======
-	ScavTrap &operator=(const ScavTrap &other);
+	FragTrap &operator=(const FragTrap &other);
 
 	// ====== Inherited Functions ======
 
@@ -32,7 +32,7 @@ public:
 
 	// ====== Member Function(s) ======
 
-	void guardGate();
+	void highFivesGuys();
 };
 
 #endif

@@ -1,23 +1,23 @@
 #include <stdexcept>
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
     try
     {
         std::cout << "\n=== TEST 0: Default Constructor Test ===" << std::endl;
-        ScavTrap defaultFighter; // Default constructor
+        FragTrap defaultFighter; // Default constructor
 
         std::cout << "\n=== TEST 1: Parameterized Constructor Test ===" << std::endl;
-        ScavTrap fighter1("Anakin");
-        ScavTrap fighter2("Obi-Wan");
+        FragTrap fighter1("Anakin");
+        FragTrap fighter2("Obi-Wan");
 
         std::cout << "\n=== TEST 2: Copy Constructor Test ===" << std::endl;
-        ScavTrap fighter3(fighter1); // Copy constructor
-        fighter3.guardGate();
+        FragTrap fighter3(fighter1); // Copy constructor
+        fighter3.highFivesGuys();
 
         std::cout << "\n=== TEST 3: Assignment Operator Test ===" << std::endl;
-        ScavTrap fighter4;   // Default constructor
+        FragTrap fighter4;   // Default constructor
         fighter4 = fighter2; // Basic assignment
         fighter4.attack("Battle Droids");
 
@@ -27,8 +27,8 @@ int main()
 
         // Chain assignment test
         std::cout << "\n--- Chain Assignment Test ---" << std::endl;
-        ScavTrap fighter5("R2-D2");
-        ScavTrap fighter6("Padme");
+        FragTrap fighter5("R2-D2");
+        FragTrap fighter6("Padme");
         fighter5 = fighter6 = fighter2; // Chain assignment, fighter6 gets fighter2, fighter5 gets fighter6
         fighter5.attack("Battle Droids");
         fighter6.attack("Battle Droids");
@@ -40,8 +40,8 @@ int main()
         fighter4.attack("Battle Droids");
 
         std::cout << "\n=== TEST 4: Dynamic Allocation (new/delete) ===" << std::endl;
-        ScavTrap *dynamicFighter = new ScavTrap("Yoda");
-        dynamicFighter->guardGate();
+        FragTrap *dynamicFighter = new FragTrap("Yoda");
+        dynamicFighter->highFivesGuys();
         delete dynamicFighter;
 
         std::cout << "\n=== BATTLE START ===" << std::endl;
@@ -65,7 +65,7 @@ int main()
         }
 
         std::cout << "\n--- GUARD GATE MODE ---" << std::endl;
-        fighter2.guardGate();
+        fighter2.highFivesGuys();
 
         std::cout << "\n--- CRITICAL DAMAGE TEST ---" << std::endl;
         fighter2.takeDamage(50);
