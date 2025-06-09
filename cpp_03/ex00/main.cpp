@@ -1,12 +1,22 @@
-#include <iostream>
-#include <stdexcept> // Exception sınıfları için
+#include <stdexcept>
 #include "ClapTrap.hpp"
 
 int main()
 {
     try {
+        std::cout << "\n=== TEST 0: Default Constructor Test ===" << "\n";
+        ClapTrap defaultFighter; // Default constructor
+
+        std::cout << "\n=== TEST 1: Parameterized Constructor Test ===" << "\n";
         ClapTrap fighter1("Anakin");
         ClapTrap fighter2("Obi-Wan");
+
+        std::cout << "\n=== TEST 2: Copy Constructor Test ===" << "\n";
+        ClapTrap copiedFighter(fighter1); // Copy constructor
+
+        std::cout << "\n=== TEST 3: Assignment Operator Test ===" << "\n";
+        ClapTrap assignedFighter;
+        assignedFighter = fighter2; // Assignment operator
 
         std::cout << "\n=== BATTLE START ===" << "\n";
 
@@ -41,10 +51,6 @@ int main()
 	{
         std::cerr << "Exception caught during battle: " << e.what() << "\n";
     }
-    catch (...)
-	{
-        std::cerr << "An unknown error occurred during battle!" << "\n";
-    }
 
-    return 0;
+    return (0);
 }

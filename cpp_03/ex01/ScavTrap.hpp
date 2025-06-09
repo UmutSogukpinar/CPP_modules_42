@@ -1,0 +1,39 @@
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
+
+#include "ClapTrap.hpp"
+
+#define SCAV_TRAP_DEFAULT_HIT_POINTS 100
+#define SCAV_TRAP_DEFAULT_ENERGY_POINTS 50
+#define SCAV_TRAP_DEFAULT_ATTACK_DAMAGE 20
+
+class ScavTrap : protected ClapTrap
+{
+	public:
+
+	// ========== Constructors ==========
+
+	ScavTrap();
+	ScavTrap(const std::string &name);
+
+	// Copy Constructor
+	ScavTrap(const ScavTrap& other);
+
+	// ========== Destructor ==========
+	~ScavTrap();
+
+	// ====== Overloaded '=' operator ======
+	ScavTrap& operator=(const ScavTrap& other);
+
+	// ====== Inherited Functions ======
+
+	void	attack(const std::string& target);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
+
+	// ====== Member Function(s) ======
+
+	void	guardGate();
+};
+
+#endif
