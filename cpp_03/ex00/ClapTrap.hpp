@@ -3,9 +3,9 @@
 
 #include "iostream"
 
-#define DEFAULT_HIT_POINTS 10
-#define DEFAULT_ENERGY_POINTS 10
-#define DEFAULT_ATTACK_DAMAGE 0
+#define CLAP_TRAP_DEFAULT_HIT_POINTS 10
+#define CLAP_TRAP_DEFAULT_ENERGY_POINTS 10
+#define CLAP_TRAP_DEFAULT_ATTACK_DAMAGE 0
 
 class ClapTrap 
 {
@@ -23,7 +23,7 @@ class ClapTrap
 	// ========== Constructors ==========
 
 	ClapTrap();
-	ClapTrap(std::string name);
+	ClapTrap(const std::string &name);
 
 	// Destructor
 	~ClapTrap();
