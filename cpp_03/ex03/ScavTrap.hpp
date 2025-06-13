@@ -7,7 +7,7 @@
 #define SCAV_TRAP_DEFAULT_ENERGY_POINTS 50
 #define SCAV_TRAP_DEFAULT_ATTACK_DAMAGE 20
 
-class ScavTrap : virtual protected ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 public:
 	// ========== Constructors ==========
@@ -24,11 +24,9 @@ public:
 	// ====== Overloaded '=' operator ======
 	ScavTrap &operator=(const ScavTrap &other);
 
-	// ====== Inherited Functions ======
+	// ====== Inherited Function(s) ======
 
 	void attack(const std::string &target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
 
 	// ====== Member Function(s) ======
 

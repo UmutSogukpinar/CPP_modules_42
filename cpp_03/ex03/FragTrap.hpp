@@ -7,7 +7,7 @@
 # define FRAG_TRAP_DEFAULT_ENERGY_POINTS 100
 # define FRAG_TRAP_DEFAULT_ATTACK_DAMAGE 30
 
-class FragTrap : virtual protected ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 public:
 	// ========== Constructors ==========
@@ -23,12 +23,6 @@ public:
 
 	// ====== Overloaded '=' operator ======
 	FragTrap &operator=(const FragTrap &other);
-
-	// ====== Inherited Functions ======
-
-	void attack(const std::string &target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
 
 	// ====== Member Function(s) ======
 
