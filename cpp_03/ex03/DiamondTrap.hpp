@@ -10,15 +10,23 @@ private:
 	std::string name_;
 
 public:
-
-	// Constructor
+	// ========== Constructors ==========
 	DiamondTrap();
+	DiamondTrap(const std::string &name);
+
+	// Copy Constructor
+	DiamondTrap(const DiamondTrap &other);
 
 	// Destructor
 	~DiamondTrap();
 
+	// Overloaded '=' operator
+	// 
+	DiamondTrap &operator=(const DiamondTrap &other);
 
+	// ============= Member Function(s) =============
+
+	void whoAmI();
 };
-
 
 #endif
