@@ -38,13 +38,11 @@ FragTrap &FragTrap::operator=(const FragTrap &other)
 {
 	if (this != &other)
 	{
-		name_ = other.name_;
-		hitPoints_ = other.hitPoints_;
-		energyPoints_ = other.energyPoints_;
-		attackDamage_ = other.attackDamage_;
-		std::cout << "FragTrap assignment operator called for " << name_ << "\n";
+		ClapTrap::operator=(other);
+		std::cout << "FragTrap assignment operator called for "
+				  << name_ << "\n";
 	}
-	return (*this);
+	return *this;
 }
 
 // ================== Member Function(s) ==================
@@ -53,6 +51,6 @@ void FragTrap::highFivesGuys()
 {
 	std::cout << "FragTrap " << name_
 			  << " salutes and says: 'High five, soldier. "
-			  << "Another mission well executed.'" 
+			  << "Another mission well executed.'"
 			  << "\n";
 }
