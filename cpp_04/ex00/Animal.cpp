@@ -29,6 +29,12 @@ Animal &Animal::operator=(const Animal &other)
 	return (*this);
 }
 
+// Getter
+std::string Animal::getType() const
+{
+	return (type_);
+}
+
 // ========== Member function(s) ==========
 
 void Animal::makeSound() const

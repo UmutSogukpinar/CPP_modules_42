@@ -19,7 +19,7 @@ public:
 	Dog &operator=(const Dog &other);
 
 	// Member function
-	void makeSound() const override;
+	void makeSound() const;
 };
 
 

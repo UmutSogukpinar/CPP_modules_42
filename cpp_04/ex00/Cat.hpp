@@ -19,7 +19,7 @@ public:
 	Cat &operator=(const Cat &other);
 
 	// Member function
-	void makeSound() const override;
+	void makeSound() const;
 };
 
 

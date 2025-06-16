@@ -1,6 +1,7 @@
 #ifndef ANIMAL_HPP
 # define ANIMAL_HPP
-#include <iostream>
+
+# include "iostream"
 
 class Animal
 {
@@ -20,6 +21,10 @@ public:
 	// Overloaded assignment operator
 	Animal &operator=(const Animal &other);
 
+	// Getter
+	std::string getType() const;
+
+	// Member function(s)
 	virtual void makeSound() const;
 
 };
