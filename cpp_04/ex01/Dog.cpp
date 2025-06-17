@@ -12,6 +12,7 @@ Dog::Dog(const Dog &other) : Animal(other)
 {
 	type_ = other.type_;
 	std::cout << "Dog copy constructor called" << "\n";
+	brain_ = new Brain(*other.brain_);
 }
 
 // Destructor
@@ -28,11 +29,16 @@ Dog &Dog::operator=(const Dog &other)
 	{
 		Animal::operator=(other);
 		type_ = other.type_;
+		
+		if (brain_)
+			delete brain_;
+
+		brain_ = new Brain(*other.brain_);
 	}
 	return (*this);
 }
 
-// Member function
+// ======= Member function(s) =======
 
 void Dog::makeSound() const
 {
