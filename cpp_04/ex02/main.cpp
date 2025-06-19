@@ -10,11 +10,11 @@ void test_basic()
 {
 	const Animal* cat = new Cat();
 	const Animal* dog = new Dog();
-	const Animal* animal = new Animal();
+	// const Animal* animal = new Animal();
 
 	delete cat;
 	delete dog;
-	delete animal;
+	// delete animal;
 }
 
 void test_animal_array()
