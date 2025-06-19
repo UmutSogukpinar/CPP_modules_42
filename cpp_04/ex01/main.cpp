@@ -1,56 +1,47 @@
-#include "exception"
-#include "cstdlib"
+#include "iostream"
+#include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongCat.hpp"
 
-int main()
+const int kAnimalArraySize = 10;
+
+void test_individual_animals()
 {
-    Animal* animal = NULL;
-    Animal* dog    = NULL;
-    Animal* cat    = NULL;
+	const Animal* cat = new Cat();
+	const Animal* dog = new Dog();
+	const Animal* animal = new Animal();
 
-    WrongAnimal* wrongAnimal = NULL;
-    WrongAnimal* wrongCat    = NULL;
-    try 
-    {
-        animal = new Animal();
-        dog    = new Dog();
-        cat    = new Cat();
+	delete cat;
+	delete dog;
+	delete animal;
+}
 
-        wrongAnimal = new WrongAnimal();
-        wrongCat    = new WrongCat();
+void test_animal_array()
+{
+	Animal* animals[kAnimalArraySize];
+	int i = 0;
 
-
-        std::cout << "\n" << dog->getType() << "\n";
-        std::cout << cat->getType() << "\n\n";
-
-        dog->makeSound();
-        cat->makeSound();
-        animal->makeSound();
-        std::cout << "\n";
-        wrongAnimal->makeSound();
-        wrongCat->makeSound();
-        std::cout << "\n";
-    }
-    catch (const std::exception& e) 
+	while (i < kAnimalArraySize / 2)
 	{
-        std::cerr << "Exception caught: " << e.what() << "\n";
+		animals[i] = new Dog();
+		i++;
+	}
+	while (i < kAnimalArraySize)
+	{
+		animals[i] = new Cat();
+		i++;
+	}
+	while (--i >= 0)
+		delete animals[i];
+}
 
-		delete animal;
-    	delete dog;
-    	delete cat;
-        delete wrongAnimal;
-        delete wrongCat;
+int main(void)
+{
+	test_individual_animals();
 
-		return (EXIT_FAILURE);
-    }
+	std::cout << "===================== Extra Subject Request =====================" << "\n";
 
-    delete dog;
-    delete cat;
-    delete wrongAnimal;
-    delete wrongCat;
-    delete animal;
+	test_animal_array();
 
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
