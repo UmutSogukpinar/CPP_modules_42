@@ -25,15 +25,17 @@ class Fixed
         // Assignment operator
         Fixed &operator=(const Fixed &other);
 
-        // Member functions
+        // Member function(s)
         float toFloat() const;
         int toInt() const;
 
         // Getters and Setters
+
         int getRawBits() const;
         void setRawBits(int const raw);
 
         // Overloaded comparison operators
+
         bool operator>(const Fixed& other) const;
         bool operator<(const Fixed& other) const;
         bool operator>=(const Fixed& other) const;
@@ -42,10 +44,19 @@ class Fixed
         bool operator!=(const Fixed& other) const;
 
         // Overloaded arithmetic operators
+
         Fixed operator+(const Fixed& other) const;
         Fixed operator-(const Fixed& other) const;
         Fixed operator*(const Fixed& other) const;
         Fixed operator/(const Fixed& other) const;
+
+
+        //  Increment-Decrement 
+
+        Fixed operator++();
+        Fixed operator--();
+        Fixed operator++(int);
+        Fixed operator--(int);
 
         // Max and Min functions
         static Fixed&       max(Fixed& a, Fixed& b);

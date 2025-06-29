@@ -1,6 +1,8 @@
 #include "Fixed.hpp"
 #include <cmath>
 
+// ============================ Constructors ============================
+
 // Default constructor
 Fixed::Fixed() : fixedPointValue_(0) 
 {
@@ -27,13 +29,13 @@ Fixed::Fixed(const Fixed &other) : fixedPointValue_(other.fixedPointValue_)
     std::cout << "Copy constructor called" << "\n";
 }
 
-// Destructor
+// ====================== Destructor ======================
 Fixed::~Fixed() 
 {
     std::cout << "Destructor called" << "\n";
 }
 
-// Assignment operator
+// ====================== Assignment operator ======================
 Fixed &Fixed::operator=(const Fixed &other) 
 {
     std::cout << "Copy assignment operator called" << "\n";
@@ -46,7 +48,7 @@ Fixed &Fixed::operator=(const Fixed &other)
     return (*this);
 }
 
-// Getters and Setters
+// ====================== Getters and Setters ======================
 int Fixed::getRawBits() const
 {
     std::cout << "getRawBits member function called" << "\n";
@@ -61,10 +63,12 @@ void Fixed::setRawBits(int const raw)
     fixedPointValue_ = raw;
 }
 
+// ====================== Member Function(s) ======================
+
 // To convert fixed-point value to float
 float Fixed::toFloat(void) const 
 {
-    return (float)fixedPointValue_ / (1 << fractionalBits_);
+    return ((float)fixedPointValue_ / (1 << fractionalBits_));
 }
 
 // To convert fixed-point value to integer

@@ -1,6 +1,8 @@
 #include "Fixed.hpp"
 #include <cmath>
 
+// ======================== Constructors ========================
+
 // Default constructor
 Fixed::Fixed() : fixedPointValue_(0) 
 {
@@ -21,13 +23,13 @@ Fixed::Fixed(const float value)
     std::cout << "Float constructor called" << "\n";
 }
 
-// Copy constructor
+// ================ Copy constructor ================
 Fixed::Fixed(const Fixed &other) : fixedPointValue_(other.fixedPointValue_) 
 {
     std::cout << "Copy constructor called" << "\n";
 }
 
-// Destructor
+// ======================== Destructor ========================
 Fixed::~Fixed() 
 {
     std::cout << "Destructor called" << "\n";
@@ -46,7 +48,7 @@ Fixed &Fixed::operator=(const Fixed &other)
     return (*this);
 }
 
-// ====== Getters and Setters =====
+// ====================== Getters and Setters =====================
 int Fixed::getRawBits() const
 {
     std::cout << "getRawBits member function called" << "\n";
@@ -80,7 +82,7 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
     return (os);
 }
 
-// ========  Overloaded comparison operators ========
+// ========================  Overloaded comparison operators ========================
 bool Fixed::operator>(const Fixed& other) const 
 {
     return (this->fixedPointValue_ > other.fixedPointValue_);
@@ -111,7 +113,7 @@ bool Fixed::operator!=(const Fixed& other) const
     return (this->fixedPointValue_ != other.fixedPointValue_);
 }
 
-// ==========  Overloaded arithmetic operators =========
+// ==================  Overloaded arithmetic operators =================
 
 Fixed Fixed::operator+(const Fixed& other) const 
 {
@@ -128,6 +130,58 @@ Fixed Fixed::operator-(const Fixed& other) const
     result.fixedPointValue_ = this->fixedPointValue_ - other.fixedPointValue_;
     return (result);
 }
+
+Fixed Fixed::operator*(const Fixed& other) const 
+{
+    Fixed result;
+    long long mul = static_cast<long long>(this->fixedPointValue_) * other.fixedPointValue_;
+    result.fixedPointValue_ = static_cast<int>(mul >> fractionalBits_);
+    return (result);
+}
+
+Fixed Fixed::operator/(const Fixed& other) const 
+{
+    Fixed result;
+
+    if (other.fixedPointValue_ == 0)
+        throw std::runtime_error("Division by zero");
+
+    long long numerator = static_cast<long long>(this->fixedPointValue_) << fractionalBits_;
+    long long division = numerator / other.fixedPointValue_;
+    result.fixedPointValue_ = static_cast<int>(division);
+
+    return (result);
+}
+
+// ===================== Increment-Decrement =====================
+
+Fixed Fixed::operator++()
+{
+    fixedPointValue_ += (1 << fractionalBits_);
+    return (*this);
+}
+
+Fixed Fixed::operator--()
+{
+    fixedPointValue_ -= (1 << fractionalBits_);
+    return (*this);
+}
+
+Fixed Fixed::operator++(int) 
+{
+    Fixed temp(*this);
+    fixedPointValue_ += (1 << fractionalBits_);
+    return (temp);
+}
+
+Fixed Fixed::operator--(int) 
+{
+    Fixed temp(*this);
+    fixedPointValue_ -= (1 << fractionalBits_);
+    return (temp);
+}
+
+// ======================= Max-Min Functions =======================
 
 // Static member function to find the maximum of two Fixed objects
 Fixed& Fixed::max(Fixed& a, Fixed& b)
