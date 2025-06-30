@@ -5,14 +5,14 @@
 
 class Point
 {
-private:
+  private:
 	// Fields
 	Fixed const x_;
 	Fixed const y_;
 
 	static float getArea_(Point const &a, Point const &b, Point const &c);
 
-public:
+  public:
 	// Default Constructor
 	Point();
 
@@ -29,7 +29,8 @@ public:
 	Point operator=(Point const &other);
 
 	// Member Function(s)
-	static bool bsp(Point const a, Point const b, Point const c, Point const point);
+	static bool bsp(Point const a, Point const b, Point const c,
+			Point const point);
 };
 
 #endif

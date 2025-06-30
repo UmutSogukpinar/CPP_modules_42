@@ -3,70 +3,65 @@
 
 # include <iostream>
 
-class Fixed 
+class Fixed
 {
-    private:
+  private:
+	// Fields
+	int fixedPointValue_;
+	static const int fractionalBits_ = 8;
 
-        // Fields
-        int                 fixedPointValue_;
-        static const int    fractionalBits_ = 8;
+  public:
+	// Constructors
+	Fixed();
+	Fixed(const int value);
+	Fixed(const float value);
+	Fixed(const Fixed &other);
 
-    public:
+	// Destructor
+	~Fixed();
 
-        // Constructors
-        Fixed();
-        Fixed(const int value);
-        Fixed(const float value);
-        Fixed(const Fixed &other);
+	// Assignment operator
+	Fixed &operator=(const Fixed &other);
 
-        // Destructor
-        ~Fixed();
+	// Member function(s)
+	float toFloat() const;
+	int toInt() const;
 
-        // Assignment operator
-        Fixed &operator=(const Fixed &other);
+	// Getters and Setters
 
-        // Member function(s)
-        float toFloat() const;
-        int toInt() const;
+	int getRawBits() const;
+	void setRawBits(int const raw);
 
-        // Getters and Setters
+	// Overloaded comparison operators
 
-        int getRawBits() const;
-        void setRawBits(int const raw);
+	bool operator>(const Fixed &other) const;
+	bool operator<(const Fixed &other) const;
+	bool operator>=(const Fixed &other) const;
+	bool operator<=(const Fixed &other) const;
+	bool operator==(const Fixed &other) const;
+	bool operator!=(const Fixed &other) const;
 
-        // Overloaded comparison operators
+	// Overloaded arithmetic operators
 
-        bool operator>(const Fixed& other) const;
-        bool operator<(const Fixed& other) const;
-        bool operator>=(const Fixed& other) const;
-        bool operator<=(const Fixed& other) const;
-        bool operator==(const Fixed& other) const;
-        bool operator!=(const Fixed& other) const;
+	Fixed operator+(const Fixed &other) const;
+	Fixed operator-(const Fixed &other) const;
+	Fixed operator*(const Fixed &other) const;
+	Fixed operator/(const Fixed &other) const;
 
-        // Overloaded arithmetic operators
+	//  Increment-Decrement
 
-        Fixed operator+(const Fixed& other) const;
-        Fixed operator-(const Fixed& other) const;
-        Fixed operator*(const Fixed& other) const;
-        Fixed operator/(const Fixed& other) const;
+	Fixed operator++();
+	Fixed operator--();
+	Fixed operator++(int);
+	Fixed operator--(int);
 
-
-        //  Increment-Decrement 
-
-        Fixed operator++();
-        Fixed operator--();
-        Fixed operator++(int);
-        Fixed operator--(int);
-
-        // Max and Min functions
-        static Fixed&       max(Fixed& a, Fixed& b);
-        static const Fixed& max(const Fixed& a, const Fixed& b);
-        static Fixed&       min(Fixed& a, Fixed& b);
-        static const Fixed& min(const Fixed& a, const Fixed& b);
-
+	// Max and Min functions
+	static Fixed &max(Fixed &a, Fixed &b);
+	static const Fixed &max(const Fixed &a, const Fixed &b);
+	static Fixed &min(Fixed &a, Fixed &b);
+	static const Fixed &min(const Fixed &a, const Fixed &b);
 };
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
-
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
 
 #endif

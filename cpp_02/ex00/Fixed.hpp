@@ -3,33 +3,30 @@
 
 # include <iostream>
 
-class Fixed 
+class Fixed
 {
-    private:
+  private:
+	// Fields
+	int fixedPointValue_;
+	static int const fractionalBits_ = 8;
 
-        // Fields
-        int                 fixedPointValue_;
-        static int const    fractionalBits_ = 8;
+  public:
+	// ============ Constructors ============
+	Fixed();
+	Fixed(const Fixed &other);
 
-    public:
+	// Destructor
 
-        // ============ Constructors ============
-        Fixed();
-        Fixed(const Fixed &other);
+	~Fixed();
 
-        // Destructor
+	// Assignment operator
 
-        ~Fixed();
+	Fixed &operator=(const Fixed &other);
 
-        // Assignment operator
+	// ============ Member function(s) ============
 
-        Fixed &operator=(const Fixed &other);
-
-        // ============ Member function(s) ============
-
-        int getRawBits() const;
-        void setRawBits(int const raw);
+	int getRawBits() const;
+	void setRawBits(int const raw);
 };
-
 
 #endif
