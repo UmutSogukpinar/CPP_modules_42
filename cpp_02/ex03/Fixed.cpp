@@ -68,13 +68,13 @@ void Fixed::setRawBits(int const raw)
 // To convert fixed-point value to float
 float Fixed::toFloat(void) const 
 {
-    return ((float)fixedPointValue_ / (1 << fractionalBits_));
+    return (static_cast<float>(fixedPointValue_) / (1 << fractionalBits_));
 }
 
 // To convert fixed-point value to integer
 int Fixed::toInt(void) const 
 {
-    return (roundf(fixedPointValue_ / (1 << fractionalBits_)));
+    return (roundf(static_cast<float>(fixedPointValue_) / (1 << fractionalBits_)));
 }
 
 // Overloaded output operator for Fixed class

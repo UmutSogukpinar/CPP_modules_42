@@ -34,14 +34,14 @@ bool Point::bsp(Point const a, Point const b, Point const c, Point const point)
     float area2 = getArea_(a, point, c);
     float area3 = getArea_(a, b, point);
 
+	if (area1 == 0.0f || area2 == 0.0f || area3 == 0.0f)
+        return (false);
+
     float sum = area1 + area2 + area3;
     float marginOfError = 0.00001f;
 
 	float difference = (totalArea - sum) > 0 ? (totalArea - sum) : -(totalArea - sum); 
     bool isInside = difference < marginOfError;
-
-    if (area1 == 0.0f || area2 == 0.0f || area3 == 0.0f)
-        return (false);
 
     return (isInside);
 }
