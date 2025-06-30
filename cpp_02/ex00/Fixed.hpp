@@ -9,24 +9,26 @@ class Fixed
 
         // Fields
         int                 fixedPointValue_;
-        static const int    fractionalBits_ = 8;
+        static int const    fractionalBits_ = 8;
 
     public:
 
-        // Constructors
+        // ============ Constructors ============
         Fixed();
         Fixed(const Fixed &other);
 
         // Destructor
+
         ~Fixed();
 
         // Assignment operator
+
         Fixed &operator=(const Fixed &other);
 
-        // Member functions
+        // ============ Member function(s) ============
+
         int getRawBits() const;
         void setRawBits(int const raw);
-
 };
 
 

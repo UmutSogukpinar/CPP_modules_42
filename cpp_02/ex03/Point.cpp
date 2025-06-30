@@ -35,10 +35,10 @@ bool Point::bsp(Point const a, Point const b, Point const c, Point const point)
     float area3 = getArea_(a, b, point);
 
     float sum = area1 + area2 + area3;
-    float epsilon = 0.00001f;
+    float marginOfError = 0.00001f;
 
 	float difference = (totalArea - sum) > 0 ? (totalArea - sum) : -(totalArea - sum); 
-    bool isInside = difference < epsilon;
+    bool isInside = difference < marginOfError;
 
     if (area1 == 0.0f || area2 == 0.0f || area3 == 0.0f)
         return (false);
@@ -49,17 +49,13 @@ bool Point::bsp(Point const a, Point const b, Point const c, Point const point)
 float Point::getArea_(Point const &a, Point const &b, Point const &c)
 {
     float ax = a.x_.toFloat();
-    float bx = b.x_.toFloat();
-    float cx = c.x_.toFloat();
     float ay = a.y_.toFloat();
+    float bx = b.x_.toFloat();
     float by = b.y_.toFloat();
+    float cx = c.x_.toFloat();
     float cy = c.y_.toFloat();
 
-    float area = 0.5f * std::abs(ax * (by - cy) +
-                                 bx * (cy - ay) +
-                                 cx * (ay - by)
-								);
-    return (area);
+    float determinant = ax * (by - cy) + bx * (cy - ay) + cx * (ay - by);
+
+    return ((determinant > 0 ? determinant : -determinant) * 0.5f);
 }
-
-

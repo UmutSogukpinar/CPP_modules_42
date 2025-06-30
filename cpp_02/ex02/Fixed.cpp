@@ -1,7 +1,7 @@
 #include "Fixed.hpp"
 #include <cmath>
 
-// ======================== Constructors ========================
+// ============================ Constructors ============================
 
 // Default constructor
 Fixed::Fixed() : fixedPointValue_(0) 
@@ -10,32 +10,31 @@ Fixed::Fixed() : fixedPointValue_(0)
 }
 
 // Constructor with integer parameter
-Fixed::Fixed(const int value) : fixedPointValue_(value << fractionalBits_) 
+Fixed::Fixed(const int value) : fixedPointValue_(value * (1 << fractionalBits_)) 
 {
-    std::cout << "Int constructor called" << "\n";
+    std::cout << "Integer constructor called" << "\n";
 }
 
 // Constructor with float parameter
-Fixed::Fixed(const float value) 
-{
-    fixedPointValue_ = roundf(value * (1 << fractionalBits_));
-    
+Fixed::Fixed(const float value)
+	: fixedPointValue_(roundf(value * (1 << fractionalBits_)))
+{   
     std::cout << "Float constructor called" << "\n";
 }
 
-// ================ Copy constructor ================
+// Copy constructor
 Fixed::Fixed(const Fixed &other) : fixedPointValue_(other.fixedPointValue_) 
 {
     std::cout << "Copy constructor called" << "\n";
 }
 
-// ======================== Destructor ========================
+// ====================== Destructor ======================
 Fixed::~Fixed() 
 {
     std::cout << "Destructor called" << "\n";
 }
 
-// Assignment operator
+// ====================== Assignment operator ======================
 Fixed &Fixed::operator=(const Fixed &other) 
 {
     std::cout << "Copy assignment operator called" << "\n";
@@ -48,7 +47,8 @@ Fixed &Fixed::operator=(const Fixed &other)
     return (*this);
 }
 
-// ====================== Getters and Setters =====================
+// ====================== Getters and Setters ======================
+
 int Fixed::getRawBits() const
 {
     std::cout << "getRawBits member function called" << "\n";
@@ -63,16 +63,18 @@ void Fixed::setRawBits(int const raw)
     fixedPointValue_ = raw;
 }
 
+// ====================== Member Function(s) ======================
+
 // To convert fixed-point value to float
 float Fixed::toFloat(void) const 
 {
-    return (float)fixedPointValue_ / (1 << fractionalBits_);
+    return ((float)fixedPointValue_ / (1 << fractionalBits_));
 }
 
 // To convert fixed-point value to integer
 int Fixed::toInt(void) const 
 {
-    return (fixedPointValue_ >> fractionalBits_);
+    return (roundf(fixedPointValue_ / (1 << fractionalBits_)));
 }
 
 // Overloaded output operator for Fixed class
@@ -81,6 +83,7 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
     os << fixed.toFloat();
     return (os);
 }
+
 
 // ========================  Overloaded comparison operators ========================
 bool Fixed::operator>(const Fixed& other) const 
@@ -134,8 +137,10 @@ Fixed Fixed::operator-(const Fixed& other) const
 Fixed Fixed::operator*(const Fixed& other) const 
 {
     Fixed result;
+
     long long mul = static_cast<long long>(this->fixedPointValue_) * other.fixedPointValue_;
-    result.fixedPointValue_ = static_cast<int>(mul >> fractionalBits_);
+    result.fixedPointValue_ = static_cast<int>(mul / (1 << fractionalBits_));
+
     return (result);
 }
 
@@ -146,7 +151,7 @@ Fixed Fixed::operator/(const Fixed& other) const
     if (other.fixedPointValue_ == 0)
         throw std::runtime_error("Division by zero");
 
-    long long numerator = static_cast<long long>(this->fixedPointValue_) << fractionalBits_;
+    long long numerator = static_cast<long long>(this->fixedPointValue_) * (1 << fractionalBits_);
     long long division = numerator / other.fixedPointValue_;
     result.fixedPointValue_ = static_cast<int>(division);
 
@@ -157,27 +162,27 @@ Fixed Fixed::operator/(const Fixed& other) const
 
 Fixed Fixed::operator++()
 {
-    fixedPointValue_ += (1 << fractionalBits_);
+    fixedPointValue_ += 1;
     return (*this);
 }
 
 Fixed Fixed::operator--()
 {
-    fixedPointValue_ -= (1 << fractionalBits_);
+    fixedPointValue_ -= 1;
     return (*this);
 }
 
 Fixed Fixed::operator++(int) 
 {
     Fixed temp(*this);
-    fixedPointValue_ += (1 << fractionalBits_);
+    fixedPointValue_ += 1;
     return (temp);
 }
 
 Fixed Fixed::operator--(int) 
 {
     Fixed temp(*this);
-    fixedPointValue_ -= (1 << fractionalBits_);
+    fixedPointValue_ -= 1;
     return (temp);
 }
 

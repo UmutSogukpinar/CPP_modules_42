@@ -10,16 +10,15 @@ Fixed::Fixed() : fixedPointValue_(0)
 }
 
 // Constructor with integer parameter
-Fixed::Fixed(const int value) : fixedPointValue_(value << fractionalBits_) 
+Fixed::Fixed(const int value) : fixedPointValue_(value * (1 << fractionalBits_)) 
 {
-    std::cout << "Int constructor called" << "\n";
+    std::cout << "Integer constructor called" << "\n";
 }
 
 // Constructor with float parameter
-Fixed::Fixed(const float value) 
-{
-    fixedPointValue_ = roundf(value * (1 << fractionalBits_));
-    
+Fixed::Fixed(const float value)
+	: fixedPointValue_(roundf(value * (1 << fractionalBits_)))
+{   
     std::cout << "Float constructor called" << "\n";
 }
 
@@ -49,6 +48,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 }
 
 // ====================== Getters and Setters ======================
+
 int Fixed::getRawBits() const
 {
     std::cout << "getRawBits member function called" << "\n";
@@ -74,7 +74,7 @@ float Fixed::toFloat(void) const
 // To convert fixed-point value to integer
 int Fixed::toInt(void) const 
 {
-    return (fixedPointValue_ >> fractionalBits_);
+    return (roundf(fixedPointValue_ / (1 << fractionalBits_)));
 }
 
 // Overloaded output operator for Fixed class

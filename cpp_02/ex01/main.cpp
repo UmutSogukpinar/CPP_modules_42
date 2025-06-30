@@ -19,5 +19,20 @@ int main( void )
     std::cout << "c is " << c.toInt() << " as integer" << std::endl;
     std::cout << "d is " << d.toInt() << " as integer" << std::endl;
 
+
+	// ===================== Negative case ====================
+
+	std::cout << "\n";
+
+	Fixed const e(-42);
+	Fixed const f(-42.42f);
+
+    std::cout << "e is " << e << std::endl;
+    std::cout << "e is " << e.toInt() << " as integer" << std::endl;
+
+	std::cout << "f is " << f << std::endl;
+    std::cout << "f is " << f.toInt() << " as integer" << std::endl;
+
+
     return (EXIT_SUCCESS);
 }
