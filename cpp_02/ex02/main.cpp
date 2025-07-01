@@ -1,6 +1,5 @@
 #include "Fixed.hpp"
 #include <cstdlib>
-#include <iostream>
 #include <exception>
 
 int	main(void)

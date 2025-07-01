@@ -7,7 +7,7 @@
 Fixed::Fixed()
 	: fixedPointValue_(0)
 {
-	std::cout << "Default constructor called"
+	std::cout << "Default constructor called for Fixed instance"
 				<< "\n";
 }
 
@@ -15,7 +15,7 @@ Fixed::Fixed()
 Fixed::Fixed(const int value)
 	: fixedPointValue_(value * (1 << fractionalBits_))
 {
-	std::cout << "Integer constructor called"
+	std::cout << "Integer constructor called for Fixed instance"
 				<< "\n";
 }
 
@@ -23,7 +23,7 @@ Fixed::Fixed(const int value)
 Fixed::Fixed(const float value)
 	: fixedPointValue_(roundf(value * (1 << fractionalBits_)))
 {
-	std::cout << "Float constructor called"
+	std::cout << "Float constructor called for Fixed instance"
 				<< "\n";
 }
 
@@ -31,21 +31,21 @@ Fixed::Fixed(const float value)
 Fixed::Fixed(const Fixed &other)
 	: fixedPointValue_(other.fixedPointValue_)
 {
-	std::cout << "Copy constructor called"
+	std::cout << "Copy constructor called for Fixed instance"
 				<< "\n";
 }
 
 // ====================== Destructor ======================
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called"
+	std::cout << "Destructor called for fixed instance"
 				<< "\n";
 }
 
 // ====================== Assignment operator ======================
 Fixed &Fixed::operator=(const Fixed &other)
 {
-	std::cout << "Copy assignment operator called"
+	std::cout << "Copy assignment operator called for Fixed instance"
 				<< "\n";
 	if (this != &other)
 	{
