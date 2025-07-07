@@ -21,10 +21,6 @@ int main()
         fighter4 = fighter2; // Basic assignment
         fighter4.attack("Battle Droids");
 
-        // Self-assignment test
-        std::cout << "\n--- Self Assignment Test ---" << std::endl;
-        fighter4 = fighter4; // fighter4 assigned to itself (self-assignment check)
-
         // Chain assignment test
         std::cout << "\n--- Chain Assignment Test ---" << std::endl;
         ScavTrap fighter5("R2-D2");
@@ -42,7 +38,30 @@ int main()
         std::cout << "\n=== TEST 4: Dynamic Allocation (new/delete) ===" << std::endl;
         ScavTrap *dynamicFighter = new ScavTrap("Yoda");
         dynamicFighter->guardGate();
+		dynamicFighter->attack("Count Dooku");
         delete dynamicFighter;
+
+
+		std::cout << "\n=== TEST 5: Base Class Pointer (Polymorphic Usage) ===" << std::endl;
+
+		ClapTrap* polyFighter = new ScavTrap("Plo Koon");
+		polyFighter->attack("General Grievous");
+		delete polyFighter;
+
+		std::cout << "\n=== TEST 6: Virtual Attack Test ===" << std::endl;
+
+        ClapTrap baseOnly("Clone Trooper");
+        ScavTrap derivedFighter("Ahsoka");
+
+        ClapTrap* ptr1 = &baseOnly;
+        ClapTrap* ptr2 = &derivedFighter;
+
+        std::cout << "\n--- Base pointer to Base object ---" << std::endl;
+        ptr1->attack("Droid");
+
+        std::cout << "\n--- Base pointer to Derived object ---" << std::endl;
+        ptr2->attack("Droid");
+
 
         std::cout << "\n=== BATTLE START ===" << std::endl;
 

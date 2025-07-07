@@ -2,28 +2,29 @@
 
 // ================== Constructors ==================
 
-ScavTrap::ScavTrap() : ClapTrap()
+ScavTrap::ScavTrap()
+	: ClapTrap()
 {
 	hitPoints_ = SCAV_TRAP_DEFAULT_HIT_POINTS;
 	energyPoints_ = SCAV_TRAP_DEFAULT_ENERGY_POINTS;
 	attackDamage_ = SCAV_TRAP_DEFAULT_ATTACK_DAMAGE;
-
 	std::cout << "Default ScavTrap constructor called for "
-			  << name_ << "\n";
+				<< name_ << "\n";
 }
 
-ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
+ScavTrap::ScavTrap(const std::string &name)
+	: ClapTrap(name)
 {
 	hitPoints_ = SCAV_TRAP_DEFAULT_HIT_POINTS;
 	energyPoints_ = SCAV_TRAP_DEFAULT_ENERGY_POINTS;
 	attackDamage_ = SCAV_TRAP_DEFAULT_ATTACK_DAMAGE;
-
 	std::cout << "Parameterized ScavTrap constructor called for "
-			  << name_ << "\n";
+				<< name_ << "\n";
 }
 
 // Copy Constructor
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
+ScavTrap::ScavTrap(const ScavTrap &other)
+	: ClapTrap(other)
 {
 	std::cout << "ScavTrap copy constructor called for " << name_ << "\n";
 }
@@ -35,15 +36,19 @@ ScavTrap::~ScavTrap()
 }
 
 // Overloaded '=' operator
-ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
-	if (this != &other)
-	{
-		ClapTrap::operator=(other);
-		std::cout << "ScavTrap assignment operator called for "
-		          << name_ << "\n";
-	}
-	return (*this);
+    std::cout<< "ScavTrap Copy Assigment Called" << "\n";
+
+    if (this == &other)
+        return (*this);
+
+    this->hitPoints_ = other.hitPoints_;
+    this->attackDamage_ = other.attackDamage_;
+    this->energyPoints_ = other.energyPoints_;
+    this->name_ = other.name_;
+
+    return(*this);
 }
 
 // =========================== Inherited Function(s) ===========================
@@ -53,23 +58,22 @@ void ScavTrap::attack(const std::string &target)
 	if (energyPoints_ > 0 && hitPoints_ > 0)
 	{
 		std::cout << "ScavTrap " << name_ << " attacks " << target
-				  << ", causing " << attackDamage_ << " points of damage!"
-				  << " Remaing energy point(s) is/are " << energyPoints_ - 1
-				  << "\n";
-
+					<< ", causing " << attackDamage_ << " points of damage!"
+					<< " Remaing energy point(s) is/are " << energyPoints_ - 1
+					<< "\n";
 		energyPoints_--;
 	}
 	else if (hitPoints_ == 0)
 	{
 		std::cout << "ScavTrap " << name_
-				  << " cannot attack because it has no hit points left."
-				  << "\n";
+					<< " cannot attack because it has no hit points left."
+					<< "\n";
 	}
 	else
 	{
 		std::cout << "ScavTrap " << name_
-				  << " cannot attack because it has no energy points left."
-				  << "\n";
+					<< " cannot attack because it has no energy points left."
+					<< "\n";
 	}
 }
 
@@ -78,6 +82,6 @@ void ScavTrap::attack(const std::string &target)
 void ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << name_
-			  << " is now in Gatekeeper mode."
-			  << "\n";
+				<< " is now in Gatekeeper mode."
+				<< "\n";
 }

@@ -12,10 +12,10 @@ class ClapTrap
 protected:
 	// Fields
 
-	std::string name_;
-	unsigned int hitPoints_;
-	unsigned int energyPoints_;
-	unsigned int attackDamage_;
+	std::string		name_;
+	unsigned int	hitPoints_;
+	unsigned int	energyPoints_;
+	unsigned int	attackDamage_;
 
 public:
 	// ========== Constructors ==========
@@ -24,7 +24,7 @@ public:
 	ClapTrap(const std::string &name);
 
 	// Destructor
-	~ClapTrap();
+	virtual ~ClapTrap();
 
 	// Copy constructor
 	ClapTrap(const ClapTrap &other);
@@ -34,7 +34,7 @@ public:
 
 	// ========== Member functions ==========
 
-	void attack(const std::string &target);
+	virtual void attack(const std::string &target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 };

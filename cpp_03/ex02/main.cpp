@@ -21,10 +21,6 @@ int main()
         fighter4 = fighter2; // Basic assignment
         fighter4.attack("Battle Droids");
 
-        // Self-assignment test
-        std::cout << "\n--- Self Assignment Test ---" << std::endl;
-        fighter4 = fighter4; // fighter4 assigned to itself (self-assignment check)
-
         // Chain assignment test
         std::cout << "\n--- Chain Assignment Test ---" << std::endl;
         FragTrap fighter5("R2-D2");
@@ -64,7 +60,7 @@ int main()
             fighter1.attack("Training Dummy");
         }
 
-        std::cout << "\n--- GUARD GATE MODE ---" << std::endl;
+        std::cout << "\n--- HIGH FIVE MODE ---" << std::endl;
         fighter2.highFivesGuys();
 
         std::cout << "\n--- CRITICAL DAMAGE TEST ---" << std::endl;

@@ -98,11 +98,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if (energyPoints_ > 0 && hitPoints_ > 0)
 	{
 		hitPoints_ += amount;
-		(energyPoints_)--;
 		std::cout << "ClapTrap " << name_ << " repairs itself for " << amount
-				  << " points! New hit points: " << hitPoints_
-				  << " Remaing energy point(s) is/are " << (energyPoints_ - 1)
-				  << "\n";
+		<< " points! New hit points: " << hitPoints_
+		<< " Remaing energy point(s) is/are " << (energyPoints_ - 1)
+		<< "\n";
+		(energyPoints_)--;
 	}
 	else if (hitPoints_ == 0)
 	{

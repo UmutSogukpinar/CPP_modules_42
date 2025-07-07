@@ -12,10 +12,10 @@ class ClapTrap
 private:
 	// Fields
 
-	std::string name_;
-	unsigned int hitPoints_;
-	unsigned int energyPoints_;
-	unsigned int attackDamage_;
+	std::string		name_;
+	unsigned int	hitPoints_;
+	unsigned int	energyPoints_;
+	unsigned int	attackDamage_;
 
 public:
 	// ========== Constructors ==========

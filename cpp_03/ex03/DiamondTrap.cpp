@@ -8,9 +8,10 @@ DiamondTrap::DiamondTrap()
 	  FragTrap(),
 	  name_("Default")
 {
-	hitPoints_ = FragTrap::hitPoints_;
-	energyPoints_ = ScavTrap::energyPoints_;
-	attackDamage_ = FragTrap::attackDamage_;
+	hitPoints_ = FRAG_TRAP_DEFAULT_HIT_POINTS;
+	energyPoints_ = SCAV_TRAP_DEFAULT_ENERGY_POINTS;
+	attackDamage_ = FRAG_TRAP_DEFAULT_ATTACK_DAMAGE;
+	std::cout << "Default DiamondTrap constructor called for " << name_ << "\n";
 }
 
 DiamondTrap::DiamondTrap(const std::string &name)
@@ -19,9 +20,10 @@ DiamondTrap::DiamondTrap(const std::string &name)
 	  FragTrap(),
 	  name_(name)
 {
-	hitPoints_ = FragTrap::hitPoints_;
-	energyPoints_ = ScavTrap::energyPoints_;
-	attackDamage_ = FragTrap::attackDamage_;
+	hitPoints_ = FRAG_TRAP_DEFAULT_HIT_POINTS;
+	energyPoints_ = SCAV_TRAP_DEFAULT_ENERGY_POINTS;
+	attackDamage_ = FRAG_TRAP_DEFAULT_ATTACK_DAMAGE;
+	std::cout << "Parameterized DiamondTrap constructor called for " << name_ << "\n";
 }
 
 // Copy Constructor
@@ -31,11 +33,10 @@ DiamondTrap::DiamondTrap(const DiamondTrap &other)
 	  FragTrap(other),
 	  name_(other.name_)
 {
-	std::cout << "DiamondTrap copy constructor called" << "\n";
-
 	this->hitPoints_ = other.hitPoints_;
 	this->energyPoints_ = other.energyPoints_;
 	this->attackDamage_ = other.attackDamage_;
+	std::cout << "DiamondTrap copy constructor called" << "\n";
 }
 
 // Destructor
@@ -45,18 +46,23 @@ DiamondTrap::~DiamondTrap()
 }
 
 // Overloaded '=' operator
-DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other)
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
 {
-	if (this != &other)
-	{
-		ClapTrap::operator=(other);
-		ScavTrap::operator=(other);
-		FragTrap::operator=(other);
+    std::cout<< "DiamondTrap Copy Assigment Called" << "\n";
 
-		this->name_ = other.name_;
-		std::cout << "DiamondTrap assignment operator called for " << name_ << "\n";
+    if (this == &other)
+	{
+        return (*this);
 	}
-	return (*this);
+
+	this->ClapTrap::name_ = other.ClapTrap::name_;
+	this->hitPoints_ = other.hitPoints_;
+	this->energyPoints_ = other.energyPoints_;
+	this->attackDamage_ = other.attackDamage_;
+
+	this->name_ = other.name_;
+
+    return(*this);
 }
 
 // ============= Member Function(s) =============

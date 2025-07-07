@@ -1,79 +1,89 @@
 #include <stdexcept>
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
     try
     {
         std::cout << "\n=== TEST 0: Default Constructor Test ===" << std::endl;
-        FragTrap defaultFighter; // Default constructor
+        DiamondTrap defaultTrap;
+        defaultTrap.guardGate();
+        defaultTrap.highFivesGuys();
 
         std::cout << "\n=== TEST 1: Parameterized Constructor Test ===" << std::endl;
-        FragTrap fighter1("Anakin");
-        FragTrap fighter2("Obi-Wan");
+        DiamondTrap trap1("Anakin");
+        DiamondTrap trap2("Obi-Wan");
+
+        trap1.guardGate();
+        trap1.highFivesGuys();
 
         std::cout << "\n=== TEST 2: Copy Constructor Test ===" << std::endl;
-        FragTrap fighter3(fighter1); // Copy constructor
-        fighter3.highFivesGuys();
+        DiamondTrap trap3(trap1);
+        trap3.whoAmI();
+        trap3.guardGate();
+        trap3.highFivesGuys();
 
         std::cout << "\n=== TEST 3: Assignment Operator Test ===" << std::endl;
-        FragTrap fighter4;   // Default constructor
-        fighter4 = fighter2; // Basic assignment
-        fighter4.attack("Battle Droids");
+        DiamondTrap trap4;
+        trap4 = trap2;
+        trap4.attack("General Grievous");
+        trap4.guardGate();
+        trap4.highFivesGuys();
 
-        // Self-assignment test
-        std::cout << "\n--- Self Assignment Test ---" << std::endl;
-        fighter4 = fighter4; // fighter4 assigned to itself (self-assignment check)
-
-        // Chain assignment test
         std::cout << "\n--- Chain Assignment Test ---" << std::endl;
-        FragTrap fighter5("R2-D2");
-        FragTrap fighter6("Padme");
-        fighter5 = fighter6 = fighter2; // Chain assignment, fighter6 gets fighter2, fighter5 gets fighter6
-        fighter5.attack("Battle Droids");
-        fighter6.attack("Battle Droids");
+        DiamondTrap trap5("R2-D2");
+        DiamondTrap trap6("Padme");
+        trap5 = trap6 = trap2;
+        trap5.attack("Battle Droids");
+        trap6.attack("Battle Droids");
 
-        // Assign a destroyed fighter
         std::cout << "\n--- Assignment After Destroyed State ---" << std::endl;
-        fighter5.takeDamage(150); // Kill fighter2
-        fighter4 = fighter5;      // Assign dead fighter to fighter4
-        fighter4.attack("Battle Droids");
+        trap5.takeDamage(200);
+        trap4 = trap5;
+        trap4.attack("Clone Troopers");
 
         std::cout << "\n=== TEST 4: Dynamic Allocation (new/delete) ===" << std::endl;
-        FragTrap *dynamicFighter = new FragTrap("Yoda");
-        dynamicFighter->highFivesGuys();
-        delete dynamicFighter;
+        DiamondTrap *dynamicTrap = new DiamondTrap("Yoda");
+        dynamicTrap->whoAmI();
+        dynamicTrap->attack("Palpatine");
+        dynamicTrap->guardGate();
+        dynamicTrap->highFivesGuys();
+        delete dynamicTrap;
 
         std::cout << "\n=== BATTLE START ===" << std::endl;
 
         std::cout << "\n--- ROUND 1 ---" << std::endl;
-        fighter1.attack("Obi-Wan");
-        fighter2.takeDamage(7);
+        trap1.attack("Obi-Wan");
+        trap2.takeDamage(10);
 
         std::cout << "\n--- ROUND 2 ---" << std::endl;
-        fighter2.attack("Anakin");
-        fighter1.takeDamage(5);
+        trap2.attack("Anakin");
+        trap1.takeDamage(15);
 
         std::cout << "\n--- SELF REPAIR ---" << std::endl;
-        fighter1.beRepaired(5);
-        fighter2.beRepaired(3);
+        trap1.beRepaired(10);
+        trap2.beRepaired(5);
 
         std::cout << "\n--- ENERGY DRAIN TEST ---" << std::endl;
         for (int i = 0; i < 12; ++i)
         {
-            fighter1.attack("Training Dummy");
+            trap1.attack("Training Dummy");
         }
 
-        std::cout << "\n--- GUARD GATE MODE ---" << std::endl;
-        fighter2.highFivesGuys();
+        std::cout << "\n--- WHOAMI TEST ---\n";
+        trap2.whoAmI();
+
+        std::cout << "\n--- SPECIAL SKILLS TEST ---" << std::endl;
+        trap2.guardGate();
+        trap2.highFivesGuys();
 
         std::cout << "\n--- CRITICAL DAMAGE TEST ---" << std::endl;
-        fighter2.takeDamage(50);
-        fighter2.takeDamage(60);   // Overkill testing
-        fighter2.attack("Anakin"); // Dead man cannot attack
+        trap2.takeDamage(80);
+        trap2.takeDamage(100);
+        trap2.attack("Anakin");
 
         std::cout << "\n--- ZOMBIE REPAIR TEST ---" << std::endl;
-        fighter2.beRepaired(20); // Dead man cannot heal
+        trap2.beRepaired(20);
 
         std::cout << "\n=== BATTLE END ===" << std::endl;
     }

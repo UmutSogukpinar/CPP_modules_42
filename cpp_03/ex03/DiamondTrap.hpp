@@ -21,12 +21,13 @@ public:
 	~DiamondTrap();
 
 	// Overloaded '=' operator
-	// 
 	DiamondTrap &operator=(const DiamondTrap &other);
 
 	// ============= Member Function(s) =============
-
+	
 	void whoAmI();
+
+
 };
 
 #endif

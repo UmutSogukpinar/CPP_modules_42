@@ -11,15 +11,11 @@ OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(CXX) $(CXXFLAGS) ${OBJS} -o $(NAME)
+$(NAME): $(SRCS)
+	@$(CXX) $(CXXFLAGS) ${SRCS} -o $(NAME)
 	@echo "Compilation complete: $(NAME)"
 
-%.o: %.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
-
 clean:
-	@$(RM) $(OBJS)
 	@echo "Object files removed."
 
 fclean: clean
