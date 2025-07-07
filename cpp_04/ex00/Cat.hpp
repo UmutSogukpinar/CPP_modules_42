@@ -1,11 +1,11 @@
 #ifndef CAT_HPP
 # define CAT_HPP
 
-#include "Animal.hpp"
+# include "Animal.hpp"
 
-class Cat: public Animal
+class Cat : public Animal
 {
-public:
+  public:
 	// Default Constructor
 	Cat();
 
@@ -18,9 +18,8 @@ public:
 	// Overloaded assignment operator
 	Cat &operator=(const Cat &other);
 
-	// Member function
+	// Member function (inherited)
 	void makeSound() const;
 };
-
 
 #endif

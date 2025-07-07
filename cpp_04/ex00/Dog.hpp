@@ -1,11 +1,11 @@
 #ifndef DOG_HPP
 # define DOG_HPP
 
-#include "Animal.hpp"
+# include "Animal.hpp"
 
-class Dog: public Animal
+class Dog : public Animal
 {
-public:
+  public:
 	// Default Constructor
 	Dog();
 
@@ -18,9 +18,8 @@ public:
 	// Overloaded assignment operator
 	Dog &operator=(const Dog &other);
 
-	// Member function
+	// Member function (inherited)
 	void makeSound() const;
 };
-
 
 #endif

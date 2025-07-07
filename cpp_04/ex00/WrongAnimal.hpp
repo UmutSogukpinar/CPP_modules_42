@@ -1,19 +1,19 @@
 #ifndef WRONGANIMAL_CPP
 # define WRONGANIMAL_CPP
 
-#include "iostream"
+# include "iostream"
 
 class WrongAnimal
 {
-protected:
+  protected:
 	std::string type_;
-public:
+
+  public:
 	WrongAnimal();
 	virtual ~WrongAnimal();
 	WrongAnimal(const WrongAnimal &other);
 	WrongAnimal &operator=(const WrongAnimal &other);
 	void makeSound() const;
-
 };
 
 #endif

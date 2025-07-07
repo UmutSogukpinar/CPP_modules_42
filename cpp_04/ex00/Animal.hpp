@@ -5,10 +5,10 @@
 
 class Animal
 {
-protected:
+  protected:
 	std::string type_;
 
-public:
+  public:
 	// Default Constructor
 	Animal();
 
@@ -26,8 +26,6 @@ public:
 
 	// Member function(s)
 	virtual void makeSound() const;
-
 };
-
 
 #endif

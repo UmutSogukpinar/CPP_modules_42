@@ -12,6 +12,7 @@ int main()
 
     WrongAnimal* wrongAnimal = NULL;
     WrongAnimal* wrongCat    = NULL;
+
     try 
     {
         animal = new Animal();
@@ -46,11 +47,11 @@ int main()
 		return (EXIT_FAILURE);
     }
 
+    delete animal;
     delete dog;
     delete cat;
     delete wrongAnimal;
     delete wrongCat;
-    delete animal;
 
     return (EXIT_SUCCESS);
 }
