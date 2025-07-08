@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include "cstdlib"
 #include "ClapTrap.hpp"
 
 int main()
@@ -42,18 +43,17 @@ int main()
         std::cout << "\n--- CRITICAL DAMAGE TEST ---" << "\n";
         fighter2.takeDamage(50);
         fighter2.takeDamage(60);   // Overkill testing
-        fighter2.attack("Anakin"); // Dead man cannot attack
+        fighter2.attack("Anakin"); // Dead man is not supposed to attack
 
         std::cout << "\n--- ZOMBIE REPAIR TEST ---" << "\n";
-        fighter2.beRepaired(20); // Dead man cannot heal
+        fighter2.beRepaired(20); // Dead man is not supposed to heal
 
         std::cout << "\n=== BATTLE END ===" << "\n";
     }
     catch (const std::exception &e)
     {
         std::cerr << "Exception caught during battle: " << e.what() << "\n";
-        return (1);
+        return (EXIT_FAILURE);
     }
-
-    return (0);
+    return (EXIT_SUCCESS);
 }

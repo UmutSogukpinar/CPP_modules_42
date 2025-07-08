@@ -21,7 +21,6 @@ AMateria& AMateria::operator=(AMateria const &other)
 	return (*this);
 }
 
-
 // =========== Getters & Setters ===========
 
 std::string	const& AMateria::getType() const
