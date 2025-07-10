@@ -5,6 +5,8 @@
 
 # define CURE "cure"
 
+class ICharacter;
+
 class Cure: public AMateria
 {
 	// Default Constructor
@@ -22,7 +24,7 @@ class Cure: public AMateria
 	// Overrided Functions
 
 	AMateria* clone() const;
-	void use(Icharacter & character);
+	void use(ICharacter& target);
 
 };
 

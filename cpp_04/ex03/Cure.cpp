@@ -19,7 +19,7 @@ Cure& Cure::operator=(const Cure& other)
 
 // ==================== Overrided Function(s) ====================
 
-void Cure::use(ICharacter& target) // TODO: Implement ICharacter interface
+void Cure::use(ICharacter& target)
 {
 	std::cout << "Cure: * heals " << target.getName() << "'s wounds *" << "\n";
 }
@@ -28,4 +28,3 @@ AMateria* Cure::clone() const
 {
 	return (new Cure(*this));
 }
-

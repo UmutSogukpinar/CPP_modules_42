@@ -32,7 +32,6 @@ class AMateria
 
 		std::string const &getType() const;
 
-
 		// =========== Virtual Function(s) ===========
 
 		virtual AMateria* clone() const = 0;
