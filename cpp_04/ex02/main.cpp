@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 
@@ -8,9 +8,9 @@ const int kAnimalArraySize = 10;
 
 void test_basic()
 {
-	const Animal* cat = new Cat();
-	const Animal* dog = new Dog();
-	// const Animal* animal = new Animal();
+	const AAnimal* cat = new Cat();
+	const AAnimal* dog = new Dog();
+	// const AAnimal* animal = new AAnimal();
 
 	delete cat;
 	delete dog;
@@ -19,7 +19,7 @@ void test_basic()
 
 void test_animal_array()
 {
-	Animal* animals[kAnimalArraySize];
+	AAnimal* animals[kAnimalArraySize];
 	int i = 0;
 
 	while (i < kAnimalArraySize / 2)

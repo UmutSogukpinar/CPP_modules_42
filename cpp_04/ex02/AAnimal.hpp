@@ -1,25 +1,25 @@
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef AAAnimal_HPP
+# define AAAnimal_HPP
 
 # include "iostream"
 
-class Animal
+class AAnimal
 {
 protected:
 	std::string type_;
 
 public:
 	// Default Constructor
-	Animal();
+	AAnimal();
 
 	// Copy Constructor
-	Animal(const Animal &other);
+	AAnimal(const AAnimal &other);
 
 	// Assignment Operator
-	virtual ~Animal();
+	virtual ~AAnimal();
 
 	// Overloaded assignment operator
-	Animal &operator=(const Animal &other);
+	AAnimal &operator=(const AAnimal &other);
 
 	// Getter
 	std::string getType() const;

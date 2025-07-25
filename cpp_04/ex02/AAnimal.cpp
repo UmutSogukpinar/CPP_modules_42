@@ -1,25 +1,25 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 // Default constructor
-Animal::Animal() : type_("Animal")
+AAnimal::AAnimal() : type_("Animal")
 {
 	std::cout << "Animal default constructor called" << "\n";
 }
 
 // Copy Constructor
-Animal::Animal(const Animal &other) : type_(other.type_)
+AAnimal::AAnimal(const AAnimal &other) : type_(other.type_)
 {
 	std::cout << "Animal copy constructor called" << "\n";
 }
 
 // Destructor
-Animal::~Animal()
+AAnimal::~AAnimal()
 {
 	std::cout << "Animal destructor called" << "\n";
 }
 
 // Overloaded assignment operator
-Animal &Animal::operator=(const Animal &other)
+AAnimal &AAnimal::operator=(const AAnimal &other)
 {
 	std::cout << "Animal assignment operator called" << "\n";
 	if (this != &other)
@@ -30,7 +30,7 @@ Animal &Animal::operator=(const Animal &other)
 }
 
 // Getter
-std::string Animal::getType() const
+std::string AAnimal::getType() const
 {
 	return (type_);
 }

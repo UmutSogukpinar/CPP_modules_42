@@ -3,6 +3,7 @@
 
 # include "iostream"
 
+
 # define DEFAULT	"default"
 
 class AMateria
@@ -19,7 +20,10 @@ class AMateria
 		AMateria(std::string type);
 
 		// * Destructor
-		~AMateria();
+		virtual ~AMateria();
+
+		// * Assignment Operator
+		AMateria & operator=(AMateria const & other);
 
 		// * Getter
 		std::string const & getType() const; // Returns the materia type
