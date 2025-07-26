@@ -4,19 +4,19 @@
 
 Character::Character(): name_(DEFAULT)
 {
-	for (int i = 0; i < SLOT_CAPACITY; ++i)
+	for (int i = 0; i < C_SLOT_CAPACITY; ++i)
 		slot_[i] = NULL;
 };
 
 Character::Character(std::string const & name) : name_(name)
 {
-	for (int i = 0; i < SLOT_CAPACITY; ++i)
+	for (int i = 0; i < C_SLOT_CAPACITY; ++i)
 		slot_[i] = NULL;
 };
 
 Character::Character(Character const & other) : name_(other.name_)
 {
-	for (int i = 0; i < SLOT_CAPACITY; ++i)
+	for (int i = 0; i < C_SLOT_CAPACITY; ++i)
 	{
 		if (other.slot_[i])
 			this->slot_[i] = other.slot_[i]->clone();
@@ -28,7 +28,7 @@ Character::Character(Character const & other) : name_(other.name_)
 // * Destructor
 Character::~Character()
 {
-	for (int i = 0; i < SLOT_CAPACITY; ++i)
+	for (int i = 0; i < C_SLOT_CAPACITY; ++i)
 	{
 		delete (this->slot_[i]);
 		this->slot_[i] = NULL;
@@ -36,24 +36,30 @@ Character::~Character()
 }
 
 // * Assignment Operator
-Character & Character::operator=(Character const & other)
+Character& Character::operator=(Character const& other)
 {
 	if (this != &other)
 	{
 		this->name_ = other.name_;
-		for (int i = 0; i < SLOT_CAPACITY; ++i)
+
+		for (int i = 0; i < C_SLOT_CAPACITY; ++i)
+		{
+			delete this->slot_[i];
+			this->slot_[i] = NULL;
+		}
+
+		for (int i = 0; i < C_SLOT_CAPACITY; ++i)
 		{
 			if (other.slot_[i])
-			{
-				delete (this->slot_[i]);
 				this->slot_[i] = other.slot_[i]->clone();
-			}
 			else
 				this->slot_[i] = NULL;
 		}
 	}
+
 	return (*this);
 }
+
 
 // * Getter
 std::string const & Character::getName() const
@@ -65,7 +71,7 @@ std::string const & Character::getName() const
 
 void Character::use(int idx, ICharacter &target)
 {
-	if (idx < 0 || idx >= SLOT_CAPACITY)
+	if (idx < 0 || idx >= C_SLOT_CAPACITY)
 	{
 		std::cerr << "[Warning] Invalid slot index: " << idx << "\n";
 		return ;
@@ -88,7 +94,7 @@ void Character::equip(AMateria* m)
 		std::cerr << "[Warning] Trying to equip a null Materia." << "\n";
 		return;
 	}
-	for (int i = 0; i < SLOT_CAPACITY; ++i)
+	for (int i = 0; i < C_SLOT_CAPACITY; ++i)
 	{
 		if (!this->slot_[i])
 		{
@@ -102,7 +108,7 @@ void Character::equip(AMateria* m)
 
 void Character::unequip(int idx)
 {
-	if (idx < 0 || idx >= SLOT_CAPACITY)
+	if (idx < 0 || idx >= C_SLOT_CAPACITY)
 	{
 		std::cerr << "[Warning] Invalid slot index: " << idx << "\n";
 		return;

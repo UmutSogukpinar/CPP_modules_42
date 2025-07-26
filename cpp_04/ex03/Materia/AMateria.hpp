@@ -21,6 +21,9 @@ class AMateria
 		// * Parameterized Constructor
 		AMateria(std::string type);
 
+		// * Copy Constructor
+		AMateria(AMateria const & other);
+
 		// * Destructor
 		virtual ~AMateria();
 
@@ -28,7 +31,7 @@ class AMateria
 		AMateria & operator=(AMateria const & other);
 
 		// * Getter
-		std::string const & getType() const; // Returns the materia type
+		std::string const & getType() const;
 
 		// * Member Functions
 		virtual AMateria* clone() const = 0;

@@ -3,13 +3,13 @@
 
 # include "ICharacter.hpp"
 
-# define SLOT_CAPACITY 4
+# define C_SLOT_CAPACITY 4
 
 class Character : public ICharacter
 {
 	private:
 		std::string	name_;
-		AMateria 	*slot_[SLOT_CAPACITY];
+		AMateria 	*slot_[C_SLOT_CAPACITY];
 
 
 	public:
