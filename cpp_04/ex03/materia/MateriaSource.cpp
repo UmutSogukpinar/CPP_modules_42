@@ -1,4 +1,4 @@
-#include "MaterialSource.hpp"
+#include "MateriaSource.hpp"
 
 
 // Default Constructor
@@ -46,7 +46,6 @@ MateriaSource& MateriaSource::operator=(MateriaSource const& other)
 	return (*this);
 }
 
-
 // Destructor
 MateriaSource::~MateriaSource()
 {
@@ -56,7 +55,6 @@ MateriaSource::~MateriaSource()
 		this->slot_[i] = NULL;
 	}
 }
-
 
 void MateriaSource::learnMateria(AMateria* m)
 {
@@ -69,7 +67,7 @@ void MateriaSource::learnMateria(AMateria* m)
 	{
 		if (!this->slot_[i])
 		{
-			this->slot_[i] = m->clone();
+			this->slot_[i] = m;
 			std::cout << "[Info] Materia of type " << m->getType()
 			          << " learned in slot " << i << "." << "\n";
 			return;

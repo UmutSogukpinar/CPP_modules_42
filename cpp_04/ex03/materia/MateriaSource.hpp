@@ -1,7 +1,7 @@
-#ifndef MATERIAL_SOURCE_HPP
-# define MATERIAL_SOURCE_HPP
+#ifndef MATERIA_SOURCE_HPP
+# define MATERIA_SOURCE_HPP
 
-# include "IMaterialSource.hpp"
+# include "IMateriaSource.hpp"
 
 # define MS_SLOT_CAPACITY 4
 
