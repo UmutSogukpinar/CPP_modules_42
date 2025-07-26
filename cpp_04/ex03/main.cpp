@@ -30,7 +30,7 @@ int main()
 
 		std::cout << "\n=== Unequip slot 1 (cure) and delete manually ===" << "\n";
 		wizard->unequip(1);
-		delete tmp2;
+		delete (tmp2);
 
 		std::cout << "\n=== Create Character: Bot(wizard copy constructor) ===" << "\n";
 		Character bot(*wizard);
@@ -52,14 +52,14 @@ int main()
 		bot.use(1, dummy);
 
 		std::cout << "\n=== Clean up ===" << "\n";
-		wizard->unequip(0); // Ice slot'tan çıkarılıyor
-		delete tmp1;        // bizde olduğu için silinir
+		wizard->unequip(0);
+		delete tmp1;
 		delete wizard;
 		delete src;
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
+		std::cerr << "Exception caught: " << e.what() << "\n";
 		delete (tmp1);
 		delete (tmp2);
 		delete (wizard);
@@ -68,7 +68,7 @@ int main()
 	}
 	catch (...)
 	{
-		std::cerr << "Unknown exception caught." << std::endl;
+		std::cerr << "Unknown exception caught." << "\n";
 		delete (tmp1);
 		delete (tmp2);
 		delete (wizard);
