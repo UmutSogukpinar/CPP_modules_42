@@ -1,5 +1,8 @@
 #include "Cure.hpp"
 
+// * ============================== Constructors ==============================
+
+
 Cure::Cure() : AMateria(CURE) {}
 
 Cure::Cure(const Cure & other) : AMateria(other.type_) {}
@@ -19,3 +22,11 @@ AMateria *Cure::clone() const
 }
 
 Cure::~Cure() {};
+
+
+// * ============================== Member Function(s) ==============================
+
+void Cure::use(ICharacter& target)
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *" << "\n";
+}

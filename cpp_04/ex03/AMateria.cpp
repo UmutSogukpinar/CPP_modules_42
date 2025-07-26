@@ -28,4 +28,12 @@ std::string const & AMateria::getType() const
 	return (type_);
 }
 
-// TODO: implement later ====>>>> virtual void use(ICharacter& target);
+// * ============================== Member Function(s) ==============================
+
+void AMateria::use(ICharacter& target)
+{
+	std::cout << "* abstract materia is used on " << target.getName()
+	          << " but it has no defined effect *" << "\n";
+}
+
+

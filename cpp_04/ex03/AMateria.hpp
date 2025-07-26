@@ -2,9 +2,11 @@
 # define AMATERIA_HPP
 
 # include "iostream"
-
+# include "ICharacter.hpp"
 
 # define DEFAULT	"default"
+
+class ICharacter;
 
 class AMateria
 {
@@ -30,7 +32,7 @@ class AMateria
 
 		// * Member Functions
 		virtual AMateria* clone() const = 0;
-		// TODO: implement later ===>> virtual void use(ICharacter& target);
+		virtual void use(ICharacter& target);
 };
 
 #endif

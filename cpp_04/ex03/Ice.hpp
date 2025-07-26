@@ -20,9 +20,11 @@ class Ice : public AMateria
 		// Destructor
 		~Ice();
 
+		// Clone function
 		AMateria *clone() const;
 
-		// TODO: implement later ===>> void use(ICharacter& target);
+		// Member Function(s)
+		void use(ICharacter& target);
 
 };
 
