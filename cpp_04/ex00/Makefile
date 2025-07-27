@@ -2,6 +2,7 @@ NAME = Animals
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+RM = rm -f
 
 SRCS =	main.cpp		\
 		Animal.cpp		\
@@ -20,6 +21,7 @@ clean:
 	@echo "Object files removed."
 
 fclean: clean
+	$(RM) $(NAME)
 	@echo "Executable removed."
 
 re: fclean all

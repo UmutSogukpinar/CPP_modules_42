@@ -45,7 +45,7 @@ void Brain::setIdea(int index, const std::string& idea)
 	}
 	else
 	{
-		std::cerr << "Index out of bounds" << "\n";
+		throw std::out_of_range("Index out of bounds in Brain::setIdea");
 	}
 }
 
@@ -57,7 +57,7 @@ std::string Brain::getIdea(int index) const
 	}
 	else
 	{
-		std::cerr << "Index out of bounds" << "\n";
-		return "";
+		throw std::out_of_range("Index out of bounds in Brain::getIdea");
 	}
 }
+

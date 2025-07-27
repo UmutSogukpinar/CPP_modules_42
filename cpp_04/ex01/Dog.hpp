@@ -22,6 +22,8 @@ public:
 	// Overloaded assignment operator
 	Dog &operator=(const Dog &other);
 
+	// Getter Function
+	const Brain* getBrainAddress() const;
 
 	// Member function
 	void	makeSound() const;

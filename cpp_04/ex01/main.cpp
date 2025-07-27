@@ -4,9 +4,38 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
+static void test_basic();
+static void test_animal_array();
+static void test_deep_copy();
+
+
 const int kAnimalArraySize = 10;
 
-void test_basic()
+int main(void)
+{
+	try
+	{
+		test_basic();
+
+		std::cout << "===================== Extra Subject Request =====================" << "\n";
+
+		test_animal_array();
+		test_deep_copy();
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Exception: " << e.what() << "\n";
+		return (EXIT_FAILURE);
+	}
+	catch (...)
+	{
+		std::cerr << "Unknown error occurred." << "\n";
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
+static void test_basic()
 {
 	const Animal* cat = new Cat();
 	const Animal* dog = new Dog();
@@ -17,7 +46,7 @@ void test_basic()
 	delete animal;
 }
 
-void test_animal_array()
+static void test_animal_array()
 {
 	Animal* animals[kAnimalArraySize];
 	int i = 0;
@@ -36,25 +65,32 @@ void test_animal_array()
 		delete animals[i];
 }
 
-int main(void)
+static void test_deep_copy()
 {
-	try
-	{
-		test_basic();
+	std::cout << "==================== Deep Copy Test ====================\n";
 
-		std::cout << "===================== Extra Subject Request =====================" << "\n";
+	Dog dog1;
 
-		test_animal_array();
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-		return (EXIT_FAILURE);
-	}
-	catch (...)
-	{
-		std::cerr << "Unknown error occurred." << std::endl;
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	Brain* brain1 = const_cast<Brain*>(dog1.getBrainAddress());
+	brain1->setIdea(0, "Catch the ball");
+	brain1->setIdea(1, "Eat kibble");
+
+	Dog dog2 = dog1;
+
+	std::cout << "Dog1 Idea[0]: " << dog1.getBrainAddress()->getIdea(0) << "\n";
+	std::cout << "Dog2 Idea[0]: " << dog2.getBrainAddress()->getIdea(0) << "\n";
+
+
+	Brain* brain2 = const_cast<Brain*>(dog2.getBrainAddress());
+	brain2->setIdea(0, "Chew the shoes");
+
+	std::cout << "\nAfter modifying dog2:\n";
+	std::cout << "Dog1 Idea[0]: " << dog1.getBrainAddress()->getIdea(0) << "\n";
+	std::cout << "Dog2 Idea[0]: " << dog2.getBrainAddress()->getIdea(0) << "\n";
+
+	if (dog1.getBrainAddress() != dog2.getBrainAddress())
+		std::cout << "\nDeep copy confirmed: Brains are separate instances\n";
+	else
+		std::cout << "\nShallow copy detected: Both dogs share the same Brain\n";
 }
+
