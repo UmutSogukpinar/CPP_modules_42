@@ -18,7 +18,7 @@ AMateria *Ice::clone() const
 	return (new Ice(*this));
 }
 
-Ice::~Ice() {};
+Ice::~Ice() {}
 
 
 // * ============================== Member Function(s) ==============================

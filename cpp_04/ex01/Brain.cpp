@@ -15,6 +15,7 @@ Brain::Brain(const Brain& other)
 		ideas[i] = other.ideas[i];
 	}
 }
+
 // Destructor
 Brain::~Brain()
 {
@@ -58,6 +59,15 @@ std::string Brain::getIdea(int index) const
 	else
 	{
 		throw std::out_of_range("Index out of bounds in Brain::getIdea");
+	}
+}
+
+void Brain::displayIdeas() const
+{
+	for (int i = 0; i < NUM_IDEAS; ++i)
+	{
+		if (!ideas[i].empty())
+			std::cout << "Idea [" << i << "]: " << ideas[i] << "\n";
 	}
 }
 

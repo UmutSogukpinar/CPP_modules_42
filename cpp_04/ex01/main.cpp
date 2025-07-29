@@ -9,8 +9,6 @@ static void test_animal_array();
 static void test_deep_copy();
 
 
-const int kAnimalArraySize = 10;
-
 int main(void)
 {
 	try
@@ -48,8 +46,10 @@ static void test_basic()
 
 static void test_animal_array()
 {
-	Animal* animals[kAnimalArraySize];
+	const int kAnimalArraySize = 10;
 	int i = 0;
+
+	Animal* animals[kAnimalArraySize];
 
 	while (i < kAnimalArraySize / 2)
 	{
@@ -71,7 +71,7 @@ static void test_deep_copy()
 
 	Dog dog1;
 
-	Brain* brain1 = const_cast<Brain*>(dog1.getBrainAddress());
+	Brain* brain1 = dog1.getBrainAddress();
 	brain1->setIdea(0, "Catch the ball");
 	brain1->setIdea(1, "Eat kibble");
 
@@ -81,7 +81,7 @@ static void test_deep_copy()
 	std::cout << "Dog2 Idea[0]: " << dog2.getBrainAddress()->getIdea(0) << "\n";
 
 
-	Brain* brain2 = const_cast<Brain*>(dog2.getBrainAddress());
+	Brain* brain2 = dog2.getBrainAddress();
 	brain2->setIdea(0, "Chew the shoes");
 
 	std::cout << "\nAfter modifying dog2:\n";

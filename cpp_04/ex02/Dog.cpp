@@ -1,23 +1,23 @@
 #include "Dog.hpp"
 
 // Default constructor
-Dog::Dog() : AAnimal()
+Dog::Dog() : AAnimal(), brain_(new Brain())
 {
 	type_ = "Dog";
 	std::cout << "Dog default constructor called" << "\n";
 }
 
 // Copy Constructor
-Dog::Dog(const Dog &other) : AAnimal(other)
+Dog::Dog(const Dog &other) : AAnimal(other), brain_(new Brain(*other.brain_))
 {
 	type_ = other.type_;
 	std::cout << "Dog copy constructor called" << "\n";
-	brain_ = new Brain(*other.brain_);
 }
 
 // Destructor
 Dog::~Dog()
 {
+	delete (brain_);
 	std::cout << "Dog destructor called" << "\n";
 }
 

@@ -60,7 +60,6 @@ Character& Character::operator=(Character const& other)
 	return (*this);
 }
 
-
 // * Getter
 std::string const & Character::getName() const
 {
@@ -73,7 +72,7 @@ void Character::use(int idx, ICharacter &target)
 {
 	if (idx < 0 || idx >= C_SLOT_CAPACITY)
 	{
-		std::cerr << "[Warning] Invalid slot index: " << idx << "\n";
+		throw std::out_of_range("Index out of bounds in Character::use");
 		return ;
 	}
 
@@ -110,13 +109,12 @@ void Character::unequip(int idx)
 {
 	if (idx < 0 || idx >= C_SLOT_CAPACITY)
 	{
-		std::cerr << "[Warning] Invalid slot index: " << idx << "\n";
-		return;
+		throw std::out_of_range("Index out of bounds in Character::unequip");
 	}
 	if (!this->slot_[idx])
 	{
 		std::cerr << "[Info] Slot " << idx << " is already empty." << "\n";
-		return;
+		return ;
 	}
 	std::cout << "[Info] Materia unequipped from slot " << idx << "." << "\n";
 	this->slot_[idx] = NULL;

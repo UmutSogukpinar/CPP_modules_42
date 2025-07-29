@@ -21,8 +21,9 @@ AMateria & AMateria::operator=(AMateria const & other)
 }
 
 // * Destructor
-AMateria::~AMateria() {}
+AMateria::~AMateria(){}
 
+// * Getter for type_
 std::string const & AMateria::getType() const
 {
 	return (type_);
@@ -35,5 +36,3 @@ void AMateria::use(ICharacter& target)
 	std::cout << "* abstract materia is used on " << target.getName()
 	          << " but it has no defined effect *" << "\n";
 }
-
-

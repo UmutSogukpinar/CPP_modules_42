@@ -28,7 +28,7 @@ public:
 	std::string getIdea(int index) const;
 
 	// Display Ideas
-	void printIdeas() const;
+	void displayIdeas() const;
 
 };
 

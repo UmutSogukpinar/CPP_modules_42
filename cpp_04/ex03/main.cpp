@@ -53,9 +53,9 @@ int main()
 
 		std::cout << "\n=== Clean up ===" << "\n";
 		wizard->unequip(0);
-		delete tmp1;
-		delete wizard;
-		delete src;
+		delete (tmp1);
+		delete (wizard);
+		delete (src);
 	}
 	catch (const std::exception& e)
 	{

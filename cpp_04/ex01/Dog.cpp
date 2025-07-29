@@ -38,7 +38,7 @@ Dog &Dog::operator=(const Dog &other)
 	return (*this);
 }
 
-const Brain* Dog::getBrainAddress() const
+Brain* Dog::getBrainAddress() const
 {
 	return (this->brain_);
 }

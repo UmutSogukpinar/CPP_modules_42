@@ -70,7 +70,7 @@ void MateriaSource::learnMateria(AMateria* m)
 			this->slot_[i] = m;
 			std::cout << "[Info] Materia of type " << m->getType()
 			          << " learned in slot " << i << "." << "\n";
-			return;
+			return ;
 		}
 	}
 	std::cerr << "[Warning] MateriaSource is full. Cannot learn more Materias." << "\n";
@@ -83,7 +83,7 @@ AMateria* MateriaSource::createMateria(const std::string& type)
 		if (this->slot_[i] && this->slot_[i]->getType() == type)
 		{
 			std::cout << "[Info] Cloning Materia of type " << type << " from slot " << i << "." << "\n";
-			return this->slot_[i]->clone();
+			return (this->slot_[i]->clone());
 		}
 	}
 	std::cerr << "[Warning] Unknown Materia type: " << type << "\n";
