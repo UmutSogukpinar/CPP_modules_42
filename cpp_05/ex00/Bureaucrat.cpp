@@ -1,31 +1,31 @@
 #include "Bureaucrat.hpp"
 
 // Default constructor
-Bureaucrat::Bureaucrat() : name("Default"), grade(150)
+Bureaucrat::Bureaucrat() : name_("Default"), grade_(150)
 {
-	std::cout << "Default constructor called for Bureaucrat: " << name << "\n";
+	std::cout << "Default constructor called for Bureaucrat: " << name_ << "\n";
 }
 
 // Parameterized constructor
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
-    : name(name), grade(grade) 
+    : name_(name), grade_(grade) 
 {
-    if (grade < 1)
+    if (grade_ < 1)
         throw GradeTooHighException();
-    if (grade > 150)
+    if (grade_ > 150)
         throw GradeTooLowException();
 }
 
 // Copy constructor
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name), grade(other.grade)
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : name_(other.name_), grade_(other.grade_)
 {
-	std::cout << "Copy constructor called for Bureaucrat: " << name << "\n";
+	std::cout << "Copy constructor called for Bureaucrat: " << name_ << "\n";
 }
 
 // Destructor
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Destructor called for Bureaucrat: " << name << "\n";
+	std::cout << "Destructor called for Bureaucrat: " << name_ << "\n";
 }
 
 // Assignment operator
@@ -33,8 +33,8 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
 	if (this != &other)
 	{
-		std::cout << "Assignment operator called for Bureaucrat: " << name << "\n";
-		grade = other.grade;
+		std::cout << "Assignment operator called for Bureaucrat: " << name_ << "\n";
+		grade_ = other.grade_;
 	}
 	return (*this);
 }
@@ -43,28 +43,28 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 
 const std::string& Bureaucrat::getName() const 
 {
-    return (name);
+    return (name_);
 }
 
 int Bureaucrat::getGrade() const
 {
-    return (grade);
+    return (grade_);
 }
 
 // ============== Member Functions ==============
 
 void Bureaucrat::incrementGrade() 
 {
-    if (grade <= 1)
+    if (grade_ <= 1)
         throw GradeTooHighException();
-    grade--;
+    (grade_)--;
 }
 
 void Bureaucrat::decrementGrade() 
 {
-    if (grade >= 150)
+    if (grade_ >= 150)
         throw GradeTooLowException();
-    grade++;
+    (grade_)++;
 }
 
 // ===================== Exception Classes =====================

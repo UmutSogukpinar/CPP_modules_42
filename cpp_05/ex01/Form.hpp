@@ -12,10 +12,10 @@ class Bureaucrat;
 class Form
 {
 private:
-	const std::string name_;
-	bool isSigned_;
-	const int signGrade_;
-	const int executeGrade_;
+	std::string const	name_;
+	bool				isSigned_;
+	int const			signGrade_;
+	int const			executeGrade_;
 
 public:
 	// Constructors

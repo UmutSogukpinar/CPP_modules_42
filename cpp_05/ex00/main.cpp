@@ -20,7 +20,8 @@ static void tryCreateBureaucrat(const std::string& name, int grade)
 
 static void tryGradeChange(Bureaucrat& b, bool increment)
 {
-    try {
+    try
+    {
         std::cout << "Trying to " << (increment ? "increment" : "decrement")
                   << " grade of " << b.getName() << " (current: " << b.getGrade() << ")...\n";
         if (increment)
@@ -28,7 +29,9 @@ static void tryGradeChange(Bureaucrat& b, bool increment)
         else
             b.decrementGrade();
         std::cout << "New grade: " << b.getGrade() << std::endl;
-    } catch (std::exception& e) {
+    }
+    catch (std::exception& e)
+    {
         std::cerr << "Failed to change grade: " << e.what() << std::endl;
     }
     std::cout << "--------------------------\n";

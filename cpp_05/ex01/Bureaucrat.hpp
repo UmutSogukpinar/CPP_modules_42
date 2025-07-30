@@ -13,8 +13,8 @@ class Form; // ? Learning forward declaration
 class Bureaucrat 
 {
 private:
-    const std::string name;
-    int grade;
+    std::string const   name_;
+    int                 grade_;
 
 public:
 	// Constructors and Destructor

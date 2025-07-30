@@ -4,10 +4,11 @@
 #include "iostream"
 #include "stdexcept"
 
-class Bureaucrat {
+class Bureaucrat
+{
 private:
-    const std::string name;
-    int grade;
+    std::string const   name_;
+    int                 grade_;
 
 public:
 	// Constructors and Destructor
@@ -27,15 +28,18 @@ public:
     void incrementGrade();
     void decrementGrade();
 
-	// Exception classes
-    class GradeTooHighException : public std::exception {
-    public:
-        virtual const char* what() const throw();
+	// ==================== Exception classes ====================
+
+    class GradeTooHighException : public std::exception
+    {
+        public:
+            virtual const char* what() const throw();
     };
 
-    class GradeTooLowException : public std::exception {
-    public:
-        virtual const char* what() const throw();
+    class GradeTooLowException : public std::exception
+    {
+        public:
+            virtual const char* what() const throw();
     };
 };
 

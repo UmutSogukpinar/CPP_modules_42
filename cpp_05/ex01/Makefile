@@ -10,7 +10,7 @@ OBJS = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+	@$(CXX) $(CXXFLAGS) $(SRCS) -o $(NAME) 
 	@echo $(NAME) created successfully.
 
 clean:
