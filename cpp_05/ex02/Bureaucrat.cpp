@@ -90,6 +90,12 @@ void Bureaucrat::signForm(AForm &form)
     }
 }
 
+void Bureaucrat::executeForm(AForm const & form)
+{
+	form.execute(*this);
+}
+
+
 // ===================== Exception Classes =====================
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()

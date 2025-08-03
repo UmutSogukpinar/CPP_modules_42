@@ -52,7 +52,7 @@ class AForm
 		// Member Functions
 
 		void beSigned(Bureaucrat const &bureaucrat);
-		virtual void execute(Bureaucrat const &bureaucrat) = 0;
+		virtual void execute(Bureaucrat const &bureaucrat) const = 0;
 };
 
 // Output Operator

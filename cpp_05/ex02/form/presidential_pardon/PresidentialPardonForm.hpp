@@ -12,24 +12,25 @@
 
 class PresidentialPardonForm : public AForm
 {
-    // Default Constructor
-    PresidentialPardonForm();
+	public:
+		// Default Constructor
+		PresidentialPardonForm();
 
-	// Parameterized Constructor
-    PresidentialPardonForm(std::string name);
+		// Parameterized Constructor
+		PresidentialPardonForm(std::string name);
 
-    // Copy Constructor
-    PresidentialPardonForm(PresidentialPardonForm const &other);
+		// Copy Constructor
+		PresidentialPardonForm(PresidentialPardonForm const &other);
 
-    // Destructor
-    ~PresidentialPardonForm();
+		// Destructor
+		~PresidentialPardonForm();
 
-    // Assignment Operator
-    PresidentialPardonForm & operator=(PresidentialPardonForm const &other);
+		// Assignment Operator
+		PresidentialPardonForm & operator=(PresidentialPardonForm const &other);
 
-    // Member Functions
+		// Member Functions
 
-	void execute(Bureaucrat const &bureaucrat);
+		void execute(Bureaucrat const &bureaucrat) const;
 };
 
 # endif

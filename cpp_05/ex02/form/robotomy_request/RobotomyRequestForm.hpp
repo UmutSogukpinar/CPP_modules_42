@@ -10,24 +10,25 @@
 
 class RobotomyRequestForm : public AForm
 {
-    // Default Constructor
-    RobotomyRequestForm();
+	public:
+		// Default Constructor
+		RobotomyRequestForm();
 
-	// Parameterized Constructor
-    RobotomyRequestForm(std::string name);
+		// Parameterized Constructor
+		RobotomyRequestForm(std::string name);
 
-    // Copy Constructor
-    RobotomyRequestForm(RobotomyRequestForm const &other);
+		// Copy Constructor
+		RobotomyRequestForm(RobotomyRequestForm const &other);
 
-    // Destructor
-    ~RobotomyRequestForm();
+		// Destructor
+		~RobotomyRequestForm();
 
-    // Assignment Operator
-    RobotomyRequestForm & operator=(RobotomyRequestForm const &other);
+		// Assignment Operator
+		RobotomyRequestForm & operator=(RobotomyRequestForm const &other);
 
-    // Member Functions
+		// Member Functions
 
-	void execute(Bureaucrat const &bureaucrat);
+		void execute(Bureaucrat const &bureaucrat) const;
 };
 
 # endif

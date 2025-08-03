@@ -49,7 +49,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &o
 
 // ========================== Member Functions ==========================
 
-void RobotomyRequestForm::execute(const Bureaucrat &bureaucrat)
+void RobotomyRequestForm::execute(const Bureaucrat &bureaucrat) const
 {
 	if (!this->getIsSigned())
 		throw std::runtime_error("Form must be signed before execution.");

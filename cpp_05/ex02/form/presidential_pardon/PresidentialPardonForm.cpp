@@ -46,7 +46,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm
 
 // ========================== Member Functions ==========================
 
-void PresidentialPardonForm::execute(const Bureaucrat &bureaucrat)
+void PresidentialPardonForm::execute(const Bureaucrat &bureaucrat) const
 {
     if (!this->getIsSigned())
         throw std::runtime_error("Form must be signed before execution.");

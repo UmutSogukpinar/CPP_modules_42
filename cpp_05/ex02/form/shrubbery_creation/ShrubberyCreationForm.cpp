@@ -54,14 +54,14 @@ static const char *tree_ascii =
 "   /++++++\\\n"
 "      ||\n";
 
-void ShrubberyCreationForm::execute(const Bureaucrat &bureaucrat)
+void ShrubberyCreationForm::execute(const Bureaucrat &bureaucrat) const
 {
 	if (!this->getIsSigned())
 		throw std::runtime_error("Form must be signed before execution.");
 	if (bureaucrat.getGrade() > this->getExecuteGrade())
 		throw std::runtime_error("Bureaucrat grade too low to execute this form.");
 
-	std::ofstream outFile(this->name_ + "_shrubbery");
+	std::ofstream outFile((this->name_ + "_shrubbery").c_str());
 	if (!outFile)
 		throw std::runtime_error("Failed to open file for writing.");
  
