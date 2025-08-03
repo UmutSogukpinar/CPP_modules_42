@@ -3,12 +3,12 @@
 
 # include "iostream"
 # include "stdexcept"
-# include "Form.hpp"
+
 
 # define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
 
-class Form; // ? Learning forward declaration
+class Form;
 
 class Bureaucrat 
 {

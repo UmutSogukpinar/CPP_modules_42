@@ -1,7 +1,9 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
-// Constructors and Destructor
+// ================ Constructors and Destructor ================
 
+// Default Constructor
 Form::Form()
 	: name_("Default"), isSigned_(false),
 	  signGrade_(LOWEST_GRADE), executeGrade_(LOWEST_GRADE)
@@ -10,6 +12,7 @@ Form::Form()
 			  << name_ << "\n";
 }
 
+// Parameterized Constructors
 Form::Form(const std::string &name, int signGrade, int executeGrade)
 	: name_(name), isSigned_(false),
 	  signGrade_(signGrade), executeGrade_(executeGrade)
@@ -23,6 +26,7 @@ Form::Form(const std::string &name, int signGrade, int executeGrade)
 				  << name << "\n";
 }
 
+// Destructor
 Form::~Form()
 {
 	std::cout << "Destructor called for Form: " << name_ << "\n";
@@ -47,7 +51,7 @@ Form &Form::operator=(const Form &other)
 	return (*this);
 }
 
-// Exception classes
+// ========================= Exception classes =========================
 
 const char *Form::GradeTooHighException::what() const throw()
 {
@@ -59,7 +63,7 @@ const char *Form::GradeTooLowException::what() const throw()
 	return ("Grade too LOW!");
 }
 
-// Member Function(s)
+// =============================================== Member Function(s) ===============================================
 
 void Form::beSigned(Bureaucrat const &bureaucrat)
 {

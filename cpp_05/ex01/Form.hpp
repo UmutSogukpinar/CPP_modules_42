@@ -2,7 +2,6 @@
 # define FORM_HPP
 
 # include "iostream"
-# include "Bureaucrat.hpp"
 
 # define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
