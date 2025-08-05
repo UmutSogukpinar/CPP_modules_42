@@ -1,34 +1,42 @@
-#include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include <iostream>
 
 int main()
 {
-	try
-	{
-		Bureaucrat alice("Alice", 1);
-		Bureaucrat bob("Bob", 50);
-		Bureaucrat tom("Tom", 140);
+    try
+    {
+        Intern intern;
 
-		ShrubberyCreationForm shrub("home");
-		RobotomyRequestForm robo("marvin");
-		PresidentialPardonForm pardon("arthur");
+        std::cout << "\n--- Creating Forms ---\n";
+        AForm *form1 = intern.makeForm("shrubbery creation", "home");
+        AForm *form2 = intern.makeForm("robotomy request", "marvin");
+        AForm *form3 = intern.makeForm("presidential pardon", "arthur");
+        AForm *form4 = intern.makeForm("unknown form", "none");
 
-		std::cout << "\n--- Signing Forms ---\n";
-		tom.signForm(shrub);
-		bob.signForm(robo);
-		alice.signForm(pardon);
+        // Valid forms: form1, form2, form3
+        if (form1)
+            std::cout << "Created: " << form1->getName() << std::endl;
+        if (form2)
+            std::cout << "Created: " << form2->getName() << std::endl;
+        if (form3)
+            std::cout << "Created: " << form3->getName() << std::endl;
 
-		std::cout << "\n--- Executing Forms ---\n";
-		tom.executeForm(shrub);
-		bob.executeForm(robo);
-		alice.executeForm(pardon);
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << "Error: " << e.what() << "\n";
-	}
+        // Invalid form type
+        if (!form4)
+            std::cout << "Form creation failed for 'unknown form'.\n";
 
-	return (0);
+        // Clean up dynamic memory
+        delete (form1);
+        delete (form2);
+        delete (form3);
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << "Error: " << e.what() << "\n";
+    }
+
+    return (0);
 }

@@ -1,4 +1,4 @@
-NAME = bureaucrat
+NAME = intern
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
@@ -13,6 +13,7 @@ RM = rm -rf
 
 SRCS = 	main.cpp								\
 		Bureaucrat.cpp							\
+		Intern.cpp								\
 		$(FORM_DIR)/AForm.cpp					\
 		$(SC_DIR)/ShrubberyCreationForm.cpp		\
 		$(RR_DIR)/RobotomyRequestForm.cpp		\
