@@ -29,7 +29,7 @@ Array<T> &Array<T>::operator=(Array const &arr)
         tmp[i] = arr.data_[i];
 
     delete[] (data_);
-    
+
     data_ = tmp;
     size_ = arr.size_;
 
@@ -44,17 +44,21 @@ Array<T>::~Array()
 }
 
 template <typename T>
-T &Array<T>::operator[](std::size_t idx)
+T &Array<T>::operator[](std::size_t index)
 {
-    if (idx >= size_) throw std::out_of_range("Array: index out of range");
-    return (data_[idx]);
+    if (index >= size_)
+        throw std::out_of_range("Array: index out of range");
+
+    return (data_[index]);
 }
 
 template <typename T>
-T const &Array<T>::operator[](std::size_t idx) const
+T const &Array<T>::operator[](std::size_t index) const
 {
-    if (idx >= size_) throw std::out_of_range("Array: index out of range");
-    return (data_[idx]);
+    if (index >= size_)
+        throw std::out_of_range("Array: index out of range");
+
+    return (data_[index]);
 }
 
 template <typename T>
