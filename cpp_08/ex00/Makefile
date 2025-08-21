@@ -6,7 +6,7 @@ SRC      = main.cpp
 
 all:
 	@echo "Compiling $(SRC) -> $(NAME)"
-	$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
 	@echo "Build complete"
 
 clean:
@@ -14,7 +14,7 @@ clean:
 
 fclean:
 	@echo "Removing $(NAME)"
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

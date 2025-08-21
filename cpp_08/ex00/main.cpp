@@ -5,13 +5,28 @@
 
 int main()
 {
-	std::vector<int> v; v.push_back(1); v.push_back(3); v.push_back(5);
-	std::list<int>   l; l.push_back(10); l.push_back(20); l.push_back(30);
+	std::vector<int> v;
+	std::list<int> l;
 
+	try
+	{
+		v.push_back(1);
+		v.push_back(3);
+		v.push_back(5);
+
+		l.push_back(10);
+		l.push_back(20);
+		l.push_back(30);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 	try {
 		std::vector<int>::iterator it = easyfind(v, 3);
 		std::cout << "Found in vector: " << *it << "\n";
-		*it = 99; // non-const container -> writable
+		*it = 100;
 	}
     catch (const std::exception &e)
     {
@@ -25,7 +40,7 @@ int main()
 	}
     catch (const std::exception &e)
     {
-        std::cout << e.what() << "\n";
+        std::cerr << e.what() << "\n";
     }
 
 	try {
@@ -33,11 +48,12 @@ int main()
 	}
     catch (const std::exception &e)
     { 
-        std::cout << "Error: " << e.what() << "\n";
+        std::cerr << "Error: " << e.what() << "\n";
     }
 
 	std::cout << "Vector now: ";
-	for (std::size_t i = 0; i < v.size(); ++i) std::cout << v[i] << ' ';
+	for (std::size_t i = 0; i < v.size(); ++i)
+		std::cout << v[i] << ' ';
 	std::cout << "\n";
 
 	return (0);
