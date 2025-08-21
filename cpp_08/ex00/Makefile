@@ -2,11 +2,11 @@ CXX      = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME     = easyfind
-SRC      = main.cpp
+SRCS      = main.cpp
 
 all:
-	@echo "Compiling $(SRC) -> $(NAME)"
-	@$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
+	@echo "Compiling $(SRCS) -> $(NAME)"
+	@$(CXX) $(CXXFLAGS) $(SRCS) -o $(NAME)
 	@echo "Build complete"
 
 clean:
