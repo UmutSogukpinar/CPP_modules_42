@@ -50,4 +50,7 @@ public:
     };
 };
 
+// Output operator
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bur);
+
 #endif

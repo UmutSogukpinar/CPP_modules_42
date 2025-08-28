@@ -1,24 +1,22 @@
 NAME = bureaucrat
+
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 FORM_DIR = form
-RR_DIR = $(FORM_DIR)/robotomy_request
-SC_DIR = $(FORM_DIR)/shrubbery_creation
-PP_DIR = $(FORM_DIR)/presidential_pardon
+INCLUDES_DIR = includes
 
-INCLUDES = -I$(FORM_DIR) -I$(SC_DIR) -I$(RR_DIR) -I$(SC_DIR) -I$(PP_DIR) -I.
+INCLUDES = -I$(INCLUDES_DIR)
 
 RM = rm -rf
 
 SRCS = 	main.cpp								\
 		Bureaucrat.cpp							\
 		$(FORM_DIR)/AForm.cpp					\
-		$(SC_DIR)/ShrubberyCreationForm.cpp		\
-		$(RR_DIR)/RobotomyRequestForm.cpp		\
-		$(PP_DIR)/PresidentialPardonForm.cpp
+		$(FORM_DIR)/ShrubberyCreationForm.cpp	\
+		$(FORM_DIR)/RobotomyRequestForm.cpp		\
+		$(FORM_DIR)/PresidentialPardonForm.cpp
 
-OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 

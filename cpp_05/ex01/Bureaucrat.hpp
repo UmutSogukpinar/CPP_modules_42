@@ -4,7 +4,6 @@
 # include "iostream"
 # include "stdexcept"
 
-
 # define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
 
@@ -48,5 +47,8 @@ public:
         virtual const char* what() const throw();
     };
 };
+
+// Output operator
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bur);
 
 #endif

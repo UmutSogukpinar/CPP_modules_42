@@ -107,3 +107,12 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
     return ("Grade too LOW! Must be between 1 and 150.");
 }
+
+// Output operator
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bur)
+{
+	os << "Name: " << bur.getName() << "\n"
+	   << "Grade: " << bur.getGrade() << std::endl;
+
+	return (os);
+}

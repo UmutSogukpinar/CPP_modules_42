@@ -4,7 +4,7 @@
 // Default constructor
 Bureaucrat::Bureaucrat() : name_("Default"), grade_(150)
 {
-    std::cout << "Default constructor called for Bureaucrat: " << name_ << "\n";
+    std::cout << "Default constructor called for Bureaucrat: " << name_ << std::endl;
 }
 
 // Parameterized constructor
@@ -15,18 +15,20 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade)
         throw GradeTooHighException();
     if (grade_ > LOWEST_GRADE)
         throw GradeTooLowException();
+
+    std::cout << "Parameterised constructor called for Bureaucrat: " << name_ << std::endl;
 }
 
 // Copy constructor
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : name_(other.name_), grade_(other.grade_)
 {
-    std::cout << "Copy constructor called for Bureaucrat: " << name_ << "\n";
+    std::cout << "Copy constructor called for Bureaucrat: " << name_ << std::endl;
 }
 
 // Destructor
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "Destructor called for Bureaucrat: " << name_ << "\n";
+    std::cout << "Destructor called for Bureaucrat: " << name_ << std::endl;
 }
 
 // Assignment operator
@@ -34,7 +36,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
     if (this != &other)
     {
-        std::cout << "Assignment operator called for Bureaucrat: " << name_ << "\n";
+        std::cout << "Assignment operator called for Bureaucrat: " << name_ << std::endl;
         grade_ = other.grade_;
     }
     return (*this);
@@ -73,7 +75,7 @@ void Bureaucrat::signForm(Form &form)
     if (form.getIsSigned())
     {
         std::cout   << this->name_ << " could not sign " << form.getName()
-                    << " because it has already signed." << "\n";
+                    << " because it has already signed." << std::endl;
         return ;
     }
 
@@ -81,12 +83,12 @@ void Bureaucrat::signForm(Form &form)
     {
         form.beSigned(*this);
         std::cout   << this->name_ << " signs " 
-                    << form.getName() << "." << "\n";
+                    << form.getName() << "." << std::endl;
     }
     catch (std::exception &e)
     {
         std::cout   << this->name_ << " could not sign " << form.getName()
-                    << " because " << e.what() << "\n";
+                    << " because " << e.what() << std::endl;
     }
 }
 
@@ -100,4 +102,13 @@ const char *Bureaucrat::GradeTooHighException::what() const throw()
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
     return ("Grade too LOW! Must be between 1 and 150.");
+}
+
+// Output operator
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bur)
+{
+	os << "Name: " << bur.getName() << "\n"
+	   << "Grade: " << bur.getGrade() << std::endl;
+
+	return (os);
 }

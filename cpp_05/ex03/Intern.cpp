@@ -17,6 +17,7 @@ Intern::~Intern()
 
 Intern::Intern(Intern const & other)
 {
+	(void) other;
     std::cout << "Intern copied." << "\n";
 }
 

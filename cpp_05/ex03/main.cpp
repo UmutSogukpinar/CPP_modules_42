@@ -6,37 +6,51 @@
 
 int main()
 {
-    try
-    {
-        Intern intern;
+    Intern  intern;
+    AForm  *form1 = NULL;
+    AForm  *form2 = NULL;
+    AForm  *form3 = NULL;
+    AForm  *form4 = NULL;
 
-        std::cout << "\n--- Creating Forms ---\n";
-        AForm *form1 = intern.makeForm("shrubbery creation", "home");
-        AForm *form2 = intern.makeForm("robotomy request", "marvin");
-        AForm *form3 = intern.makeForm("presidential pardon", "arthur");
-        AForm *form4 = intern.makeForm("unknown form", "none");
+    std::cout << "\n--- Creating Forms ---\n";
 
-        // Valid forms: form1, form2, form3
-        if (form1)
-            std::cout << "Created: " << form1->getName() << std::endl;
-        if (form2)
-            std::cout << "Created: " << form2->getName() << std::endl;
-        if (form3)
-            std::cout << "Created: " << form3->getName() << std::endl;
-
-        // Invalid form type
-        if (!form4)
-            std::cout << "Form creation failed for 'unknown form'.\n";
-
-        // Clean up dynamic memory
-        delete (form1);
-        delete (form2);
-        delete (form3);
+    // Shrubbery
+    try {
+        form1 = intern.makeForm("shrubbery creation", "home");
+        std::cout << "Created: " << form1->getName() << "\n";
+    } catch (const std::exception &e) {
+        std::cerr << "Form creation failed for 'shrubbery creation': " << e.what() << "\n";
     }
-    catch (std::exception &e)
-    {
-        std::cerr << "Error: " << e.what() << "\n";
+
+    // Robotomy
+    try {
+        form2 = intern.makeForm("robotomy request", "marvin");
+        std::cout << "Created: " << form2->getName() << "\n";
+    } catch (const std::exception &e) {
+        std::cerr << "Form creation failed for 'robotomy request': " << e.what() << "\n";
     }
+
+    // Presidential Pardon
+    try {
+        form3 = intern.makeForm("presidential pardon", "arthur");
+        std::cout << "Created: " << form3->getName() << "\n";
+    } catch (const std::exception &e) {
+        std::cerr << "Form creation failed for 'presidential pardon': " << e.what() << "\n";
+    }
+
+    // Invalid
+    try {
+        form4 = intern.makeForm("unknown form", "none");
+        std::cout << "Created: " << form4->getName() << "\n";
+    } catch (const std::exception &e) {
+        std::cerr << "Form creation failed for 'unknown form': " << e.what() << "\n";
+    }
+
+    // Clean up
+    delete form1;
+    delete form2;
+    delete form3;
+    delete form4;
 
     return (0);
 }
