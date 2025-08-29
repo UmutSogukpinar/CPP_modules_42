@@ -74,7 +74,8 @@ AForm* Intern::CreatePresidentialPardon(std::string& target)
 	return (new PresidentialPardonForm(target));
 }
 
-// Exception override
+// ===================== Exception Classes =====================
+
 const char* Intern::FormNotExists::what() const throw()
 {
 	return ("Intern: Requested form type does not exist.");

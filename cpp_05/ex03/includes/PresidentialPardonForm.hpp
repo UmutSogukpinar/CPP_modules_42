@@ -8,8 +8,6 @@
 # define PP_NAME        "PresidentialPardonForm"
 
 
-// TODO: implement custom error classes
-
 class PresidentialPardonForm : public AForm
 {
 	public:

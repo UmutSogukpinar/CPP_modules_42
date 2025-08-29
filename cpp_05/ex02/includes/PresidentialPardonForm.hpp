@@ -7,9 +7,6 @@
 # define PP_EXEC_GRADE  5
 # define PP_NAME        "PresidentialPardonForm"
 
-
-// TODO: implement custom error classes
-
 class PresidentialPardonForm : public AForm
 {
 	public:
