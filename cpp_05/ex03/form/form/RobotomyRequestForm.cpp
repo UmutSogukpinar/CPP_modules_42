@@ -52,8 +52,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &o
 void RobotomyRequestForm::execute(const Bureaucrat &bureaucrat) const
 {
 	if (!this->getIsSigned())
-		throw UnsignedExecutionException();
-
+		throw std::runtime_error("Form must be signed before execution.");
 	if (bureaucrat.getGrade() > this->getExecuteGrade())
 		throw ExecGradeException();
 

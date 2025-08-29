@@ -6,53 +6,68 @@
 # define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
 
-class Bureaucrat;
+class	Bureaucrat;
 
 class AForm
 {
-	protected:
-		std::string const	name_;
-		bool				isSigned_;
-		int const			signGrade_;
-		int const			executeGrade_;
+  protected:
+	std::string const name_;
+	bool isSigned_;
+	int const signGrade_;
+	int const executeGrade_;
 
-	public:
-		// Constructors
-		AForm();
-		AForm(const std::string &name, int signGrade, int executeGrade);
+  public:
+	// ================== Constructors ==================
 
-		// Copy Constructor
-		AForm(const AForm &other);
+	AForm();
+	AForm(const std::string &name, int signGrade, int executeGrade);
 
-		// Destructor
-		virtual ~AForm();
+	// Copy Constructor
+	AForm(const AForm &other);
 
-		// Assignment Operator
-		AForm &operator=(const AForm &other);
+	// Destructor
+	virtual ~AForm();
 
-		// Exception classes
-		class GradeTooHighException : public std::exception
-		{
+	// Assignment Operator
+	AForm &operator=(const AForm &other);
+
+	// ================== Exception classes ==================
+
+	class GradeTooHighException : public std::exception
+	{
 		public:
-			virtual const char *what() const throw();
-		};
+		virtual const char *what() const throw();
+	};
 
-		class GradeTooLowException : public std::exception
-		{
+	class GradeTooLowException : public std::exception
+	{
 		public:
-			virtual const char *what() const throw();
-		};
+		virtual const char *what() const throw();
+	};
 
-		// Getters
-		std::string getName() const;
-		bool getIsSigned() const;
-		int getSignGrade() const;
-		int getExecuteGrade() const;
+	class ExecGradeException : public std::exception
+	{
+		public:
+		virtual const char *what() const throw();
+	};
 
-		// Member Functions
+	class UnsignedExecutionException : public std::exception
+	{
+		public:
+		virtual const char *what() const throw();
+	};
 
-		void beSigned(Bureaucrat const &bureaucrat);
-		virtual void execute(Bureaucrat const &bureaucrat) const = 0;
+	// ================== Getters ==================
+
+	int getSignGrade() const;
+	bool getIsSigned() const;
+	int getExecuteGrade() const;
+	std::string getName() const;
+
+	// ================== Member Functions ==================
+
+	void beSigned(Bureaucrat const &bureaucrat);
+	virtual void execute(Bureaucrat const &bureaucrat) const = 0;
 };
 
 // Output Operator

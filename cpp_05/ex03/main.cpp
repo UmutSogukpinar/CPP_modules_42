@@ -12,38 +12,38 @@ int main()
     AForm  *form3 = NULL;
     AForm  *form4 = NULL;
 
-    std::cout << "\n--- Creating Forms ---\n";
+    std::cout << "\n--- Creating Forms ---\n" << std::endl;
 
     // Shrubbery
     try {
         form1 = intern.makeForm("shrubbery creation", "home");
-        std::cout << "Created: " << form1->getName() << "\n";
+        std::cout << "Created: " << form1->getName() << std::endl;
     } catch (const std::exception &e) {
-        std::cerr << "Form creation failed for 'shrubbery creation': " << e.what() << "\n";
+        std::cerr << "Form creation failed for 'shrubbery creation': " << e.what() << std::endl;
     }
 
     // Robotomy
     try {
         form2 = intern.makeForm("robotomy request", "marvin");
-        std::cout << "Created: " << form2->getName() << "\n";
+        std::cout << "Created: " << form2->getName() << std::endl;
     } catch (const std::exception &e) {
-        std::cerr << "Form creation failed for 'robotomy request': " << e.what() << "\n";
+        std::cerr << "Form creation failed for 'robotomy request': " << e.what() << std::endl;
     }
 
     // Presidential Pardon
     try {
         form3 = intern.makeForm("presidential pardon", "arthur");
-        std::cout << "Created: " << form3->getName() << "\n";
+        std::cout << "Created: " << form3->getName() << std::endl;
     } catch (const std::exception &e) {
-        std::cerr << "Form creation failed for 'presidential pardon': " << e.what() << "\n";
+        std::cerr << "Form creation failed for 'presidential pardon': " << e.what() << std::endl;
     }
 
     // Invalid
     try {
         form4 = intern.makeForm("unknown form", "none");
-        std::cout << "Created: " << form4->getName() << "\n";
+        std::cout << "Created: " << form4->getName() << std::endl;
     } catch (const std::exception &e) {
-        std::cerr << "Form creation failed for 'unknown form': " << e.what() << "\n";
+        std::cerr << "Form creation failed for 'unknown form': " << e.what() << std::endl;
     }
 
     // Clean up

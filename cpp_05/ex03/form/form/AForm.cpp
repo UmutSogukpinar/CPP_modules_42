@@ -65,11 +65,6 @@ const char *AForm::ExecGradeException::what() const throw()
 	return ("Bureaucrat grade too low to execute this form!");
 }
 
-const char *AForm::UnsignedExecutionException::what() const throw()
-{
-	return ("Form must be signed before execution!");
-}
-
 // Member Function(s)
 
 void AForm::beSigned(Bureaucrat const &bureaucrat)

@@ -49,8 +49,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm
 void PresidentialPardonForm::execute(const Bureaucrat &bureaucrat) const
 {
     if (!this->getIsSigned())
-        throw UnsignedExecutionException();
-
+        throw std::runtime_error("Form must be signed before execution.");
     if (bureaucrat.getGrade() > this->getExecuteGrade())
         throw ExecGradeException();
 

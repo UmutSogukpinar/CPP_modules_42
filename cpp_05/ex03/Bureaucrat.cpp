@@ -4,7 +4,7 @@
 // Default constructor
 Bureaucrat::Bureaucrat() : name_("Default"), grade_(150)
 {
-    std::cout << "Default constructor called for Bureaucrat: " << name_ << "\n";
+    std::cout << "Default constructor called for Bureaucrat: " << name_ << std::endl;
 }
 
 // Parameterized constructor
@@ -20,13 +20,13 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade)
 // Copy constructor
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : name_(other.name_), grade_(other.grade_)
 {
-    std::cout << "Copy constructor called for Bureaucrat: " << name_ << "\n";
+    std::cout << "Copy constructor called for Bureaucrat: " << name_ << std::endl;
 }
 
 // Destructor
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "Destructor called for Bureaucrat: " << name_ << "\n";
+    std::cout << "Destructor called for Bureaucrat: " << name_ << std::endl;
 }
 
 // Assignment operator
@@ -34,7 +34,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
     if (this != &other)
     {
-        std::cout << "Assignment operator called for Bureaucrat: " << name_ << "\n";
+        std::cout << "Assignment operator called for Bureaucrat: " << name_ << std::endl;
         grade_ = other.grade_;
     }
     return (*this);
@@ -73,7 +73,7 @@ void Bureaucrat::signForm(AForm &form)
     if (form.getIsSigned())
     {
         std::cout   << this->name_ << " could not sign " << form.getName()
-                    << " because it has already signed." << "\n";
+                    << " because it has already signed." << std::endl;
         return ;
     }
 
@@ -81,12 +81,12 @@ void Bureaucrat::signForm(AForm &form)
     {
         form.beSigned(*this);
         std::cout   << this->name_ << " signs " 
-                    << form.getName() << "." << "\n";
+                    << form.getName() << "." << std::endl;
     }
     catch (std::exception &e)
     {
         std::cout   << this->name_ << " could not sign " << form.getName()
-                    << " because " << e.what() << "\n";
+                    << " because " << e.what() << std::endl;
     }
 }
 

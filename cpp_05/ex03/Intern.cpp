@@ -7,18 +7,18 @@ static std::string toStrLower(const std::string& str);
 
 Intern::Intern()
 {
-    std::cout << "Intern created." << "\n";
+    std::cout << "Intern created." << std::endl;
 }
 
 Intern::~Intern()
 {
-    std::cout << "Intern destroyed." << "\n";
+    std::cout << "Intern destroyed." << std::endl;
 }
 
 Intern::Intern(Intern const & other)
 {
 	(void) other;
-    std::cout << "Intern copied." << "\n";
+    std::cout << "Intern copied." << std::endl;
 }
 
 // Assignment Operator
@@ -26,7 +26,7 @@ Intern & Intern::operator=(const Intern& other)
 {
     if (this != &other)
 	{
-        std::cout << "Intern assigned." << "\n";
+        std::cout << "Intern assigned." << std::endl;
     }
     return (*this);
 }
@@ -51,7 +51,7 @@ AForm* Intern::makeForm(std::string formType, std::string formTarget)
 		if (lowerStr == formLst[i])
 		{
 			AForm *form = (this->*ptrMember[i])(formTarget);
-			std::cout << "Intern creates " << *form << "\n";
+			std::cout << "Intern creates " << *form << std::endl;
 			return (form);
 		}
 	}

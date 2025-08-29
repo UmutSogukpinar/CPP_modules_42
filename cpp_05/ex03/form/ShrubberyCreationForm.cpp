@@ -7,7 +7,7 @@ ShrubberyCreationForm::ShrubberyCreationForm()
     : AForm(SC_NAME, SC_SIGN_GRADE, SC_EXEC_GRADE)
 {
     std::cout << "Default constructor called for ShrubberyCreationForm "
-			  << name_ << "\n";
+			  << name_ << std::endl;
 }
 
 // Parameterized Constructor
@@ -15,7 +15,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string name)
 	: AForm(name, SC_SIGN_GRADE, SC_EXEC_GRADE)
 {
 	std::cout << "Parameterized constructor called for ShrubberyCreationForm "
-			  << name_ << "\n";
+			  << name_ << std::endl;
 }
 
 // Copy Constructor
@@ -23,14 +23,14 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &other)
     : AForm(other.name_, other.signGrade_, other.executeGrade_)
 {
 	std::cout   << "Copy constructor called for ShrubberyCreationForm: "
-                << name_ << "\n";
+                << name_ << std::endl;
 }
 
 // Destructor
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 	std::cout   << "Destructor called for ShrubberyCreationForm: "
-                << name_ << "\n";
+                << name_ << std::endl;
 }
 
 // Operator assignment
@@ -38,7 +38,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 {
 	if (this != &other)
 	{
-		std::cout << "Assignment operator called for AForm: " << name_ << "\n";
+		std::cout << "Assignment operator called for AForm: " << name_ << std::endl;
 		isSigned_ = other.isSigned_;
 	}
 	return (*this);
@@ -57,9 +57,10 @@ static const char *tree_ascii =
 void ShrubberyCreationForm::execute(const Bureaucrat &bureaucrat) const
 {
 	if (!this->getIsSigned())
-		throw std::runtime_error("Form must be signed before execution.");
+		throw UnsignedExecutionException();
+
 	if (bureaucrat.getGrade() > this->getExecuteGrade())
-		throw std::runtime_error("Bureaucrat grade too low to execute this form.");
+		throw ExecGradeException();
 
 	std::ofstream outFile((this->name_ + "_shrubbery").c_str());
 	if (!outFile)

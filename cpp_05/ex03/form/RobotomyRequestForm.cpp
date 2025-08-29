@@ -9,7 +9,7 @@ RobotomyRequestForm::RobotomyRequestForm()
 	: AForm(RR_NAME, RR_SIGN_GRADE, RR_EXEC_GRADE)
 {
 	std::cout << "Default constructor called for RobotomyRequestForm "
-			  << name_ << "\n";
+			  << name_ << std::endl;
 }
 
 // Parameterized Constructor
@@ -17,7 +17,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string name)
 	: AForm(name, RR_SIGN_GRADE, RR_EXEC_GRADE)
 {
 	std::cout << "Parameterized constructor called for RobotomyRequestForm "
-			  << name_ << "\n";
+			  << name_ << std::endl;
 }
 
 // Copy Constructor
@@ -25,14 +25,14 @@ RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &other)
 	: AForm(other.name_, other.signGrade_, other.executeGrade_)
 {
 	std::cout << "Copy constructor called for RobotomyRequestForm: "
-			  << name_ << "\n";
+			  << name_ << std::endl;
 }
 
 // Destructor
 RobotomyRequestForm::~RobotomyRequestForm()
 {
 	std::cout << "Destructor called for RobotomyRequestForm: "
-			  << name_ << "\n";
+			  << name_ << std::endl;
 }
 
 // Operator Assignment
@@ -41,7 +41,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &o
 	if (this != &other)
 	{
 		std::cout << "Assignment operator called for RobotomyRequestForm: "
-				  << name_ << "\n";
+				  << name_ << std::endl;
 		isSigned_ = other.isSigned_;
 	}
 	return (*this);
@@ -52,15 +52,16 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &o
 void RobotomyRequestForm::execute(const Bureaucrat &bureaucrat) const
 {
 	if (!this->getIsSigned())
-		throw std::runtime_error("Form must be signed before execution.");
+		throw UnsignedExecutionException();
+
 	if (bureaucrat.getGrade() > this->getExecuteGrade())
-		throw std::runtime_error("Bureaucrat grade too low to execute this form.");
+		throw ExecGradeException();
 
-	std::cout << "* Drilling noises * brrrrrrrrrrr... 🛠️🤖\n";
+	std::cout << "* Drilling noises * brrrrrrrrrrr..." << std::endl;
 
-	std::srand(std::time(0)); // TODO: Implement proper place?
+	std::srand(std::time(0));
 	if (std::rand() % 2)
-		std::cout << name_ << " has been robotomized successfully.\n";
+		std::cout << name_ << " has been robotomized successfully." << std::endl;
 	else
-		std::cout << "Robotomy failed on " << name_ << ".\n";
+		std::cout << "Robotomy failed on " << name_ << std::endl;
 }

@@ -1,5 +1,5 @@
 #include "AForm.hpp"
-# include "Bureaucrat.hpp"
+#include "Bureaucrat.hpp"
 
 // Constructors and Destructor
 
@@ -8,7 +8,7 @@ AForm::AForm()
 	  signGrade_(LOWEST_GRADE), executeGrade_(LOWEST_GRADE)
 {
 	std::cout << "Default constructor called for AForm "
-			  << name_ << "\n";
+			  << name_ << std::endl;
 }
 
 AForm::AForm(const std::string &name, int signGrade, int executeGrade)
@@ -21,12 +21,12 @@ AForm::AForm(const std::string &name, int signGrade, int executeGrade)
 		throw GradeTooHighException();
 	else
 		std::cout << "Parameterized constructor called for AForm: "
-				  << name << "\n";
+				  << name << std::endl;
 }
 
 AForm::~AForm()
 {
-	std::cout << "Destructor called for AForm: " << name_ << "\n";
+	std::cout << "Destructor called for AForm: " << name_ << std::endl;
 }
 
 // Copy Constructor
@@ -34,7 +34,7 @@ AForm::AForm(const AForm &other)
 	: name_(other.name_), isSigned_(other.isSigned_),
 	  signGrade_(other.signGrade_), executeGrade_(other.executeGrade_)
 {
-	std::cout << "Copy constructor called for AForm: " << name_ << "\n";
+	std::cout << "Copy constructor called for AForm: " << name_ << std::endl;
 }
 
 // Assignment Operator
@@ -42,13 +42,13 @@ AForm &AForm::operator=(const AForm &other)
 {
 	if (this != &other)
 	{
-		std::cout << "Assignment operator called for AForm: " << name_ << "\n";
+		std::cout << "Assignment operator called for AForm: " << name_ << std::endl;
 		isSigned_ = other.isSigned_;
 	}
 	return (*this);
 }
 
-// Exception classes
+// =============== Exception classes ===============
 
 const char *AForm::GradeTooHighException::what() const throw()
 {
@@ -58,6 +58,16 @@ const char *AForm::GradeTooHighException::what() const throw()
 const char *AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade too LOW!");
+}
+
+const char *AForm::ExecGradeException::what() const throw()
+{
+	return ("Bureaucrat grade too low to execute this form!");
+}
+
+const char *AForm::UnsignedExecutionException::what() const throw()
+{
+	return ("Form must be signed before execution!");
 }
 
 // Member Function(s)
@@ -98,7 +108,7 @@ std::ostream &operator<<(std::ostream &os, const AForm &form)
 	os << "Name: " << form.getName() << "\n"
 	   << "Signed: " << (form.getIsSigned() ? "true" : "false") << "\n"
 	   << "Sign Grade: " << form.getSignGrade() << "\n"
-	   << "Execute Grade: " << form.getExecuteGrade() << "\n";
+	   << "Execute Grade: " << form.getExecuteGrade() << std::endl;
 
 	return (os);
 }
