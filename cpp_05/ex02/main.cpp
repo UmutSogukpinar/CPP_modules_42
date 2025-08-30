@@ -11,9 +11,9 @@ int main()
     Bureaucrat bob("Bob", 50);
     Bureaucrat tom("Tom", 140);
 
-    ShrubberyCreationForm shrub("home");
-    RobotomyRequestForm   robo("marvin");
-    PresidentialPardonForm pardon("arthur");
+    ShrubberyCreationForm shrub("shrub");
+    RobotomyRequestForm   robo("robo");
+    PresidentialPardonForm pardon("par");
 
     std::cout << "\n--- Signing Forms ---\n" << std::endl;
 

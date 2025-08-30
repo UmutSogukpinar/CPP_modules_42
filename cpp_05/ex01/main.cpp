@@ -19,7 +19,7 @@ int main()
     std::cout << "<-- Invalid Ctor: Form -->"<< std::endl;
     try {
         Form badForm("BadForm", 0, 50);  // invalid: sign grade 0 (too high)
-        std::cout << "This should NOT print: " << badForm.getName() << std::endl;
+        std::cout << "This is not supposed to print: " << badForm.getName() << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Form ctor failed as expected: " << e.what() << "\n" << std::endl;
     }

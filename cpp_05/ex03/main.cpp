@@ -16,7 +16,7 @@ int main()
 
     // Shrubbery
     try {
-        form1 = intern.makeForm("shrubbery creation", "home");
+        form1 = intern.makeForm("shrubbery creation", "shrub");
         std::cout << "Created: " << form1->getName() << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Form creation failed for 'shrubbery creation': " << e.what() << std::endl;
@@ -24,7 +24,7 @@ int main()
 
     // Robotomy
     try {
-        form2 = intern.makeForm("robotomy request", "marvin");
+        form2 = intern.makeForm("robotomy request", "robot");
         std::cout << "Created: " << form2->getName() << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Form creation failed for 'robotomy request': " << e.what() << std::endl;
@@ -32,7 +32,7 @@ int main()
 
     // Presidential Pardon
     try {
-        form3 = intern.makeForm("presidential pardon", "arthur");
+        form3 = intern.makeForm("presidential pardon", "par");
         std::cout << "Created: " << form3->getName() << std::endl;
     } catch (const std::exception &e) {
         std::cerr << "Form creation failed for 'presidential pardon': " << e.what() << std::endl;
