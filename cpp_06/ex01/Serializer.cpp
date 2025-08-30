@@ -15,7 +15,6 @@ Serializer & Serializer::operator=(Serializer const & other)
     return (*this);
 }
 
-
 // ================================== Member Functions ==================================
 
 uintptr_t Serializer::serialize(Data *ptr)
