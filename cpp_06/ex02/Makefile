@@ -13,7 +13,7 @@ $(NAME):
 	@echo "Build complete: $(NAME)"
 
 clean:
-	@echo "Nothing to clean (no object files)"
+	@echo "Nothing to clean"
 
 fclean:
 	@echo "Removing binary: $(NAME)"
