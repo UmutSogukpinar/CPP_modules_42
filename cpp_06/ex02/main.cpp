@@ -1,11 +1,9 @@
 #include "iostream"
-#include <cstdlib>
-#include <ctime>
+#include <unistd.h>
 #include "identify.hpp"
 
 int main(void)
 {
-    std::srand(static_cast<unsigned int>(std::time(NULL)));
 
     for (int i = 0; i < 5; i++)
     {
@@ -18,7 +16,8 @@ int main(void)
         identify(*ptr);
 
         delete ptr;
-        std::cout << "--------------------\n";
+        std::cout << "--------------------" << std::endl;
+		sleep(1);
     }
     return (0);
 }

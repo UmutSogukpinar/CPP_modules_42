@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include "identify.hpp"
+#include <ctime>
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
@@ -8,6 +8,7 @@
 // Randomly create A, B, or C
 Base* generate(void)
 {
+    std::srand((std::time(NULL)));
     int r = std::rand() % 3;
 
     if (r == 0)
@@ -22,7 +23,7 @@ void identify(Base* p)
 {
     if (!p)
     {
-        std::cout << "Null" << std::endl;
+        std::cout << "NULL" << std::endl;
         return ;
     }
     if (dynamic_cast<A*>(p))
@@ -43,32 +44,29 @@ void identify(Base* p)
     std::cout << "Unknown" << std::endl;
 }
 
-// Identify via reference (no pointer allowed, no <typeinfo>)
+// Identify via reference
 void identify(Base& p)
 {
-    try
-    {
+    try{
         (void)dynamic_cast<A&>(p);
         std::cout << "A" << std::endl;
         return ;
     }
-    catch (...) {}
+    catch (...){}
 
-    try
-    {
+    try{
         (void)dynamic_cast<B&>(p);
         std::cout << "B" << std::endl;
         return ;
     }
-    catch (...) {}
+    catch (...){}
 
-    try
-    {
+    try{
         (void)dynamic_cast<C&>(p);
         std::cout << "C" << std::endl;
         return ;
     }
-    catch (...) {}
+    catch (...){}
 
     std::cout << "Unknown" << std::endl;
 }

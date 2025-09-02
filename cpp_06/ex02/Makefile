@@ -8,16 +8,16 @@ SRCS        = main.cpp identify.cpp
 all: $(NAME)
 
 $(NAME):
-	@echo "Building $(NAME)..."
-	$(CXX) $(CXXFLAGS) $(INC_FLAG) $(SRCS) -o $(NAME)
-	@echo "Build complete: $(NAME)"
+	@$(CXX) $(CXXFLAGS) $(INC_FLAG) $(SRCS) -o $(NAME)
+	@echo "Build complete: \"$(NAME)\""
+
 
 clean:
 	@echo "Nothing to clean"
 
 fclean:
-	@echo "Removing binary: $(NAME)"
 	@rm -f $(NAME)
+	@echo "Executable \"$(NAME)\" removed."
 
 re: fclean all
 
