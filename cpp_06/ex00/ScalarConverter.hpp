@@ -19,7 +19,18 @@
 class ScalarConverter
 {
 	private:
+
+		// Default Constructor
     	ScalarConverter();
+
+		// Copy Constructor
+		ScalarConverter(ScalarConverter const & other);
+
+		// Copy Assignment
+		ScalarConverter & operator=(ScalarConverter const & other);
+
+		// Destructor
+		~ScalarConverter();
 	public:
 		static void convert(const std::string& arg);
 };

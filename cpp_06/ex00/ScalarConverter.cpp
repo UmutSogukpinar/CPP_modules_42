@@ -1,4 +1,5 @@
 #include "ScalarConverter.hpp"
+#include "iomanip"
 
 static void toChar(const std::string& arg);
 static void toInt(const std::string& arg);
@@ -7,8 +8,22 @@ static void toDouble(const std::string& arg);
 
 ScalarConverter::ScalarConverter() {}
 
+ScalarConverter::~ScalarConverter() {}
+
+ScalarConverter::ScalarConverter(ScalarConverter const & other)
+{
+	(void) other;
+}
+
+ScalarConverter & ScalarConverter::operator=(ScalarConverter const & other)
+{
+	(void) other;
+	return (*this);
+}
+
 void ScalarConverter::convert(const std::string& arg)
 {
+	std::cout << std::fixed << std::setprecision(1);
 	toChar(arg);
 	toInt(arg);
 	toFloat(arg);
