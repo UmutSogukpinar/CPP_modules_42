@@ -26,7 +26,6 @@ int ft_stoi(const std::string& input){
     size_t i = 0;
     int sign = 1;
 
-    // handle sign
     if (str[i] == '-'){
         sign = -1;
         i++;
@@ -59,9 +58,9 @@ int ft_stoi(const std::string& input){
             {
                 i++;
             }
-            continue ; // fractional part ignored
+            continue ;
         } else if ((c == 'f' || c == 'F') && i == str.size() - 1)
-            break; // float suffix allowed
+            break;
         else
             throw std::invalid_argument("Invalid character in int");
     }
@@ -77,7 +76,7 @@ int ft_stoi(const std::string& input){
     return (static_cast<int>(acc));
 }
 
-
+// string -> float
 float ft_stof(const std::string& str){
     std::string trimmed_str = trim(str);
     if (trimmed_str.empty())
@@ -136,8 +135,8 @@ float ft_stof(const std::string& str){
     return (static_cast<float>(result));
 }
 
-double ft_stod(const std::string& str)
-{
+// string -> double
+double ft_stod(const std::string& str){
     std::string trimmed_str = trim(str);
     if (trimmed_str.empty())
         throw std::invalid_argument("Empty string!");
@@ -146,7 +145,11 @@ double ft_stod(const std::string& str)
     int sign = 1;
 
     if (trimmed_str[i] == '-')
-        sign = -1, i++;
+	{
+        sign = -1;
+		i++;
+
+	}
     else if (trimmed_str[i] == '+')
         i++;
 
@@ -166,7 +169,7 @@ double ft_stod(const std::string& str)
 
             if (!dotSeen){
                 if (result > (DBL_MAX - digit) / 10.0)
-                    throw std::out_of_range("Overflow detected during integer part");
+                    throw std::out_of_range("Out of double range");
 
                 result = result * 10.0 + digit;
             } else{
@@ -174,7 +177,7 @@ double ft_stod(const std::string& str)
                 addition = digit / fracDiv;
 
                 if (result > DBL_MAX - addition)
-                    throw std::out_of_range("Overflow detected during fractional part");
+                    throw std::out_of_range("Out of dobule range");
 
                 result += addition;
             }
@@ -190,7 +193,7 @@ double ft_stod(const std::string& str)
     result *= sign;
 
     if (result > DBL_MAX || result < -DBL_MAX)
-        throw std::out_of_range("Final result out of range");
+        throw std::out_of_range("Out of dobule range");
 
     return (static_cast<double>(result));
 }

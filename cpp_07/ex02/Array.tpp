@@ -14,24 +14,25 @@ template <typename T>
 Array<T>::Array(Array const &other)
     : data_(other.size_ ? new T[other.size_]() : NULL), size_(other.size_)
 {
-    for (std::size_t i = 0; i < size_; ++i) data_[i] = other.data_[i];
+    for (std::size_t i = 0; i < size_; ++i)
+		data_[i] = other.data_[i];
 }
 
 // Overloaded assignment operator
 template <typename T>
-Array<T> &Array<T>::operator=(Array const &arr)
+Array<T> &Array<T>::operator=(Array const &other)
 {
-    if (this == &arr)
+    if (this == &other)
         return (*this);
 
-    T *tmp = arr.size_ ? new T[arr.size_]() : NULL;
-    for (std::size_t i = 0; i < arr.size_; ++i)
-        tmp[i] = arr.data_[i];
+    T *tmp = other.size_ ? new T[other.size_]() : NULL;
+    for (std::size_t i = 0; i < other.size_; ++i)
+        tmp[i] = other.data_[i];
 
     delete[] (data_);
 
     data_ = tmp;
-    size_ = arr.size_;
+    size_ = other.size_;
 
     return (*this);
 }
