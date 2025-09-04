@@ -44,6 +44,7 @@ Array<T>::~Array()
     delete[] (data_);
 }
 
+// ============ Operator[] Overload ============
 template <typename T>
 T &Array<T>::operator[](std::size_t index)
 {
@@ -62,6 +63,7 @@ T const &Array<T>::operator[](std::size_t index) const
     return (data_[index]);
 }
 
+// Get size of array
 template <typename T>
 std::size_t Array<T>::size() const
 {
