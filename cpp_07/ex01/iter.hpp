@@ -1,9 +1,6 @@
 #ifndef ITER_HPP
 # define ITER_HPP
 
-# include <cstddef>
-
-
 // custom iter function
 template <typename T, typename FuncReturnType>
 void iter(T *arr, std::size_t len, FuncReturnType const &func)

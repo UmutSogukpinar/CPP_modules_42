@@ -45,9 +45,9 @@ int main()
 
     // cs and r: const access test
     print_header("const access");
-    Array<std::string> cs = stringArray;
-    const Array<std::string> &r = cs;
-    std::cout << r[1] << std::endl;
+    Array<std::string> stringCopy = stringArray;
+    const Array<std::string> &copiedConstArray = stringCopy;
+    std::cout << copiedConstArray[1] << std::endl;
 
     // intArray: out_of_range check
     print_header("out_of_range check");

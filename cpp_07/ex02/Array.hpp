@@ -1,8 +1,7 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
-#include <cstddef>
-#include <stdexcept>
+# include "cstddef"
 
 template <typename T>
 class Array
@@ -25,6 +24,6 @@ class Array
 
 };
 
-#include "Array.tpp"
+# include "Array.tpp"
 
 #endif

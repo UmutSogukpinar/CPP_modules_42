@@ -1,7 +1,6 @@
 #ifndef WHATEVER_HPP
 # define WHATEVER_HPP
 
-
 // swap two data with each other
 template <typename T>
 void swap(T &a, T &b)
