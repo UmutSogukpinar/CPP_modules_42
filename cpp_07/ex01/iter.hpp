@@ -1,19 +1,21 @@
 #ifndef ITER_HPP
 # define ITER_HPP
 
-// custom iter function
-template <typename T, typename FuncReturnType>
-void iter(T *arr, std::size_t len, FuncReturnType const &func)
+#include <cstddef>
+
+// generic iter function
+template <typename T, typename Func>
+void iter(T *arr, std::size_t len, Func func)
 {
-	for (std::size_t i = 0; i < len; ++i)
+    for (std::size_t i = 0; i < len; ++i)
         func(arr[i]);
 }
 
-// custom iter function (includes const type)
-template <typename T, typename FuncReturnType>
-void iter(T const *arr, std::size_t len, FuncReturnType const &func)
+// const array overload
+template <typename T, typename Func>
+void iter(const T *arr, std::size_t len, Func func)
 {
-	for (std::size_t i = 0; i < len; ++i)
+    for (std::size_t i = 0; i < len; ++i)
         func(arr[i]);
 }
 

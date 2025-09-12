@@ -7,32 +7,33 @@ Array<T>::Array() : data_(NULL), size_(0) {}
 // Parameterised Constructor
 template <typename T>
 Array<T>::Array(unsigned int n)
-    : data_(n ? new T[n]() : NULL), size_(n) {}
+	: data_(n ? new T[n]() : NULL), size_(n) {}
 
 // Copy Constructor
 template <typename T>
-Array<T>::Array(Array const &other)
-    : data_(other.size_ ? new T[other.size_]() : NULL), size_(other.size_)
+Array<T>::Array(const Array &other)
+	: data_(other.size_ ? new T[other.size_]() : NULL), size_(other.size_)
 {
-    for (std::size_t i = 0; i < size_; ++i)
+	for (std::size_t i = 0; i < size_; ++i)
 		data_[i] = other.data_[i];
 }
 
 // Overloaded assignment operator
 template <typename T>
-Array<T> &Array<T>::operator=(Array const &other)
+Array<T> &Array<T>::operator=(const Array &other)
 {
-    if (this == &other)
-        return (*this);
+	if (this == &other)
+		return (*this);
 
-    T *tmp = other.size_ ? new T[other.size_]() : NULL;
-    for (std::size_t i = 0; i < other.size_; ++i)
-        tmp[i] = other.data_[i];
+	T *tmp = other.size_ ? new T[other.size_]() : NULL;
 
-    delete[] (data_);
+	for (std::size_t i = 0; i < other.size_; ++i)
+		tmp[i] = other.data_[i];
 
-    data_ = tmp;
-    size_ = other.size_;
+	delete[] (data_);
+
+	data_ = tmp;
+	size_ = other.size_;
 
     return (*this);
 }
@@ -45,6 +46,7 @@ Array<T>::~Array()
 }
 
 // ============ Operator[] Overload ============
+
 template <typename T>
 T &Array<T>::operator[](std::size_t index)
 {
@@ -55,7 +57,7 @@ T &Array<T>::operator[](std::size_t index)
 }
 
 template <typename T>
-T const &Array<T>::operator[](std::size_t index) const
+const T &Array<T>::operator[](std::size_t index) const
 {
     if (index >= size_)
         throw std::out_of_range("Array: index out of range");

@@ -30,7 +30,9 @@ int main()
     print_header("copy ctor");
     Array<int> copyArray = intArray;
     intArray[0] = 42;
-    std::cout << "intArray[0]= " << intArray[0] << ", copyArray[0]= " << copyArray[0] << " (copyArray unaffected)" << std::endl;
+    std::cout	<< "intArray[0]= " << intArray[0]
+				<< ", copyArray[0]= " << copyArray[0]
+				<< " (copyArray unaffected)" << std::endl;
 
     // stringArray
     print_header("strings");

@@ -13,12 +13,12 @@ class Array
     public:
         Array();
         explicit Array(unsigned int n);
-        Array(Array const &other);
-        Array &operator=(Array const &rhs);
+        Array(const Array &other);
+        Array &operator=(const Array &other);
         ~Array();
 
         T       &operator[](std::size_t idx);
-        T const &operator[](std::size_t idx) const;
+        const T &operator[](std::size_t idx) const;
 
         std::size_t size() const;
 
