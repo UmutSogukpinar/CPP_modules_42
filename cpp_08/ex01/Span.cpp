@@ -38,6 +38,14 @@ void Span::addNumber(int number)
     numbers_.push_back(number);
 }
 
+void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    if (std::distance(begin, end) + numbers_.size() > n_)
+        throw std::overflow_error("Cannot add more numbers!");
+
+    numbers_.insert(numbers_.end(), begin, end);
+}
+
 unsigned int Span::shortestSpan() const
 {
     if (numbers_.size() < 2)
