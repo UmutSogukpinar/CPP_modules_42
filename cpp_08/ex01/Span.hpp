@@ -6,14 +6,14 @@
 class Span
 {
     private:
-        unsigned int n_;
+        std::size_t n_;
         std::vector<int> numbers_;
 
 	public:
 
         // ================ Constructors / Destructors =================
         Span();
-        Span(unsigned int n);
+        Span(std::size_t n);
         Span(Span const &other);
         ~Span();
 
@@ -24,8 +24,8 @@ class Span
 
         void addNumber(int number);
         void addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
-        unsigned int shortestSpan() const;
-        unsigned int longestSpan() const;
+        std::size_t shortestSpan() const;
+        std::size_t longestSpan() const;
 };
 
 #endif

@@ -8,7 +8,7 @@
 Span::Span(): n_(0), numbers_() {}
 
 // Parameterized constructor
-Span::Span(unsigned int n): n_(n), numbers_() {}
+Span::Span(std::size_t n): n_(n), numbers_() {}
 
 // Copy constructor
 Span::Span(Span const &other): n_(other.n_), numbers_(other.numbers_) {}
@@ -46,7 +46,7 @@ void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterato
     numbers_.insert(numbers_.end(), begin, end);
 }
 
-unsigned int Span::shortestSpan() const
+std::size_t Span::shortestSpan() const
 {
     if (numbers_.size() < 2)
         throw std::logic_error("Not enough numbers to find a span!");
@@ -68,7 +68,7 @@ unsigned int Span::shortestSpan() const
     return (minSpan);
 }
 
-unsigned int Span::longestSpan() const
+std::size_t Span::longestSpan() const
 {
     if (numbers_.size() < 2)
         throw std::logic_error("Not enough numbers to find a span!");

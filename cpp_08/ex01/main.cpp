@@ -21,7 +21,18 @@ int main()
     {
         std::cerr << e.what() << std::endl;
     }
+
+	Span bigSpan(10000);
+
+
+	std::vector<int> v;
+	for (int i = 0; i < 10000; i++)
+    	v.push_back(i * i); // 0..29
+
+	bigSpan.addNumber(v.begin(), v.end()); 
     
+	std::cout << "Shortest Span for bigSpan: " << bigSpan.shortestSpan() << std::endl; // Output: 2
+    std::cout << "Longest Span for bigSpn: : " << bigSpan.longestSpan() << std::endl;   // Output: 14
 
     return (0);
 }

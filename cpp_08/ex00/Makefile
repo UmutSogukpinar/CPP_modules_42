@@ -4,7 +4,9 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME     = easyfind
 SRCS      = main.cpp
 
-all:
+all: $(NAME)
+
+$(NAME): $(SRCS)
 	@echo "Compiling $(SRCS) -> $(NAME)"
 	@$(CXX) $(CXXFLAGS) $(SRCS) -o $(NAME)
 	@echo "Build complete"

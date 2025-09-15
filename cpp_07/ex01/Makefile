@@ -4,7 +4,9 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME     = iter
 SRC      = main.cpp
 
-all:
+all: $(NAME)
+
+$(NAME): $(SRC)
 	@echo "Compiling $(SRC) -> $(NAME)"
 	@$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
 	@echo "Build complete: $(NAME)"
