@@ -24,14 +24,18 @@ class MutantStack : public std::stack<T>
 
         // === Iterator typedefs with explicit names ===
 
-        typedef typename std::stack<T>::container_type::iterator         mstack_iterator;
-        typedef typename std::stack<T>::container_type::const_iterator   mstack_const_iterator;
+        typedef typename std::stack<T>::container_type::iterator         iterator;
+        typedef typename std::stack<T>::container_type::const_iterator   const_iterator;
 
 
-        mstack_iterator begin();
-        mstack_iterator end();
-        mstack_const_iterator begin() const;
-        mstack_const_iterator end()   const;
+        void push(const T& value);
+        void pop();
+        T& top();
+
+        iterator begin();
+        iterator end();
+        const_iterator begin() const;
+        const_iterator end()   const;
 
 };
 

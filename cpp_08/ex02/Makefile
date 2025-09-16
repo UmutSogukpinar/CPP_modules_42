@@ -10,7 +10,7 @@ INCLUDES = MutantStack.hpp
 
 all : $(NAME)
 
-$(NAME): $(INCLUDES)
+$(NAME): $(INCLUDES) $(SRCS)
 	@$(CXX) $(CXXFLAGS) $(SRCS) -o $(NAME)
 	@echo "Program compiled -> $(NAME)"
 

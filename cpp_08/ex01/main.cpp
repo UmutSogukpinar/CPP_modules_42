@@ -27,7 +27,7 @@ int main()
 
 	std::vector<int> v;
 	for (int i = 0; i < 10000; i++)
-    	v.push_back(i * i); // 0..29
+    	v.push_back(i * i);
 
 	bigSpan.addNumber(v.begin(), v.end()); 
     
