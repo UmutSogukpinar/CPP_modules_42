@@ -2,7 +2,7 @@
 #include "iostream"
 #include "RPN.hpp"
 
-static void split(const std::string &s, char delim, std::queue<std::string> &out)
+static void ft_split(const std::string &s, char delim, std::queue<std::string> &out)
 {
     std::string current;
     for (size_t i = 0; i < s.size(); ++i)
@@ -33,12 +33,11 @@ int main(int argc, char **argv)
 	std::string arg = argv[1];
 	std::queue<std::string> argQueue;
 
-	split(arg, ' ', argQueue);
+	ft_split(arg, ' ', argQueue);
 
 	try
 	{
 		RPN rpn(argQueue);
-
 	}
 	catch(const std::exception& e)
 	{
