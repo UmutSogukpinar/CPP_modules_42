@@ -9,7 +9,8 @@ PmergeMe::PmergeMe(char **begin, char **end)
     parseArgs(begin, end);
 }
 
-// ===================== Public =====================
+// ===================== Member Functions =====================
+
 void PmergeMe::run()
 {
     // Print before
