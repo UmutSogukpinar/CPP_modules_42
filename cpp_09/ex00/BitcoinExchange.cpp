@@ -1,214 +1,217 @@
 #include "BitcoinExchange.hpp"
+#include <iostream>
+#include <sstream>
 #include <stdexcept>
-#include <fstream>
+#include <cstdlib>
 
-// ============================== BitcoinExchange Class ==============================
-
-// ============= Constructors and Destructor =============
-
-// Default Constructor
-BitcoinExchange::BitcoinExchange() : file_(NULL) {} 
-
-// Parameterized Constructor
-BitcoinExchange::BitcoinExchange(std::ifstream *file) 
-    : file_(file)
-{
-    if (!file_ || !file_->is_open())
-    {
-        throw std::invalid_argument("File is not open");
-    }
-
-    
-}
-
-// Destructor
-BitcoinExchange::~BitcoinExchange() {}
-
-// Copy Constructor
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) :    
-    file_(other.file_), exchangeRates_(other.exchangeRates_) {}
-
-// Copy Assignment Operator
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
-{
-    if (this != &other)
-    {
-        file_ = other.file_;
-        exchangeRates_ = other.exchangeRates_;
-    }
-
-    return (*this);
-}
-
-
-// ============================== Date Class ==============================
-
+// ========================================== Date ==========================================
 
 // ============= Constructors and Destructor =============
 
-// Default Constructor
-BitcoinExchange::Date::Date() {}
 
-// Parameterized Constructor
-BitcoinExchange::Date::Date(std::string dateStr, float value_)
-    : dateStr_(dateStr), value_(0.0)
+BitcoinExchange::Date::Date() : year_(0), month_(0), day_(0), value_(0.0f){}
+
+BitcoinExchange::Date::Date(std::string dateStr, float value) : dateStr_(dateStr), value_(value)
 {
-    // Parse the date string in "YYYY-MM-DD" format
-    parseDate(dateStr);
-
-    // Validate the date
-    if (!isValid())
-    {
-        throw std::invalid_argument("Invalid date");
-    }
-
-    
+	parseDate(dateStr);
 }
 
-// Copy Constructor
-BitcoinExchange::Date::Date(const Date& other) :
-    year_(other.year_), month_(other.month_), day_(other.day_) {}
-
-// Destructor
 BitcoinExchange::Date::~Date() {}
 
-// Assignment Operator
-BitcoinExchange::Date& BitcoinExchange::Date::operator=(const Date& other)
-{
-    if (this != &other)
-    {
-        year_ = other.year_;
-        month_ = other.month_;
-        day_ = other.day_;
-    }
-
-    return (*this);
-}
-
-// ============= Getters =============
+// ============= Getters and Setters =============
 
 int BitcoinExchange::Date::getYear() const
 {
-    return (year_);
+	return (year_);
 }
 
 int BitcoinExchange::Date::getMonth() const
 {
-    return (month_);
+	return (month_);
 }
 
 int BitcoinExchange::Date::getDay() const
 {
-    return (day_);
+	return (day_);
 }
 
-std::string &BitcoinExchange::Date::getDateStr() const
+const std::string &BitcoinExchange::Date::getDateStr() const
 {
-    return (const_cast<std::string&>(dateStr_));
+	return (dateStr_);
 }
 
 float BitcoinExchange::Date::getValue() const
 {
-    return (value_);
+	return (value_);
 }
-
-// ============= Setters =============
 
 void BitcoinExchange::Date::setYear(int year)
 {
-    year_ = year;
+	year_ = year;
 }
 
 void BitcoinExchange::Date::setMonth(int month)
 {
-    month_ = month;
+	month_ = month;
 }
 
 void BitcoinExchange::Date::setDay(int day)
 {
-    day_ = day;
+	day_ = day;
 }
 
 void BitcoinExchange::Date::setDateStr(const std::string &dateStr)
 {
-    dateStr_ = dateStr;
+	dateStr_ = dateStr;
+	parseDate(dateStr);
 }
 
 void BitcoinExchange::Date::setValue(float value)
 {
-    value_ = value;
+	value_ = value;
 }
 
-// ============= Member Functions =============
-
-bool BitcoinExchange::Date::isValid() const
-{
-    if (year_ < 0 || month_ < 1 || month_ > 12 || day_ < 1)
-        return (false);
-
-    int daysInMonth;
-    switch (month_)
-    {
-        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-            daysInMonth = 31;
-            break;
-        case 4: case 6: case 9: case 11:
-            daysInMonth = 30;
-            break;
-        case 2:
-            daysInMonth = isLeapYear() ? 29 : 28;
-            break;
-        default:
-            return (false);
-    }
-    return (day_ <= daysInMonth);
-}
+// ============= Other Member Functions =============
 
 bool BitcoinExchange::Date::isLeapYear() const
 {
-    return ((year_ % 4 == 0 && year_ % 100 != 0) || (year_ % 400 == 0));
+	return ((year_ % 4 == 0 && year_ % 100 != 0) || (year_ % 400 == 0));
 }
 
-// ============= Private Member Functions =============
-
-static int ft_stoi(const std::string &s)
+bool BitcoinExchange::Date::isValidDate(int year, int month, int day) const
 {
-    if (s.empty())
-        throw std::invalid_argument("Empty number");
+	if (year < 1 || month < 1 || month > 12 || day < 1)
+		return (false);
 
-    int sign = 1;
-    size_t i = 0;
-    if (s[0] == '-' || s[0] == '+')
-    {
-        if (s[0] == '-') sign = -1;
-        i = 1;
-    }
+	int daysInMonth[] = {31, (isLeapYear() ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	if (day > daysInMonth[month - 1])
+		return (false);
+	return (true);
+}
 
-    int result = 0;
-    for (; i < s.size(); ++i)
-    {
-        if (s[i] < '0' || s[i] > '9')
-            throw std::invalid_argument("Non-digit character");
-        result = result * 10 + (s[i] - '0');
-    }
-    return sign * result;
+bool BitcoinExchange::Date::isValid() const
+{
+	return (isValidDate(year_, month_, day_));
 }
 
 void BitcoinExchange::Date::parseDate(const std::string &dateStr)
 {
-    if (dateStr.length() != 10 || dateStr[4] != '-' || dateStr[7] != '-')
-    {
-        throw std::invalid_argument("Date format must be YYYY-MM-DD");
-    }
+	std::stringstream ss(dateStr);
+	char dash1;
+	char dash2;
 
-    try
-    {
-        year_ = ft_stoi(dateStr.substr(0, 4));
-        month_ = ft_stoi(dateStr.substr(5, 2));
-        day_ = ft_stoi(dateStr.substr(8, 2));
-    }
-    catch (const std::exception &e)
-    {
-        throw std::invalid_argument("Invalid date components");
-    }
+	ss >> year_ >> dash1 >> month_ >> dash2 >> day_;
+	if (ss.fail() || dash1 != '-' || dash2 != '-' || !isValid())
+		throw std::runtime_error("Invalid date format: " + dateStr);
+}
+
+// ========================================== BitcoinExchange ==========================================
+
+// ============= Constructors and Destructor =============
+
+// Default constructor
+BitcoinExchange::BitcoinExchange() : file_(NULL) {}
+
+BitcoinExchange::BitcoinExchange(std::ifstream *file) : file_(file)
+{
+	loadExchangeRates();
+	processInputFile();
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
+{
+	*this = other;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
+{
+	if (this != &other)
+	{
+		file_ = other.file_;
+		exchangeRates_ = other.exchangeRates_;
+	}
+
+	return (*this);
+}
+
+BitcoinExchange::~BitcoinExchange() {}
+
+void BitcoinExchange::loadExchangeRates()
+{
+	std::ifstream db("data.csv");
+	if (!db.is_open())
+		throw std::runtime_error("Could not open data.csv");
+
+	std::string line;
+	std::getline(db, line); // skip header
+	while (std::getline(db, line))
+	{
+		std::stringstream ss(line);
+		std::string dateStr;
+		std::string valueStr;
+
+		if (!std::getline(ss, dateStr, ',') || !std::getline(ss, valueStr))
+			continue;
+		float value = std::strtof(valueStr.c_str(), NULL);
+		Date date(dateStr, value);
+		exchangeRates_[dateStr] = date;
+	}
+	db.close();
+}
+
+float BitcoinExchange::getRateForDate(const std::string &dateStr)
+{
+	std::map<std::string, Date>::iterator it = exchangeRates_.lower_bound(dateStr);
+
+	if (it == exchangeRates_.end())
+	{
+		--it;
+		return (it->second.getValue());
+	}
+
+	if (it->first == dateStr)
+		return (it->second.getValue());
+
+	if (it != exchangeRates_.begin())
+	{
+		--it;
+		return (it->second.getValue());
+	}
+
+	throw std::runtime_error("No available exchange rate for date: " + dateStr);
+}
+
+void BitcoinExchange::processInputFile()
+{
+	if (!file_ || !file_->is_open())
+		throw std::runtime_error("Input file not provided or not open");
+
+	std::string line;
+	std::getline(*file_, line);
+	while (std::getline(*file_, line))
+	{
+		std::stringstream ss(line);
+		std::string dateStr;
+		std::string valueStr;
+
+		if (!std::getline(ss, dateStr, '|') || !std::getline(ss, valueStr))
+		{
+			std::cerr << "Error: bad input => " << line << std::endl;
+			continue;
+		}
+		try
+		{
+			float inputValue = std::strtof(valueStr.c_str(), NULL);
+			if (inputValue < 0)
+				throw std::runtime_error("not a positive number.");
+			if (inputValue > 1000)
+				throw std::runtime_error("too large a number.");
+			float rate = getRateForDate(dateStr);
+			std::cout << dateStr << " => " << inputValue << " = " << (inputValue * rate) << std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << "Error: " << e.what() << " (line: " << line << ")" << std::endl;
+		}
+	}
 }

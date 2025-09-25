@@ -5,9 +5,9 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 SRCS =	main.cpp \
-		Span.cpp
+		BitcoinExchange.cpp
 
-INCLUDES = Span.hpp
+INCLUDES = BitcoinExchange.hpp
 
 all : $(NAME)
 

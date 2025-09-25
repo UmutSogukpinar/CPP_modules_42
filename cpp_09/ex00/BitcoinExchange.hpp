@@ -1,8 +1,9 @@
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
 
-# include "string"
-# include "map"
+# include <string>
+# include <map>
+# include <fstream>
 
 class BitcoinExchange
 {
@@ -18,30 +19,24 @@ class BitcoinExchange
             // ============= Private Methods =============
 
             void parseDate(const std::string &dateStr);
-        
+            bool isValidDate(int year, int month, int day) const;
 
         public:
+            // ============= Constructors and Destructor =============
 
-        // ============= Constructors and Destructor =============
-
-            // Default Constructor
             Date();
-
-            // Parameterized Constructor
-            Date(std::string dateStr, float value_);
-
-            // Destructor
+            Date(std::string dateStr, float value);
             ~Date();
 
-        // ============= Getters =============
+            // ============= Getters =============
 
             int getYear() const;
             int getMonth() const;
             int getDay() const;
-            std::string &getDateStr() const;
+            const std::string &getDateStr() const;
             float getValue() const;
 
-        // ============= Setters =============
+            // ============= Setters =============
 
             void setYear(int year);
             void setMonth(int month);
@@ -49,11 +44,10 @@ class BitcoinExchange
             void setDateStr(const std::string &dateStr);
             void setValue(float value);
 
-        // ============= Other Member Functions =============
-
+            // ============= Other Member Functions =============
+            
             bool isValid() const;
             bool isLeapYear() const;
-
     };
 
     private:
@@ -64,31 +58,16 @@ class BitcoinExchange
 
         void loadExchangeRates();
         void processInputFile();
+        float getRateForDate(const std::string &dateStr);
 
     public:
-
         // ============= Constructors and Destructor =============
 
-        // Default Constructor
         BitcoinExchange();
-
-        // Parameterized Constructor
         BitcoinExchange(std::ifstream *file);
-
-        // Copy Constructor
         BitcoinExchange(const BitcoinExchange& other);
-
-        // Copy Assignment Operator
         BitcoinExchange& operator=(const BitcoinExchange& other);
-
-        // Destructor
         ~BitcoinExchange();
-
-        // ============= Other Member Functions =============
-
-
-    
 };
-
 
 #endif
