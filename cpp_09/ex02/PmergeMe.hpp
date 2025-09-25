@@ -4,37 +4,35 @@
 # include <iostream>
 # include <vector>
 # include <deque>
+# include <set>
+# include <climits>
+# include <cstdlib>
 # include <ctime>
 # include <stdexcept>
+# include <algorithm>
 
 class PmergeMe
 {
-	private:
-		std::vector<int> vec_;
-		std::deque<int> deq_;
+    private:
+        std::vector<int> vec_;
+        std::deque<int> deq_;
 
-		void parseArgs(char **begin, char **end);
-		void printContainer(const std::vector<int> &c, const std::string &msg) const;
-		void mergeInsertSort(std::vector<int> &c);
-		void mergeInsertSort(std::deque<int> &c);
+        void parseArgs(char **begin, char **end);
 
-		template <typename Container>
-		void hybridSort(Container &c, size_t left, size_t right);
+        template <typename Container>
+        void printContainer(const Container &c, const std::string &msg) const;
 
-		template <typename Container>
-		void insertionSort(Container &c, size_t left, size_t right);
+        template <typename Container>
+        void jacobsthalSort(Container &c);
 
-		template <typename Container>
-		void merge(Container &c, size_t left, size_t mid, size_t right);
+        template <typename Container>
+        void binaryInsert(Container &sorted, int value);
 
-	public:
+        std::vector<size_t> generateJacobsthal(size_t n) const;
 
-		PmergeMe(char **begin, char **end);
-		void run();
-
-	private:
-
-		
+    public:
+        PmergeMe(char **begin, char **end);
+        void run();
 };
 
 #endif
