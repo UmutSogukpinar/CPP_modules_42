@@ -188,11 +188,14 @@ void BitcoinExchange::processInputFile()
 
 	std::string line;
 	std::getline(*file_, line);
+	std::string dateStr;
+	std::string valueStr;
+	float inputValue;
+	float rate;
+
 	while (std::getline(*file_, line))
 	{
 		std::stringstream ss(line);
-		std::string dateStr;
-		std::string valueStr;
 
 		if (!std::getline(ss, dateStr, '|') || !std::getline(ss, valueStr))
 		{
@@ -201,12 +204,12 @@ void BitcoinExchange::processInputFile()
 		}
 		try
 		{
-			float inputValue = std::strtof(valueStr.c_str(), NULL);
+			inputValue = std::strtof(valueStr.c_str(), NULL);
 			if (inputValue < 0)
 				throw std::runtime_error("not a positive number.");
 			if (inputValue > 1000)
 				throw std::runtime_error("too large a number.");
-			float rate = getRateForDate(dateStr);
+			rate = getRateForDate(dateStr);
 			std::cout << dateStr << " => " << inputValue << " = " << (inputValue * rate) << std::endl;
 		}
 		catch (std::exception &e)
