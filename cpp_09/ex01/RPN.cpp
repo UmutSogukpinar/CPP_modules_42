@@ -78,11 +78,14 @@ void RPN::processCalculations(char opt)
     switch (opt)
     {
         case '+':
-			result = num2 + num1; break;
+			result = num2 + num1;
+			break;
         case '-':
-			result = num2 - num1; break;
+			result = num2 - num1;
+			break;
         case '*':
-			result = num2 * num1; break;
+			result = num2 * num1;
+			break;
         case '/':
             if (num1 == 0)
                 throw std::runtime_error("Division by zero!");

@@ -1,12 +1,14 @@
 #include "PmergeMe.hpp"
 
 // ===================== Constructor =====================
+
 PmergeMe::PmergeMe(char **begin, char **end)
 {
     parseArgs(begin, end);
 }
 
-// ===================== Public =====================
+// ===================== Public ====================
+
 void PmergeMe::run()
 {
     printContainer(vec_, "Before:");
@@ -33,6 +35,7 @@ void PmergeMe::run()
 }
 
 // ===================== Argument Parsing =====================
+
 void PmergeMe::parseArgs(char **begin, char **end)
 {
     std::set<int> seen;
@@ -60,6 +63,7 @@ void PmergeMe::parseArgs(char **begin, char **end)
 }
 
 // ===================== Utility =====================
+
 template <typename Container>
 void PmergeMe::printContainer(const Container &c, const std::string &msg) const
 {
@@ -69,32 +73,39 @@ void PmergeMe::printContainer(const Container &c, const std::string &msg) const
     std::cout << std::endl;
 }
 
-// ===================== Jacobsthal Sort =====================
-template <typename Container>
-void PmergeMe::jacobsthalSort(Container &c)
+// Comparator for pairs (sort by .second ascending)
+struct PairComp
 {
-    if (c.size() <= 1)
+    bool operator()(const std::pair<int,int> &p1, const std::pair<int,int> &p2) const
+    {
+        return (p1.second < p2.second);
+    }
+};
+
+// ===================== Jacobsthal Sort =====================
+
+template <typename Container>
+void PmergeMe::jacobsthalSort(Container &container)
+{
+    if (container.size() <= 1)
         return;
 
     std::vector<std::pair<int, int> > pairs;
     size_t i = 0;
 
-    for (; i + 1 < c.size(); i += 2)
+    for (; i + 1 < container.size(); i += 2)
     {
-        int a = c[i];
-        int b = c[i + 1];
-        if (a > b)
-            std::swap(a, b);
-        pairs.push_back(std::make_pair(a, b));
+        int left = container[i];
+        int right = container[i + 1];
+        if (left > right)
+            std::swap(left, right);
+        pairs.push_back(std::make_pair(left, right));
     }
 
-    bool hasOdd = (i < c.size());
-    int last = hasOdd ? c.back() : 0;
+    bool hasOdd = (i < container.size());
+    int last = hasOdd ? container.back() : 0;
 
-    std::sort(pairs.begin(), pairs.end(),
-        [](const std::pair<int, int>& p1, const std::pair<int, int>& p2) {
-            return (p1.second < p2.second);
-        });
+    std::sort(pairs.begin(), pairs.end(), PairComp());
 
     Container sorted;
     for (size_t j = 0; j < pairs.size(); ++j)
@@ -103,15 +114,16 @@ void PmergeMe::jacobsthalSort(Container &c)
     std::vector<size_t> jacob = generateJacobsthal(pairs.size());
     std::set<size_t> inserted;
 
-    for (size_t pos : jacob)
+    for (size_t k = 0; k < jacob.size(); ++k)
     {
+        size_t pos = jacob[k];
         if (pos == 0 || pos > pairs.size())
             continue;
-        size_t idx = pos - 1;
-        if (inserted.count(idx))
+        size_t index = pos - 1;
+        if (inserted.count(index))
             continue;
-        inserted.insert(idx);
-        binaryInsert(sorted, pairs[idx].first);
+        inserted.insert(index);
+        binaryInsert(sorted, pairs[index].first);
     }
 
     for (size_t j = 0; j < pairs.size(); ++j)
@@ -123,10 +135,11 @@ void PmergeMe::jacobsthalSort(Container &c)
     if (hasOdd)
         binaryInsert(sorted, last);
 
-    c.assign(sorted.begin(), sorted.end());
+    container.assign(sorted.begin(), sorted.end());
 }
 
 // ===================== Binary Insert =====================
+
 template <typename Container>
 void PmergeMe::binaryInsert(Container &sorted, int value)
 {
@@ -135,6 +148,7 @@ void PmergeMe::binaryInsert(Container &sorted, int value)
 }
 
 // ===================== Jacobsthal Sequence =====================
+
 std::vector<size_t> PmergeMe::generateJacobsthal(size_t n) const
 {
     std::vector<size_t> seq;
@@ -152,10 +166,11 @@ std::vector<size_t> PmergeMe::generateJacobsthal(size_t n) const
         j2 = next;
     }
 
-    return (seq);
+    return seq;
 }
 
 // ===================== Explicit Instantiations =====================
+
 template void PmergeMe::jacobsthalSort(std::vector<int> &);
 template void PmergeMe::jacobsthalSort(std::deque<int> &);
 template void PmergeMe::binaryInsert(std::vector<int> &, int);

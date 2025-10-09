@@ -80,14 +80,29 @@ bool BitcoinExchange::Date::isLeapYear() const
 
 bool BitcoinExchange::Date::isValidDate(int year, int month, int day) const
 {
-	if (year < 1 || month < 1 || month > 12 || day < 1)
-		return (false);
+    if (year < 1 || month < 1 || month > 12 || day < 1)
+        return (false);
 
-	int daysInMonth[] = {31, (isLeapYear() ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	if (day > daysInMonth[month - 1])
-		return (false);
-	return (true);
+    int maxDay = 0;
+
+    switch (month)
+    {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            maxDay = 31;
+            break;
+        case 4: case 6: case 9: case 11:
+            maxDay = 30;
+            break;
+        case 2:
+            maxDay = (isLeapYear() ? 29 : 28);
+            break;
+        default:
+            return (false);
+    }
+
+    return (day <= maxDay);
 }
+
 
 bool BitcoinExchange::Date::isValid() const
 {
@@ -115,6 +130,8 @@ BitcoinExchange::BitcoinExchange() : file_(NULL) {}
 BitcoinExchange::BitcoinExchange(std::ifstream *file) : file_(file)
 {
 	loadExchangeRates();
+	if (exchangeRates_.empty())
+    	throw std::runtime_error("data.csv is empty or contains no valid data");
 	processInputFile();
 }
 
@@ -183,38 +200,46 @@ float BitcoinExchange::getRateForDate(const std::string &dateStr)
 
 void BitcoinExchange::processInputFile()
 {
-	if (!file_ || !file_->is_open())
-		throw std::runtime_error("Input file not provided or not open");
+    if (!file_ || !file_->is_open())
+        throw std::runtime_error("Input file not provided or not open");
 
-	std::string line;
-	std::getline(*file_, line);
-	std::string dateStr;
-	std::string valueStr;
-	float inputValue;
-	float rate;
+    std::string line;
+    float inputValue;
+    float rate;
+    std::string dateStr;
+    std::string valueStr;
 
-	while (std::getline(*file_, line))
-	{
-		std::stringstream ss(line);
+    std::getline(*file_, line); // skip header
 
-		if (!std::getline(ss, dateStr, '|') || !std::getline(ss, valueStr))
-		{
-			std::cerr << "Error: bad input => " << line << std::endl;
-			continue;
-		}
-		try
-		{
-			inputValue = std::strtof(valueStr.c_str(), NULL);
-			if (inputValue < 0)
-				throw std::runtime_error("not a positive number.");
-			if (inputValue > 1000)
-				throw std::runtime_error("too large a number.");
-			rate = getRateForDate(dateStr);
-			std::cout << dateStr << " => " << inputValue << " = " << (inputValue * rate) << std::endl;
-		}
-		catch (std::exception &e)
-		{
-			std::cerr << "Error: " << e.what() << " (line: " << line << ")" << std::endl;
-		}
-	}
+    while (std::getline(*file_, line))
+    {
+        std::stringstream ss(line);
+
+        if (!std::getline(ss, dateStr, '|') || !std::getline(ss, valueStr))
+        {
+            std::cerr << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+
+        try
+        {
+            Date tmp(dateStr, 0.0f);
+
+            inputValue = std::strtof(valueStr.c_str(), NULL);
+            if (inputValue < 0)
+                throw std::runtime_error("not a positive number.");
+            if (inputValue > 1000)
+                throw std::runtime_error("too large a number.");
+
+            rate = getRateForDate(dateStr);
+            std::cout << dateStr << " => " << inputValue
+                      << " = " << (inputValue * rate) << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cerr << "Error: " << e.what()
+                      << " (line: " << line << ")" << std::endl;
+        }
+    }
 }
+
