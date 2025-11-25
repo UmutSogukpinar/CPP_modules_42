@@ -27,6 +27,10 @@ class BitcoinExchange
             Date();
             Date(std::string dateStr, float value);
             ~Date();
+       	 	Date(const Date &other);
+
+			// Assignment operator
+        	Date &operator=(const Date &other);     
 
             // ============= Getters =============
 

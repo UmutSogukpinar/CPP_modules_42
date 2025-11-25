@@ -91,6 +91,8 @@ void RPN::processCalculations(char opt)
                 throw std::runtime_error("Division by zero!");
             result = num2 / num1;
             break;
+		default:
+            throw std::invalid_argument("Invalid token: " + std::string(opt, 1));
     }
 
     numStack_.push(result);

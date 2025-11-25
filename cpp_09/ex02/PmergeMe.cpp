@@ -120,7 +120,7 @@ void PmergeMe::jacobsthalSort(Container &container)
         if (pos == 0 || pos > pairs.size())
             continue;
         size_t index = pos - 1;
-        if (inserted.count(index))
+		if (inserted.count(index))
             continue;
         inserted.insert(index);
         binaryInsert(sorted, pairs[index].first);
@@ -166,7 +166,7 @@ std::vector<size_t> PmergeMe::generateJacobsthal(size_t n) const
         j2 = next;
     }
 
-    return seq;
+    return (seq);
 }
 
 // ===================== Explicit Instantiations =====================

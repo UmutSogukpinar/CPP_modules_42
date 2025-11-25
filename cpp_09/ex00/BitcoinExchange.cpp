@@ -16,6 +16,26 @@ BitcoinExchange::Date::Date(std::string dateStr, float value) : dateStr_(dateStr
 	parseDate(dateStr);
 }
 
+// Copy constructor
+BitcoinExchange::Date::Date(const BitcoinExchange::Date &other)
+{
+    *this = other;
+}
+
+// Copy assignment operator
+BitcoinExchange::Date &BitcoinExchange::Date::operator=(const BitcoinExchange::Date &other)
+{
+    if (this != &other)
+    {
+        year_ = other.year_;
+        month_ = other.month_;
+        day_ = other.day_;
+        value_ = other.value_;
+        dateStr_ = other.dateStr_;
+    }
+    return (*this);
+}
+
 BitcoinExchange::Date::~Date() {}
 
 // ============= Getters and Setters =============
